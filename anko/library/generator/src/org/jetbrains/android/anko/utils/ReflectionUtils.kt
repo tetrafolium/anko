@@ -37,6 +37,4 @@ internal interface ReflectionUtils {
             throw RuntimeException("Can't initialize class ${clazz.name}, no <init>(${argTypes.joinToString()})", e)
         }
     }
-
-
 }

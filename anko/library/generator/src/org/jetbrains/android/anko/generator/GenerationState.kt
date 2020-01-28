@@ -26,9 +26,9 @@ interface Generator<out R> {
 }
 
 class GenerationState(
-        override val classTree: ClassTree,
-        override val context: GeneratorContext
-): ClassTreeUtils, WithGeneratorContext, ReflectionUtils {
+    override val classTree: ClassTree,
+    override val context: GeneratorContext
+) : ClassTreeUtils, WithGeneratorContext, ReflectionUtils {
 
     val availableClasses: List<ClassNode> =
             classTree.filter { !isExcluded(it) && !classTree.findNode(it)!!.fromPlatformJar }
@@ -47,5 +47,4 @@ class GenerationState(
 
     override fun isExcluded(node: MethodNodeWithClass) =
             (node.clazz.fqName + "#" + node.method.name) in config.excludedMethods
-
 }

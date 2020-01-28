@@ -150,4 +150,3 @@ private class ViewChildrenRecursiveSequence(private val view: View) : Sequence<V
         }
     }
 }
-

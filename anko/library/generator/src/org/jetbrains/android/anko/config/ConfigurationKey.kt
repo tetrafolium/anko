@@ -6,19 +6,20 @@ interface ConfigurationKey<out T : Any> {
 }
 
 fun <T : Any> ConfigurationKey(
-        name: String,
-        defaultValue: T? = null
+    name: String,
+    defaultValue: T? = null
 ): ConfigurationKey<T> = ConfigurationKeyImpl(name, defaultValue)
 
 private open class ConfigurationKeyImpl<out T : Any>(
-        override val name: String,
-        override val defaultValue: T? = null) : ConfigurationKey<T>
+    override val name: String,
+    override val defaultValue: T? = null
+) : ConfigurationKey<T>
 
 class CliConfigurationKey<out T : Any>(
-        name: String,
-        val cliName: String = name,
-        defaultValue: T? = null,
-        val mapper: (String) -> T?
+    name: String,
+    val cliName: String = name,
+    defaultValue: T? = null,
+    val mapper: (String) -> T?
 ) : ConfigurationKey<T> by ConfigurationKeyImpl(name, defaultValue)
 
 interface Options {

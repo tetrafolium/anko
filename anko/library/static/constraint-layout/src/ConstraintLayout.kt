@@ -36,8 +36,9 @@ fun ConstraintLayout.constraintSet(init: ConstraintSetBuilder.() -> Unit): Const
         ConstraintSetBuilder().also { it.clone(this) }.apply(init)
 
 class ViewConstraintBuilder(
-        private @IdRes val viewId: Int,
-        private val constraintSetBuilder: ConstraintSetBuilder) {
+    @IdRes private val viewId: Int,
+    private val constraintSetBuilder: ConstraintSetBuilder
+) {
 
     infix fun Pair<Side, Side>.of(@IdRes targetViewId: Int): BasicConnection =
             constraintSetBuilder.run { (first of viewId) to (second of targetViewId) }
@@ -296,7 +297,7 @@ class ConstraintSetBuilder : ConstraintSet() {
         class End(@IdRes viewId: Int) : ViewSide(viewId)
 
         val sideId: Int
-            get() = when(this) {
+            get() = when (this) {
                 is ViewSide.Left -> ConstraintSet.LEFT
                 is ViewSide.Right -> ConstraintSet.RIGHT
                 is ViewSide.Top -> ConstraintSet.TOP

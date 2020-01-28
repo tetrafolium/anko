@@ -25,7 +25,7 @@ import org.objectweb.asm.tree.MethodNode
 
 class PropertyGenerator : Generator<PropertyElement> {
 
-    override fun generate(state: GenerationState) = with (state) {
+    override fun generate(state: GenerationState) = with(state) {
         val propertyGetters = availableMethods
                 .filter {
                     it.clazz.isView &&
@@ -47,8 +47,9 @@ class PropertyGenerator : Generator<PropertyElement> {
     }
 
     private fun GenerationState.genProperties(
-            getters: Collection<MethodNodeWithClass>,
-            setters: Map<String, List<MethodNodeWithClass>>): List<PropertyElement> {
+        getters: Collection<MethodNodeWithClass>,
+        setters: Map<String, List<MethodNodeWithClass>>
+    ): List<PropertyElement> {
         val existingProperties = hashSetOf<String>()
 
         val propertyWithGetters = getters.map { getter ->

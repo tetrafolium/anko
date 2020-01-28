@@ -16,8 +16,8 @@
 
 package org.jetbrains.android.anko.writer
 
-import org.jetbrains.android.anko.render.*
 import java.io.File
+import org.jetbrains.android.anko.render.*
 
 class GeneratorWriter(renderFacade: RenderFacade) : AbstractWriter(renderFacade) {
     override fun write(file: File, text: String) {

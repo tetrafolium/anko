@@ -45,27 +45,27 @@ abstract class SelectQueryBuilder(val tableName: String) {
         }
     }
 
-    inline fun <T: Any> parseSingle(parser: RowParser<T>): T = AnkoInternals.useCursor(doExec()) {
+    inline fun <T : Any> parseSingle(parser: RowParser<T>): T = AnkoInternals.useCursor(doExec()) {
         it.parseSingle(parser)
     }
 
-    inline fun <T: Any> parseOpt(parser: RowParser<T>): T? = AnkoInternals.useCursor(doExec()) {
+    inline fun <T : Any> parseOpt(parser: RowParser<T>): T? = AnkoInternals.useCursor(doExec()) {
         it.parseOpt(parser)
     }
 
-    inline fun <T: Any> parseList(parser: RowParser<T>): List<T> = AnkoInternals.useCursor(doExec()) {
+    inline fun <T : Any> parseList(parser: RowParser<T>): List<T> = AnkoInternals.useCursor(doExec()) {
         it.parseList(parser)
     }
 
-    inline fun <T: Any> parseSingle(parser: MapRowParser<T>): T = AnkoInternals.useCursor(doExec()) {
+    inline fun <T : Any> parseSingle(parser: MapRowParser<T>): T = AnkoInternals.useCursor(doExec()) {
         it.parseSingle(parser)
     }
 
-    inline fun <T: Any> parseOpt(parser: MapRowParser<T>): T? = AnkoInternals.useCursor(doExec()) {
+    inline fun <T : Any> parseOpt(parser: MapRowParser<T>): T? = AnkoInternals.useCursor(doExec()) {
         it.parseOpt(parser)
     }
 
-    inline fun <T: Any> parseList(parser: MapRowParser<T>): List<T> = AnkoInternals.useCursor(doExec()) {
+    inline fun <T : Any> parseList(parser: MapRowParser<T>): List<T> = AnkoInternals.useCursor(doExec()) {
         it.parseList(parser)
     }
 
@@ -79,15 +79,15 @@ abstract class SelectQueryBuilder(val tableName: String) {
     }
 
     protected abstract fun execQuery(
-            distinct: Boolean,
-            tableName: String,
-            columns: Array<String>,
-            selection: String?,
-            selectionArgs: Array<out String>?,
-            groupBy: String,
-            having: String?,
-            orderBy: String,
-            limit: String?
+        distinct: Boolean,
+        tableName: String,
+        columns: Array<String>,
+        selection: String?,
+        selectionArgs: Array<out String>?,
+        groupBy: String,
+        having: String?,
+        orderBy: String,
+        limit: String?
     ): Cursor
 
     fun distinct(): SelectQueryBuilder {
@@ -200,22 +200,21 @@ abstract class SelectQueryBuilder(val tableName: String) {
 }
 
 class AndroidSdkDatabaseSelectQueryBuilder(
-        private val db: SQLiteDatabase,
-        tableName: String
+    private val db: SQLiteDatabase,
+    tableName: String
 ) : SelectQueryBuilder(tableName) {
 
     override fun execQuery(
-            distinct: Boolean,
-            tableName: String,
-            columns: Array<String>,
-            selection: String?,
-            selectionArgs: Array<out String>?,
-            groupBy: String,
-            having: String?,
-            orderBy: String,
-            limit: String?
+        distinct: Boolean,
+        tableName: String,
+        columns: Array<String>,
+        selection: String?,
+        selectionArgs: Array<out String>?,
+        groupBy: String,
+        having: String?,
+        orderBy: String,
+        limit: String?
     ): Cursor {
         return db.query(distinct, tableName, columns, selection, selectionArgs, groupBy, having, orderBy, limit)
     }
-
 }

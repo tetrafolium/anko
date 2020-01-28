@@ -1,15 +1,12 @@
 @file:JvmName("DesignViewsKt")
 package org.jetbrains.anko.design
 
-import org.jetbrains.anko.custom.*
-import org.jetbrains.anko.AnkoViewDslMarker
-import android.view.ViewManager
-import android.view.ViewGroup.LayoutParams
 import android.app.Activity
-import android.app.Fragment
 import android.content.Context
-import android.os.Build
+import android.view.ViewManager
 import android.widget.*
+import org.jetbrains.anko.AnkoViewDslMarker
+import org.jetbrains.anko.custom.*
 
 @PublishedApi
 internal object `$$Anko$Factories$DesignView` {
@@ -268,4 +265,3 @@ inline fun Activity.themedTextInputLayout(theme: Int = 0): android.support.desig
 inline fun Activity.themedTextInputLayout(theme: Int = 0, init: (@AnkoViewDslMarker _TextInputLayout).() -> Unit): android.support.design.widget.TextInputLayout {
 return ankoView(`$$Anko$Factories$DesignViewGroup`.TEXT_INPUT_LAYOUT, theme) { init() }
 }
-

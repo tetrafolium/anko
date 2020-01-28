@@ -114,5 +114,4 @@ import org.robolectric.annotation.Config
 
         return elements
     }
-
 }

@@ -34,7 +34,7 @@ internal data class KeyValuePair(val key: String, val value: String) {
 
 internal operator fun String.times(value: String) = KeyValuePair(this, value)
 
-internal fun <T: Any, R: Any> List<T>.findFirst(transformer: (T) -> R?): R? {
+internal fun <T : Any, R : Any> List<T>.findFirst(transformer: (T) -> R?): R? {
     for (item in this) {
         val r = transformer(item)
         if (r != null) return r

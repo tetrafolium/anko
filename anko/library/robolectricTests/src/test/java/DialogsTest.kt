@@ -19,7 +19,7 @@ import org.robolectric.shadows.ShadowLooper
 import org.robolectric.shadows.ShadowToast
 
 open class DialogsTestActivity : Activity() {
-    public override fun onCreate(savedInstanceState: Bundle?): Unit {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         verticalLayout {
@@ -45,7 +45,7 @@ open class DialogsTestActivity : Activity() {
                 onClick {
                     alert("Message", "NonCancelable") {
                         isCancelable = false
-                        positiveButton("Ok") { dialog -> dialog.dismiss()  }
+                        positiveButton("Ok") { dialog -> dialog.dismiss() }
                     }.show()
                 }
             }

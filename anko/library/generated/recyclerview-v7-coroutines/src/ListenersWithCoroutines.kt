@@ -1,15 +1,14 @@
 @file:JvmName("RecyclerviewV7CoroutinesListenersWithCoroutinesKt")
 package org.jetbrains.anko.recyclerview.v7.coroutines
 
-
 import kotlin.coroutines.experimental.CoroutineContext
-import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.CoroutineScope
+import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
 
 fun android.support.v7.widget.RecyclerView.onChildAttachStateChangeListener(
-        context: CoroutineContext = UI,
-        init: __RecyclerView_OnChildAttachStateChangeListener.() -> Unit
+    context: CoroutineContext = UI,
+    init: __RecyclerView_OnChildAttachStateChangeListener.() -> Unit
 ) {
     val listener = __RecyclerView_OnChildAttachStateChangeListener(context)
     listener.init()
@@ -19,7 +18,6 @@ fun android.support.v7.widget.RecyclerView.onChildAttachStateChangeListener(
 class __RecyclerView_OnChildAttachStateChangeListener(private val context: CoroutineContext) : android.support.v7.widget.RecyclerView.OnChildAttachStateChangeListener {
 
     private var _onChildViewAttachedToWindow: (suspend CoroutineScope.(android.view.View?) -> Unit)? = null
-    
 
     override fun onChildViewAttachedToWindow(view: android.view.View?) {
         val handler = _onChildViewAttachedToWindow ?: return
@@ -29,13 +27,12 @@ class __RecyclerView_OnChildAttachStateChangeListener(private val context: Corou
     }
 
     fun onChildViewAttachedToWindow(
-            listener: suspend CoroutineScope.(android.view.View?) -> Unit
+        listener: suspend CoroutineScope.(android.view.View?) -> Unit
     ) {
         _onChildViewAttachedToWindow = listener
     }
 
     private var _onChildViewDetachedFromWindow: (suspend CoroutineScope.(android.view.View?) -> Unit)? = null
-    
 
     override fun onChildViewDetachedFromWindow(view: android.view.View?) {
         val handler = _onChildViewDetachedFromWindow ?: return
@@ -45,14 +42,13 @@ class __RecyclerView_OnChildAttachStateChangeListener(private val context: Corou
     }
 
     fun onChildViewDetachedFromWindow(
-            listener: suspend CoroutineScope.(android.view.View?) -> Unit
+        listener: suspend CoroutineScope.(android.view.View?) -> Unit
     ) {
         _onChildViewDetachedFromWindow = listener
     }
-
-}fun android.support.v7.widget.RecyclerView.onItemTouchListener(
-        context: CoroutineContext = UI,
-        init: __RecyclerView_OnItemTouchListener.() -> Unit
+} fun android.support.v7.widget.RecyclerView.onItemTouchListener(
+    context: CoroutineContext = UI,
+    init: __RecyclerView_OnItemTouchListener.() -> Unit
 ) {
     val listener = __RecyclerView_OnItemTouchListener(context)
     listener.init()
@@ -64,7 +60,7 @@ class __RecyclerView_OnItemTouchListener(private val context: CoroutineContext) 
     private var _onInterceptTouchEvent: (suspend CoroutineScope.(android.support.v7.widget.RecyclerView?, android.view.MotionEvent?) -> Boolean)? = null
     private var _onInterceptTouchEvent_returnValue: Boolean = false
 
-    override fun onInterceptTouchEvent(rv: android.support.v7.widget.RecyclerView?, e: android.view.MotionEvent?) : Boolean {
+    override fun onInterceptTouchEvent(rv: android.support.v7.widget.RecyclerView?, e: android.view.MotionEvent?): Boolean {
         val returnValue = _onInterceptTouchEvent_returnValue
         val handler = _onInterceptTouchEvent ?: return returnValue
         launch(context) {
@@ -74,15 +70,14 @@ class __RecyclerView_OnItemTouchListener(private val context: CoroutineContext) 
     }
 
     fun onInterceptTouchEvent(
-            returnValue: Boolean = false,
-            listener: suspend CoroutineScope.(android.support.v7.widget.RecyclerView?, android.view.MotionEvent?) -> Boolean
+        returnValue: Boolean = false,
+        listener: suspend CoroutineScope.(android.support.v7.widget.RecyclerView?, android.view.MotionEvent?) -> Boolean
     ) {
         _onInterceptTouchEvent = listener
         _onInterceptTouchEvent_returnValue = returnValue
     }
 
     private var _onTouchEvent: (suspend CoroutineScope.(android.support.v7.widget.RecyclerView?, android.view.MotionEvent?) -> Unit)? = null
-    
 
     override fun onTouchEvent(rv: android.support.v7.widget.RecyclerView?, e: android.view.MotionEvent?) {
         val handler = _onTouchEvent ?: return
@@ -92,13 +87,12 @@ class __RecyclerView_OnItemTouchListener(private val context: CoroutineContext) 
     }
 
     fun onTouchEvent(
-            listener: suspend CoroutineScope.(android.support.v7.widget.RecyclerView?, android.view.MotionEvent?) -> Unit
+        listener: suspend CoroutineScope.(android.support.v7.widget.RecyclerView?, android.view.MotionEvent?) -> Unit
     ) {
         _onTouchEvent = listener
     }
 
     private var _onRequestDisallowInterceptTouchEvent: (suspend CoroutineScope.(Boolean) -> Unit)? = null
-    
 
     override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
         val handler = _onRequestDisallowInterceptTouchEvent ?: return
@@ -108,9 +102,8 @@ class __RecyclerView_OnItemTouchListener(private val context: CoroutineContext) 
     }
 
     fun onRequestDisallowInterceptTouchEvent(
-            listener: suspend CoroutineScope.(Boolean) -> Unit
+        listener: suspend CoroutineScope.(Boolean) -> Unit
     ) {
         _onRequestDisallowInterceptTouchEvent = listener
     }
-
 }

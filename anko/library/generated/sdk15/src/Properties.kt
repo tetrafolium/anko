@@ -1,10 +1,8 @@
 @file:JvmName("Sdk15PropertiesKt")
 package org.jetbrains.anko
 
-import org.jetbrains.anko.*
-
-import org.jetbrains.anko.internals.AnkoInternals
 import kotlin.DeprecationLevel
+import org.jetbrains.anko.internals.AnkoInternals
 
 var android.view.View.backgroundColor: Int
     @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
@@ -133,4 +131,3 @@ var android.widget.TextView.hintResource: Int
 var android.widget.TextView.textResource: Int
     @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
     set(v) = setText(v)
-

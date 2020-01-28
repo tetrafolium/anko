@@ -37,7 +37,6 @@ internal class Property(val node: MethodNodeWithClass) {
             name = methodName.substring(2).decapitalize()
         } else throw IllegalArgumentException("Method $methodName is not a property")
     }
-
 }
 
 internal fun MethodNodeWithClass.toProperty() = Property(this)

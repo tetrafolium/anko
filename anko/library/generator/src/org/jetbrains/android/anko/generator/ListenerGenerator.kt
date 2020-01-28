@@ -18,13 +18,12 @@ package org.jetbrains.android.anko.generator
 
 import org.jetbrains.android.anko.*
 import org.jetbrains.android.anko.utils.MethodNodeWithClass
-import org.jetbrains.android.anko.utils.isAbstract
 import org.jetbrains.android.anko.utils.isInterface
 import org.objectweb.asm.tree.ClassNode
 
 class ListenerGenerator : Generator<ListenerElement> {
 
-    override fun generate(state: GenerationState) = with (state) {
+    override fun generate(state: GenerationState) = with(state) {
         val complexAddListeners = hashSetOf<Pair<ClassNode, String>>()
 
         val addListeners = state.availableMethods
@@ -44,11 +43,11 @@ class ListenerGenerator : Generator<ListenerElement> {
                 .filterNotNull()
                 .sortedBy { it.setter.identifier }
                 .toMutableList()
-        
+
         (addListeners + setListeners).distinctBy { it.id }
     }
 
-    //suppose "setter" is a correct setOn*Listener method
+    // suppose "setter" is a correct setOn*Listener method
     private fun GenerationState.makeListener(setter: MethodNodeWithClass): ListenerElement? {
         val listener = classTree.findNode(setter.method.parameterRawTypes[0].internalName)!!.data
 
@@ -59,7 +58,7 @@ class ListenerGenerator : Generator<ListenerElement> {
         val methods = listener.methods?.filter { !it.isConstructor }
 
         val rawName = setter.method.name
-        //delete "set" ("add") end "Listener" parts of String
+        // delete "set" ("add") end "Listener" parts of String
         val name = rawName.substring("set".length).dropLast("Listener".length).decapitalize()
 
         return when (methods?.size ?: 0) {

@@ -1,5 +1,7 @@
 package org.jetbrains.android.anko.templates
 
+import java.io.File
+import java.math.BigDecimal
 import org.jetbrains.android.anko.utils.ImportList
 import org.jtwig.JtwigModel
 import org.jtwig.JtwigTemplate
@@ -8,8 +10,6 @@ import org.jtwig.functions.FunctionRequest
 import org.jtwig.functions.SimpleJtwigFunction
 import org.jtwig.spaceless.SpacelessExtension
 import org.jtwig.spaceless.configuration.DefaultSpacelessConfiguration
-import java.io.File
-import java.math.BigDecimal
 
 class JtwigTemplateProvider : TemplateProvider {
     override val extension = "twig"

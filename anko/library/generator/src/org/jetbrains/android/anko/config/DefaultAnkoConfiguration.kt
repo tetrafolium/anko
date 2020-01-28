@@ -16,15 +16,15 @@
 
 package org.jetbrains.android.anko.config
 
+import java.io.File
 import org.jetbrains.android.anko.artifact.Artifact
 import org.jetbrains.android.anko.artifact.Tunes
-import java.io.File
 
 class DefaultAnkoConfiguration(
-        override val outputDirectory: File,
-        override val artifact: Artifact,
-        override val options: Options,
-        val tunes: Tunes
+    override val outputDirectory: File,
+    override val artifact: Artifact,
+    override val options: Options,
+    val tunes: Tunes
 ) : AnkoConfiguration {
     override val outputPackage: String
 

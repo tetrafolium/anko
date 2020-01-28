@@ -1,15 +1,11 @@
 @file:JvmName("Sdk21ViewsKt")
 package org.jetbrains.anko
 
-import org.jetbrains.anko.custom.*
-import org.jetbrains.anko.AnkoViewDslMarker
-import android.view.ViewManager
-import android.view.ViewGroup.LayoutParams
 import android.app.Activity
-import android.app.Fragment
 import android.content.Context
-import android.os.Build
+import android.view.ViewManager
 import android.widget.*
+import org.jetbrains.anko.custom.*
 
 @PublishedApi
 internal object `$$Anko$Factories$Sdk21View` {
@@ -1887,4 +1883,3 @@ inline fun Activity.themedViewSwitcher(theme: Int = 0): android.widget.ViewSwitc
 inline fun Activity.themedViewSwitcher(theme: Int = 0, init: (@AnkoViewDslMarker _ViewSwitcher).() -> Unit): android.widget.ViewSwitcher {
 return ankoView(`$$Anko$Factories$Sdk21ViewGroup`.VIEW_SWITCHER, theme) { init() }
 }
-

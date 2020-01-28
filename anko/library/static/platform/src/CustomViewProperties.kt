@@ -17,15 +17,15 @@
 @file:Suppress("unused")
 package org.jetbrains.anko
 
-import android.os.Build
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import kotlin.DeprecationLevel.ERROR
 import org.jetbrains.anko.internals.AnkoInternals.NO_GETTER
 import org.jetbrains.anko.internals.AnkoInternals.noGetter
-import kotlin.DeprecationLevel.ERROR
 
 var View.backgroundDrawable: Drawable?
     inline get() = background

@@ -18,9 +18,9 @@
 package org.jetbrains.anko
 
 import android.view.ViewGroup
+import kotlin.DeprecationLevel.ERROR
 import org.jetbrains.anko.internals.AnkoInternals.NO_GETTER
 import org.jetbrains.anko.internals.AnkoInternals.noGetter
-import kotlin.DeprecationLevel.ERROR
 
 val matchParent: Int = android.view.ViewGroup.LayoutParams.MATCH_PARENT
 val wrapContent: Int = android.view.ViewGroup.LayoutParams.WRAP_CONTENT

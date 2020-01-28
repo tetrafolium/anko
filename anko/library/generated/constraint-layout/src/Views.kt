@@ -1,15 +1,12 @@
 @file:JvmName("ConstraintLayoutViewsKt")
 package org.jetbrains.anko.constraint.layout
 
-import org.jetbrains.anko.custom.*
-import org.jetbrains.anko.AnkoViewDslMarker
-import android.view.ViewManager
-import android.view.ViewGroup.LayoutParams
 import android.app.Activity
-import android.app.Fragment
 import android.content.Context
-import android.os.Build
+import android.view.ViewManager
 import android.widget.*
+import org.jetbrains.anko.AnkoViewDslMarker
+import org.jetbrains.anko.custom.*
 
 @PublishedApi
 internal object `$$Anko$Factories$ConstraintLayoutView` {
@@ -93,4 +90,3 @@ inline fun Activity.themedConstraintLayout(theme: Int = 0): android.support.cons
 inline fun Activity.themedConstraintLayout(theme: Int = 0, init: (@AnkoViewDslMarker _ConstraintLayout).() -> Unit): android.support.constraint.ConstraintLayout {
 return ankoView(`$$Anko$Factories$ConstraintLayoutViewGroup`.CONSTRAINT_LAYOUT, theme) { init() }
 }
-

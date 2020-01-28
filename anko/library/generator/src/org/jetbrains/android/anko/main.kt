@@ -17,13 +17,13 @@
 @file:JvmName("Main")
 package org.jetbrains.android.anko
 
+import java.io.File
 import org.jetbrains.android.anko.artifact.Artifact
 import org.jetbrains.android.anko.config.*
 import org.jetbrains.android.anko.generator.GenerationState
 import org.jetbrains.android.anko.render.RenderFacade
-import org.jetbrains.android.anko.writer.VerifyWriter
 import org.jetbrains.android.anko.writer.GeneratorWriter
-import java.io.File
+import org.jetbrains.android.anko.writer.VerifyWriter
 
 fun main(args: Array<String>) {
     val (rawOptions, tasks) = args.partition { it.startsWith("--") }

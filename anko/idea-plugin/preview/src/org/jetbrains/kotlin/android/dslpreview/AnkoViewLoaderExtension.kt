@@ -1,10 +1,10 @@
 package org.jetbrains.kotlin.android.dslpreview
 
+import java.net.URL
+import java.net.URLClassLoader
 import org.jetbrains.android.uipreview.ViewLoaderExtension
 import org.jetbrains.org.objectweb.asm.ClassWriter
 import org.jetbrains.org.objectweb.asm.Opcodes
-import java.net.URL
-import java.net.URLClassLoader
 
 class AnkoViewLoaderExtension : ViewLoaderExtension {
     internal var description: PreviewClassDescription? = null
@@ -25,14 +25,14 @@ class AnkoViewLoaderExtension : ViewLoaderExtension {
         val viewInternalName = viewFqName.replace('.', '/')
         val superClassInternalName = "android/widget/FrameLayout"
 
-        val bytes = with (ClassWriter(0)) {
+        val bytes = with(ClassWriter(0)) {
             visit(49, Opcodes.ACC_PUBLIC, viewInternalName, null, superClassInternalName, null)
             visitSource(null, null)
 
             fun visitConstructor(vararg params: String) {
                 val signature = "(${params.joinToString("")})V"
 
-                with (visitMethod(Opcodes.ACC_PUBLIC, "<init>", signature, null, null)) {
+                with(visitMethod(Opcodes.ACC_PUBLIC, "<init>", signature, null, null)) {
                     visitVarInsn(Opcodes.ALOAD, 0)
                     params.forEachIndexed { i, param ->
                         when (param) {
@@ -60,7 +60,7 @@ class AnkoViewLoaderExtension : ViewLoaderExtension {
             }
              */
 
-            with (visitMethod(Opcodes.ACC_PRIVATE, "init", "()V", null, null)) {
+            with(visitMethod(Opcodes.ACC_PRIVATE, "init", "()V", null, null)) {
                 visitVarInsn(Opcodes.ALOAD, 0)
                 visitTypeInsn(Opcodes.NEW, uiInternalName)
                 visitInsn(Opcodes.DUP)
@@ -92,9 +92,9 @@ class AnkoViewLoaderExtension : ViewLoaderExtension {
 
     private fun loadClass(fqName: String, bytes: ByteArray, delegateClassLoader: ClassLoader): Class<*>? {
         class ByteClassLoader(
-                urls: Array<out URL>?,
-                parent: ClassLoader?,
-                private var extraClasses: MutableMap<String, ByteArray>
+            urls: Array<out URL>?,
+            parent: ClassLoader?,
+            private var extraClasses: MutableMap<String, ByteArray>
         ) : URLClassLoader(urls, parent) {
             override fun findClass(name: String): Class<*>? {
                 return extraClasses.remove(name)?.let {

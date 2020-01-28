@@ -1,15 +1,13 @@
 @file:JvmName("AppcompatV7ViewsKt")
 package org.jetbrains.anko.appcompat.v7
 
-import org.jetbrains.anko.custom.*
-import org.jetbrains.anko.AnkoViewDslMarker
-import android.view.ViewManager
-import android.view.ViewGroup.LayoutParams
 import android.app.Activity
-import android.app.Fragment
 import android.content.Context
 import android.os.Build
+import android.view.ViewManager
 import android.widget.*
+import org.jetbrains.anko.AnkoViewDslMarker
+import org.jetbrains.anko.custom.*
 
 @PublishedApi
 internal object `$$Anko$Factories$AppcompatV7View` {
@@ -1082,4 +1080,3 @@ inline fun Activity.themedToolbar(theme: Int = 0): android.support.v7.widget.Too
 inline fun Activity.themedToolbar(theme: Int = 0, init: (@AnkoViewDslMarker _Toolbar).() -> Unit): android.support.v7.widget.Toolbar {
 return ankoView(`$$Anko$Factories$AppcompatV7ViewGroup`.TOOLBAR, theme) { init() }
 }
-

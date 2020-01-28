@@ -91,23 +91,23 @@ fun SQLiteDatabase.dropTable(tableName: String, ifExists: Boolean = false) {
 }
 
 fun SQLiteDatabase.createIndex(indexName: String, tableName: String, unique: Boolean = false, ifNotExists: Boolean = false, vararg columns: String) {
-	val escapedIndexName = indexName.replace("`", "``")
-	val escapedTableName = tableName.replace("`", "``")
-	val ifNotExistsText = if (ifNotExists) "IF NOT EXISTS" else ""
-	val uniqueText = if (unique) "UNIQUE" else ""
-	execSQL(
-		columns.joinToString(
-			separator = ",",
-			prefix = "CREATE $uniqueText INDEX $ifNotExistsText `$escapedIndexName` ON `$escapedTableName`(",
-			postfix = ");"
-		)
-	)
+    val escapedIndexName = indexName.replace("`", "``")
+    val escapedTableName = tableName.replace("`", "``")
+    val ifNotExistsText = if (ifNotExists) "IF NOT EXISTS" else ""
+    val uniqueText = if (unique) "UNIQUE" else ""
+    execSQL(
+        columns.joinToString(
+            separator = ",",
+            prefix = "CREATE $uniqueText INDEX $ifNotExistsText `$escapedIndexName` ON `$escapedTableName`(",
+            postfix = ");"
+        )
+    )
 }
 
 fun SQLiteDatabase.dropIndex(indexName: String, ifExists: Boolean = false) {
-	val escapedIndexName = indexName.replace("`", "``")
-	val ifExistsText = if (ifExists) "IF EXISTS" else ""
-	execSQL("DROP INDEX $ifExistsText `$escapedIndexName`;")
+    val escapedIndexName = indexName.replace("`", "``")
+    val ifExistsText = if (ifExists) "IF EXISTS" else ""
+    execSQL("DROP INDEX $ifExistsText `$escapedIndexName`;")
 }
 
 private val ARG_PATTERN: Pattern = Pattern.compile("([^\\\\])\\{([^{}]+)\\}")
@@ -145,7 +145,7 @@ internal fun applyArguments(whereClause: String, args: Map<String, Any>): String
 internal fun Array<out Pair<String, Any?>>.toContentValues(): ContentValues {
     val values = ContentValues()
     for ((key, value) in this) {
-        when(value) {
+        when (value) {
             null -> values.putNull(key)
             is Boolean -> values.put(key, value)
             is Byte -> values.put(key, value)
@@ -167,7 +167,7 @@ abstract class ManagedSQLiteOpenHelper(
     name: String?,
     factory: SQLiteDatabase.CursorFactory? = null,
     version: Int = 1
-): SQLiteOpenHelper(ctx, name, factory, version) {
+) : SQLiteOpenHelper(ctx, name, factory, version) {
 
     private val counter = AtomicInteger()
     private var db: SQLiteDatabase? = null

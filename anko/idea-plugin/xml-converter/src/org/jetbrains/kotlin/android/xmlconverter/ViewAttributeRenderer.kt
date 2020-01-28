@@ -101,7 +101,7 @@ internal fun renderString(attr: Attr, key: String, value: String) =
 internal fun renderColor(attr: Attr, key: String, value: String) = if (attr accepts "color" && value.isColor()) {
         val color = value.replace("#", "").toLowerCase()
         val displayColor = if (color.length > 6 && !color.startsWith("ff"))
-            "0x$color.toInt()" else "0x${color}.opaque"
+            "0x$color.toInt()" else "0x$color.opaque"
         key * displayColor
     } else null
 
@@ -113,8 +113,7 @@ internal fun renderReference(attr: Attr, key: String, value: String): KeyValuePa
             "+id" -> key * "${packageName}Ids.${reference.value}"
             else -> key * "${packageName}R.${reference.type}.${reference.value}"
         }
-    }
-    else
+    } else
         return null
 }
 

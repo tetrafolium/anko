@@ -93,26 +93,26 @@ inline fun Activity.horizontalProgressBar(theme: Int = 0, init: (@AnkoViewDslMar
     return ankoView(`$$Anko$Factories$CustomViews`.HORIZONTAL_PROGRESS_BAR_FACTORY, theme, init)
 }
 
-inline fun <T: View> ViewManager.include(layoutId: Int): T = include(layoutId, {})
-inline fun <T: View> ViewManager.include(layoutId: Int, init: (@AnkoViewDslMarker T).() -> Unit): T {
+inline fun <T : View> ViewManager.include(layoutId: Int): T = include(layoutId, {})
+inline fun <T : View> ViewManager.include(layoutId: Int, init: (@AnkoViewDslMarker T).() -> Unit): T {
     @Suppress("UNCHECKED_CAST")
     return ankoView({ ctx -> ctx.layoutInflater.inflate(layoutId, null) as T }, 0) { init() }
 }
 
-inline fun <T: View> ViewGroup.include(layoutId: Int): T = include(layoutId, {})
-inline fun <T: View> ViewGroup.include(layoutId: Int, init: (@AnkoViewDslMarker T).() -> Unit): T {
+inline fun <T : View> ViewGroup.include(layoutId: Int): T = include(layoutId, {})
+inline fun <T : View> ViewGroup.include(layoutId: Int, init: (@AnkoViewDslMarker T).() -> Unit): T {
     @Suppress("UNCHECKED_CAST")
     return ankoView({ ctx -> ctx.layoutInflater.inflate(layoutId, this, false) as T }, 0) { init() }
 }
 
-inline fun <T: View> Context.include(layoutId: Int): T = include(layoutId, {})
-inline fun <T: View> Context.include(layoutId: Int, init: (@AnkoViewDslMarker T).() -> Unit): T {
+inline fun <T : View> Context.include(layoutId: Int): T = include(layoutId, {})
+inline fun <T : View> Context.include(layoutId: Int, init: (@AnkoViewDslMarker T).() -> Unit): T {
     @Suppress("UNCHECKED_CAST")
     return ankoView({ ctx -> ctx.layoutInflater.inflate(layoutId, null) as T }, 0) { init() }
 }
 
-inline fun <T: View> Activity.include(layoutId: Int): T = include(layoutId, {})
-inline fun <T: View> Activity.include(layoutId: Int, init: (@AnkoViewDslMarker T).() -> Unit): T {
+inline fun <T : View> Activity.include(layoutId: Int): T = include(layoutId, {})
+inline fun <T : View> Activity.include(layoutId: Int, init: (@AnkoViewDslMarker T).() -> Unit): T {
     @Suppress("UNCHECKED_CAST")
     return ankoView({ ctx -> ctx.layoutInflater.inflate(layoutId, null) as T }, 0) { init() }
 }

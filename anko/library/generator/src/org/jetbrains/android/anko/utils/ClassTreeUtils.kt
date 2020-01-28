@@ -64,5 +64,4 @@ internal interface ClassTreeUtils {
         allMethodsTo(node, list)
         return list
     }
-
 }

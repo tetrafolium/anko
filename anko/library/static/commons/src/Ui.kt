@@ -26,7 +26,7 @@ annotation class AnkoViewDslMarker
 
 /**
  * Apply [f] to this [View] and to all of its children recursively.
- * 
+ *
  * @return the receiver.
  */
 inline fun <T : View> T.applyRecursively(noinline f: (View) -> Unit): T {

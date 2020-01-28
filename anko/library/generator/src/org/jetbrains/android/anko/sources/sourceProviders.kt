@@ -18,8 +18,8 @@ package org.jetbrains.android.anko.sources
 
 import com.github.javaparser.JavaParser
 import com.github.javaparser.ast.CompilationUnit
-import org.jetbrains.android.anko.utils.getPackageName
 import java.io.File
+import org.jetbrains.android.anko.utils.getPackageName
 
 interface SourceProvider {
     fun parse(fqName: String): CompilationUnit?

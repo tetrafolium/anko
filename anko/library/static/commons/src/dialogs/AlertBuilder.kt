@@ -26,8 +26,8 @@ import android.support.annotation.StringRes
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewManager
-import org.jetbrains.anko.internals.AnkoInternals.NO_GETTER
 import kotlin.DeprecationLevel.ERROR
+import org.jetbrains.anko.internals.AnkoInternals.NO_GETTER
 
 @SuppressLint("SupportAnnotationUsage")
 interface AlertBuilder<out D : DialogInterface> {
@@ -51,7 +51,7 @@ interface AlertBuilder<out D : DialogInterface> {
     @setparam:DrawableRes
     var iconResource: Int
         @Deprecated(NO_GETTER, level = ERROR) get
-    
+
     var customTitle: View
         @Deprecated(NO_GETTER, level = ERROR) get
 

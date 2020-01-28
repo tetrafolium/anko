@@ -19,7 +19,7 @@ open class SimpleTestActivity : Activity() {
     var ctxProperty: Context? = null
     var actProperty: Activity? = null
 
-    public override fun onCreate(savedInstanceState: Bundle?): Unit {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         ctxProperty = ctx
@@ -57,5 +57,4 @@ open class SimpleTestActivity : Activity() {
 
         println("[COMPLETE]")
     }
-
 }

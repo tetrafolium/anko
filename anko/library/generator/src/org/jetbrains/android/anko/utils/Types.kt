@@ -84,7 +84,7 @@ internal fun Type.asJavaString(): String {
     }
 }
 
-internal fun Type.getDefaultValue(onlyPrimitive: Boolean = false) : String {
+internal fun Type.getDefaultValue(onlyPrimitive: Boolean = false): String {
     return when (sort) {
         Type.BOOLEAN -> "false"
         Type.INT -> "0"
@@ -92,7 +92,7 @@ internal fun Type.getDefaultValue(onlyPrimitive: Boolean = false) : String {
         Type.DOUBLE -> "0.0"
         Type.LONG -> "0"
         Type.BYTE -> "0"
-        Type.CHAR -> "\'\\u0000\'" //default value of a char
+        Type.CHAR -> "\'\\u0000\'" // default value of a char
         Type.SHORT -> "0"
         Type.VOID -> ""
         else -> {
@@ -113,9 +113,9 @@ internal fun Type.getDefaultValue(onlyPrimitive: Boolean = false) : String {
 }
 
 internal fun genericTypeToKType(
-        type: GenericType,
-        isNullable: Boolean = false,
-        variance: KType.Variance = KType.Variance.INVARIANT
+    type: GenericType,
+    isNullable: Boolean = false,
+    variance: KType.Variance = KType.Variance.INVARIANT
 ): KType {
     val classifier = type.classifier
 
@@ -126,11 +126,11 @@ internal fun genericTypeToKType(
     }
 
     val args = type.arguments.map { arg ->
-        when(arg) {
+        when (arg) {
             is UnboundedWildcard -> KType.STAR_TYPE
             is NoWildcard -> genericTypeToKType(arg.genericType)
             is BoundedWildcard ->
-                return when(arg.wildcard) {
+                return when (arg.wildcard) {
                     Wildcard.EXTENDS -> genericTypeToKType(arg.bound, false, KType.Variance.COVARIANT)
                     Wildcard.SUPER -> genericTypeToKType(arg.bound, false, KType.Variance.CONTRAVARIANT)
                 }

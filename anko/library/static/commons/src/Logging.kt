@@ -53,7 +53,7 @@ fun AnkoLogger(tag: String): AnkoLogger = object : AnkoLogger {
     override val loggerTag = tag
 }
 
-inline fun <reified T: Any> AnkoLogger(): AnkoLogger = AnkoLogger(T::class.java)
+inline fun <reified T : Any> AnkoLogger(): AnkoLogger = AnkoLogger(T::class.java)
 
 /**
  * Send a log message with the [Log.VERBOSE] severity.
@@ -249,12 +249,13 @@ inline fun AnkoLogger.error(message: () -> Any?) {
 inline fun Throwable.getStackTraceString(): String = Log.getStackTraceString(this)
 
 private inline fun log(
-        logger: AnkoLogger,
-        message: Any?,
-        thr: Throwable?,
-        level: Int,
-        f: (String, String) -> Unit,
-        fThrowable: (String, String, Throwable) -> Unit) {
+    logger: AnkoLogger,
+    message: Any?,
+    thr: Throwable?,
+    level: Int,
+    f: (String, String) -> Unit,
+    fThrowable: (String, String, Throwable) -> Unit
+) {
     val tag = logger.loggerTag
     if (Log.isLoggable(tag, level)) {
         if (thr != null) {

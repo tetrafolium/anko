@@ -1,8 +1,8 @@
 package org.jetbrains.anko.test
 
 import com.intellij.rt.execution.junit.FileComparisonFailure
-import junit.framework.TestCase
 import java.io.File
+import junit.framework.TestCase
 
 private fun String.trimTrailingWhitespacesAndAddNewlineAtEOF(): String =
         this.split('\n').map(String::trimEnd).joinToString(separator = "\n").let {

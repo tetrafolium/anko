@@ -16,8 +16,8 @@
 
 package org.jetbrains.android.anko.utils
 
-import org.objectweb.asm.tree.ClassNode
 import java.util.*
+import org.objectweb.asm.tree.ClassNode
 
 internal class NoSuchClassException : Exception()
 
@@ -25,7 +25,7 @@ class ClassTreeNode(var parent: ClassTreeNode?, val data: ClassNode, val fromPla
     var children: MutableList<ClassTreeNode> = ArrayList()
 }
 
-class ClassTree : Iterable<ClassNode>{
+class ClassTree : Iterable<ClassNode> {
     private val root = ClassTreeNode(null, ClassNode(), true)
 
     override fun iterator(): ClassTreeIterator {
@@ -123,5 +123,4 @@ class ClassTreeIterator(next: ClassTreeNode) : Iterator<ClassNode> {
     override fun hasNext(): Boolean {
         return !nodeQueue.isEmpty()
     }
-
 }

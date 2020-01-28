@@ -19,8 +19,8 @@ package org.jetbrains.anko.support.v4
 
 import android.support.v4.app.Fragment
 import android.view.View
-import org.jetbrains.anko.internals.AnkoInternals
 import org.jetbrains.anko.*
+import org.jetbrains.anko.internals.AnkoInternals
 import org.jetbrains.anko.internals.AnkoInternals.createAnkoContext
 
 inline fun <reified T : View> Fragment.find(id: Int): T = view?.findViewById(id) as T
@@ -28,30 +28,28 @@ inline fun <reified T : View> Fragment.findOptional(id: Int): T? = view?.findVie
 
 fun Fragment.UI(init: AnkoContext<Fragment>.() -> Unit) = createAnkoContext(activity, init)
 
-inline fun <T: Any> Fragment.configuration(
-        screenSize: ScreenSize? = null,
-        density: ClosedRange<Int>? = null,
-        language: String? = null,
-        orientation: Orientation? = null,
-        long: Boolean? = null,
-        fromSdk: Int? = null,
-        sdk: Int? = null,
-        uiMode: UiMode? = null,
-        nightMode: Boolean? = null,
-        rightToLeft: Boolean? = null,
-        smallestWidth: Int? = null,
-        init: () -> T
+inline fun <T : Any> Fragment.configuration(
+    screenSize: ScreenSize? = null,
+    density: ClosedRange<Int>? = null,
+    language: String? = null,
+    orientation: Orientation? = null,
+    long: Boolean? = null,
+    fromSdk: Int? = null,
+    sdk: Int? = null,
+    uiMode: UiMode? = null,
+    nightMode: Boolean? = null,
+    rightToLeft: Boolean? = null,
+    smallestWidth: Int? = null,
+    init: () -> T
 ): T? {
     val act = activity
     return if (act != null) {
         if (AnkoInternals.testConfiguration(act, screenSize, density, language, orientation, long,
                 fromSdk, sdk, uiMode, nightMode, rightToLeft, smallestWidth)) init() else null
-    }
-    else null
+    } else null
 }
 
-fun <T: Fragment> T.withArguments(vararg params: Pair<String, Any?>): T {
+fun <T : Fragment> T.withArguments(vararg params: Pair<String, Any?>): T {
     arguments = bundleOf(*params)
     return this
 }
-

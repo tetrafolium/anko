@@ -17,15 +17,15 @@
 @file:Suppress("unused")
 package org.jetbrains.anko.db
 
+import java.lang.reflect.Modifier
 import org.jetbrains.anko.AnkoException
 import org.jetbrains.anko.db.JavaSqliteUtils.PRIMITIVES_TO_WRAPPERS
-import java.lang.reflect.Modifier
 
 @Target(AnnotationTarget.CONSTRUCTOR)
 annotation class ClassParserConstructor
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun <reified T: Any> classParser(): RowParser<T> = classParser(T::class.java)
+inline fun <reified T : Any> classParser(): RowParser<T> = classParser(T::class.java)
 
 @PublishedApi
 internal fun <T> classParser(clazz: Class<T>): RowParser<T> {
@@ -142,8 +142,8 @@ private fun castValue(value: Any?, type: Class<*>): Any? {
         }
     }
 
-    if (value is String && value.length == 1
-            && (type == java.lang.Character.TYPE || type == java.lang.Character::class.java)) {
+    if (value is String && value.length == 1 &&
+            (type == java.lang.Character.TYPE || type == java.lang.Character::class.java)) {
         return value[0]
     }
 

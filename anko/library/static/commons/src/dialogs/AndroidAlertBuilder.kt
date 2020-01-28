@@ -22,9 +22,9 @@ import android.content.DialogInterface
 import android.graphics.drawable.Drawable
 import android.view.KeyEvent
 import android.view.View
+import kotlin.DeprecationLevel.ERROR
 import org.jetbrains.anko.internals.AnkoInternals
 import org.jetbrains.anko.internals.AnkoInternals.NO_GETTER
-import kotlin.DeprecationLevel.ERROR
 
 val Android: AlertBuilderFactory<AlertDialog> = ::AndroidAlertBuilder
 

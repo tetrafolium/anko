@@ -1,15 +1,14 @@
 @file:JvmName("Sdk19CoroutinesListenersWithCoroutinesKt")
 package org.jetbrains.anko.sdk19.coroutines
 
-
 import kotlin.coroutines.experimental.CoroutineContext
-import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.CoroutineScope
+import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
 
 fun android.view.View.onLayoutChange(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(v: android.view.View?, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(v: android.view.View?, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) -> Unit
 ) {
     addOnLayoutChangeListener { v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
         launch(context) {
@@ -19,8 +18,8 @@ fun android.view.View.onLayoutChange(
 }
 
 fun android.view.View.onAttachStateChangeListener(
-        context: CoroutineContext = UI,
-        init: __View_OnAttachStateChangeListener.() -> Unit
+    context: CoroutineContext = UI,
+    init: __View_OnAttachStateChangeListener.() -> Unit
 ) {
     val listener = __View_OnAttachStateChangeListener(context)
     listener.init()
@@ -30,7 +29,6 @@ fun android.view.View.onAttachStateChangeListener(
 class __View_OnAttachStateChangeListener(private val context: CoroutineContext) : android.view.View.OnAttachStateChangeListener {
 
     private var _onViewAttachedToWindow: (suspend CoroutineScope.(android.view.View) -> Unit)? = null
-    
 
     override fun onViewAttachedToWindow(v: android.view.View) {
         val handler = _onViewAttachedToWindow ?: return
@@ -40,13 +38,12 @@ class __View_OnAttachStateChangeListener(private val context: CoroutineContext) 
     }
 
     fun onViewAttachedToWindow(
-            listener: suspend CoroutineScope.(android.view.View) -> Unit
+        listener: suspend CoroutineScope.(android.view.View) -> Unit
     ) {
         _onViewAttachedToWindow = listener
     }
 
     private var _onViewDetachedFromWindow: (suspend CoroutineScope.(android.view.View) -> Unit)? = null
-    
 
     override fun onViewDetachedFromWindow(v: android.view.View) {
         val handler = _onViewDetachedFromWindow ?: return
@@ -56,14 +53,13 @@ class __View_OnAttachStateChangeListener(private val context: CoroutineContext) 
     }
 
     fun onViewDetachedFromWindow(
-            listener: suspend CoroutineScope.(android.view.View) -> Unit
+        listener: suspend CoroutineScope.(android.view.View) -> Unit
     ) {
         _onViewDetachedFromWindow = listener
     }
-
-}fun android.widget.TextView.textChangedListener(
-        context: CoroutineContext = UI,
-        init: __TextWatcher.() -> Unit
+} fun android.widget.TextView.textChangedListener(
+    context: CoroutineContext = UI,
+    init: __TextWatcher.() -> Unit
 ) {
     val listener = __TextWatcher(context)
     listener.init()
@@ -73,7 +69,6 @@ class __View_OnAttachStateChangeListener(private val context: CoroutineContext) 
 class __TextWatcher(private val context: CoroutineContext) : android.text.TextWatcher {
 
     private var _beforeTextChanged: (suspend CoroutineScope.(CharSequence?, Int, Int, Int) -> Unit)? = null
-    
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
         val handler = _beforeTextChanged ?: return
@@ -83,13 +78,12 @@ class __TextWatcher(private val context: CoroutineContext) : android.text.TextWa
     }
 
     fun beforeTextChanged(
-            listener: suspend CoroutineScope.(CharSequence?, Int, Int, Int) -> Unit
+        listener: suspend CoroutineScope.(CharSequence?, Int, Int, Int) -> Unit
     ) {
         _beforeTextChanged = listener
     }
 
     private var _onTextChanged: (suspend CoroutineScope.(CharSequence?, Int, Int, Int) -> Unit)? = null
-    
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
         val handler = _onTextChanged ?: return
@@ -99,13 +93,12 @@ class __TextWatcher(private val context: CoroutineContext) : android.text.TextWa
     }
 
     fun onTextChanged(
-            listener: suspend CoroutineScope.(CharSequence?, Int, Int, Int) -> Unit
+        listener: suspend CoroutineScope.(CharSequence?, Int, Int, Int) -> Unit
     ) {
         _onTextChanged = listener
     }
 
     private var _afterTextChanged: (suspend CoroutineScope.(android.text.Editable?) -> Unit)? = null
-    
 
     override fun afterTextChanged(s: android.text.Editable?) {
         val handler = _afterTextChanged ?: return
@@ -115,14 +108,13 @@ class __TextWatcher(private val context: CoroutineContext) : android.text.TextWa
     }
 
     fun afterTextChanged(
-            listener: suspend CoroutineScope.(android.text.Editable?) -> Unit
+        listener: suspend CoroutineScope.(android.text.Editable?) -> Unit
     ) {
         _afterTextChanged = listener
     }
-
-}fun android.gesture.GestureOverlayView.onGestureListener(
-        context: CoroutineContext = UI,
-        init: __GestureOverlayView_OnGestureListener.() -> Unit
+} fun android.gesture.GestureOverlayView.onGestureListener(
+    context: CoroutineContext = UI,
+    init: __GestureOverlayView_OnGestureListener.() -> Unit
 ) {
     val listener = __GestureOverlayView_OnGestureListener(context)
     listener.init()
@@ -132,7 +124,6 @@ class __TextWatcher(private val context: CoroutineContext) : android.text.TextWa
 class __GestureOverlayView_OnGestureListener(private val context: CoroutineContext) : android.gesture.GestureOverlayView.OnGestureListener {
 
     private var _onGestureStarted: (suspend CoroutineScope.(android.gesture.GestureOverlayView?, android.view.MotionEvent?) -> Unit)? = null
-    
 
     override fun onGestureStarted(overlay: android.gesture.GestureOverlayView?, event: android.view.MotionEvent?) {
         val handler = _onGestureStarted ?: return
@@ -142,13 +133,12 @@ class __GestureOverlayView_OnGestureListener(private val context: CoroutineConte
     }
 
     fun onGestureStarted(
-            listener: suspend CoroutineScope.(android.gesture.GestureOverlayView?, android.view.MotionEvent?) -> Unit
+        listener: suspend CoroutineScope.(android.gesture.GestureOverlayView?, android.view.MotionEvent?) -> Unit
     ) {
         _onGestureStarted = listener
     }
 
     private var _onGesture: (suspend CoroutineScope.(android.gesture.GestureOverlayView?, android.view.MotionEvent?) -> Unit)? = null
-    
 
     override fun onGesture(overlay: android.gesture.GestureOverlayView?, event: android.view.MotionEvent?) {
         val handler = _onGesture ?: return
@@ -158,13 +148,12 @@ class __GestureOverlayView_OnGestureListener(private val context: CoroutineConte
     }
 
     fun onGesture(
-            listener: suspend CoroutineScope.(android.gesture.GestureOverlayView?, android.view.MotionEvent?) -> Unit
+        listener: suspend CoroutineScope.(android.gesture.GestureOverlayView?, android.view.MotionEvent?) -> Unit
     ) {
         _onGesture = listener
     }
 
     private var _onGestureEnded: (suspend CoroutineScope.(android.gesture.GestureOverlayView?, android.view.MotionEvent?) -> Unit)? = null
-    
 
     override fun onGestureEnded(overlay: android.gesture.GestureOverlayView?, event: android.view.MotionEvent?) {
         val handler = _onGestureEnded ?: return
@@ -174,13 +163,12 @@ class __GestureOverlayView_OnGestureListener(private val context: CoroutineConte
     }
 
     fun onGestureEnded(
-            listener: suspend CoroutineScope.(android.gesture.GestureOverlayView?, android.view.MotionEvent?) -> Unit
+        listener: suspend CoroutineScope.(android.gesture.GestureOverlayView?, android.view.MotionEvent?) -> Unit
     ) {
         _onGestureEnded = listener
     }
 
     private var _onGestureCancelled: (suspend CoroutineScope.(android.gesture.GestureOverlayView?, android.view.MotionEvent?) -> Unit)? = null
-    
 
     override fun onGestureCancelled(overlay: android.gesture.GestureOverlayView?, event: android.view.MotionEvent?) {
         val handler = _onGestureCancelled ?: return
@@ -190,14 +178,13 @@ class __GestureOverlayView_OnGestureListener(private val context: CoroutineConte
     }
 
     fun onGestureCancelled(
-            listener: suspend CoroutineScope.(android.gesture.GestureOverlayView?, android.view.MotionEvent?) -> Unit
+        listener: suspend CoroutineScope.(android.gesture.GestureOverlayView?, android.view.MotionEvent?) -> Unit
     ) {
         _onGestureCancelled = listener
     }
-
-}fun android.gesture.GestureOverlayView.onGesturePerformed(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(overlay: android.gesture.GestureOverlayView?, gesture: android.gesture.Gesture?) -> Unit
+} fun android.gesture.GestureOverlayView.onGesturePerformed(
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(overlay: android.gesture.GestureOverlayView?, gesture: android.gesture.Gesture?) -> Unit
 ) {
     addOnGesturePerformedListener { overlay, gesture ->
         launch(context) {
@@ -207,8 +194,8 @@ class __GestureOverlayView_OnGestureListener(private val context: CoroutineConte
 }
 
 fun android.gesture.GestureOverlayView.onGesturingListener(
-        context: CoroutineContext = UI,
-        init: __GestureOverlayView_OnGesturingListener.() -> Unit
+    context: CoroutineContext = UI,
+    init: __GestureOverlayView_OnGesturingListener.() -> Unit
 ) {
     val listener = __GestureOverlayView_OnGesturingListener(context)
     listener.init()
@@ -218,7 +205,6 @@ fun android.gesture.GestureOverlayView.onGesturingListener(
 class __GestureOverlayView_OnGesturingListener(private val context: CoroutineContext) : android.gesture.GestureOverlayView.OnGesturingListener {
 
     private var _onGesturingStarted: (suspend CoroutineScope.(android.gesture.GestureOverlayView?) -> Unit)? = null
-    
 
     override fun onGesturingStarted(overlay: android.gesture.GestureOverlayView?) {
         val handler = _onGesturingStarted ?: return
@@ -228,13 +214,12 @@ class __GestureOverlayView_OnGesturingListener(private val context: CoroutineCon
     }
 
     fun onGesturingStarted(
-            listener: suspend CoroutineScope.(android.gesture.GestureOverlayView?) -> Unit
+        listener: suspend CoroutineScope.(android.gesture.GestureOverlayView?) -> Unit
     ) {
         _onGesturingStarted = listener
     }
 
     private var _onGesturingEnded: (suspend CoroutineScope.(android.gesture.GestureOverlayView?) -> Unit)? = null
-    
 
     override fun onGesturingEnded(overlay: android.gesture.GestureOverlayView?) {
         val handler = _onGesturingEnded ?: return
@@ -244,14 +229,13 @@ class __GestureOverlayView_OnGesturingListener(private val context: CoroutineCon
     }
 
     fun onGesturingEnded(
-            listener: suspend CoroutineScope.(android.gesture.GestureOverlayView?) -> Unit
+        listener: suspend CoroutineScope.(android.gesture.GestureOverlayView?) -> Unit
     ) {
         _onGesturingEnded = listener
     }
-
-}fun android.view.View.onClick(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(v: android.view.View?) -> Unit
+} fun android.view.View.onClick(
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(v: android.view.View?) -> Unit
 ) {
     setOnClickListener { v ->
         launch(context) {
@@ -261,8 +245,8 @@ class __GestureOverlayView_OnGesturingListener(private val context: CoroutineCon
 }
 
 fun android.view.View.onCreateContextMenu(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(menu: android.view.ContextMenu?, v: android.view.View?, menuInfo: android.view.ContextMenu.ContextMenuInfo?) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(menu: android.view.ContextMenu?, v: android.view.View?, menuInfo: android.view.ContextMenu.ContextMenuInfo?) -> Unit
 ) {
     setOnCreateContextMenuListener { menu, v, menuInfo ->
         launch(context) {
@@ -272,9 +256,9 @@ fun android.view.View.onCreateContextMenu(
 }
 
 fun android.view.View.onDrag(
-        context: CoroutineContext = UI,
-        returnValue: Boolean = false,
-        handler: suspend CoroutineScope.(v: android.view.View, event: android.view.DragEvent) -> Unit
+    context: CoroutineContext = UI,
+    returnValue: Boolean = false,
+    handler: suspend CoroutineScope.(v: android.view.View, event: android.view.DragEvent) -> Unit
 ) {
     setOnDragListener { v, event ->
         launch(context) {
@@ -285,8 +269,8 @@ fun android.view.View.onDrag(
 }
 
 fun android.view.View.onFocusChange(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(v: android.view.View, hasFocus: Boolean) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(v: android.view.View, hasFocus: Boolean) -> Unit
 ) {
     setOnFocusChangeListener { v, hasFocus ->
         launch(context) {
@@ -296,9 +280,9 @@ fun android.view.View.onFocusChange(
 }
 
 fun android.view.View.onGenericMotion(
-        context: CoroutineContext = UI,
-        returnValue: Boolean = false,
-        handler: suspend CoroutineScope.(v: android.view.View, event: android.view.MotionEvent) -> Unit
+    context: CoroutineContext = UI,
+    returnValue: Boolean = false,
+    handler: suspend CoroutineScope.(v: android.view.View, event: android.view.MotionEvent) -> Unit
 ) {
     setOnGenericMotionListener { v, event ->
         launch(context) {
@@ -309,9 +293,9 @@ fun android.view.View.onGenericMotion(
 }
 
 fun android.view.View.onHover(
-        context: CoroutineContext = UI,
-        returnValue: Boolean = false,
-        handler: suspend CoroutineScope.(v: android.view.View, event: android.view.MotionEvent) -> Unit
+    context: CoroutineContext = UI,
+    returnValue: Boolean = false,
+    handler: suspend CoroutineScope.(v: android.view.View, event: android.view.MotionEvent) -> Unit
 ) {
     setOnHoverListener { v, event ->
         launch(context) {
@@ -322,9 +306,9 @@ fun android.view.View.onHover(
 }
 
 fun android.view.View.onKey(
-        context: CoroutineContext = UI,
-        returnValue: Boolean = false,
-        handler: suspend CoroutineScope.(v: android.view.View, keyCode: Int, event: android.view.KeyEvent?) -> Unit
+    context: CoroutineContext = UI,
+    returnValue: Boolean = false,
+    handler: suspend CoroutineScope.(v: android.view.View, keyCode: Int, event: android.view.KeyEvent?) -> Unit
 ) {
     setOnKeyListener { v, keyCode, event ->
         launch(context) {
@@ -335,9 +319,9 @@ fun android.view.View.onKey(
 }
 
 fun android.view.View.onLongClick(
-        context: CoroutineContext = UI,
-        returnValue: Boolean = false,
-        handler: suspend CoroutineScope.(v: android.view.View?) -> Unit
+    context: CoroutineContext = UI,
+    returnValue: Boolean = false,
+    handler: suspend CoroutineScope.(v: android.view.View?) -> Unit
 ) {
     setOnLongClickListener { v ->
         launch(context) {
@@ -348,8 +332,8 @@ fun android.view.View.onLongClick(
 }
 
 fun android.view.View.onSystemUiVisibilityChange(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(visibility: Int) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(visibility: Int) -> Unit
 ) {
     setOnSystemUiVisibilityChangeListener { visibility ->
         launch(context) {
@@ -359,9 +343,9 @@ fun android.view.View.onSystemUiVisibilityChange(
 }
 
 fun android.view.View.onTouch(
-        context: CoroutineContext = UI,
-        returnValue: Boolean = false,
-        handler: suspend CoroutineScope.(v: android.view.View, event: android.view.MotionEvent) -> Unit
+    context: CoroutineContext = UI,
+    returnValue: Boolean = false,
+    handler: suspend CoroutineScope.(v: android.view.View, event: android.view.MotionEvent) -> Unit
 ) {
     setOnTouchListener { v, event ->
         launch(context) {
@@ -372,8 +356,8 @@ fun android.view.View.onTouch(
 }
 
 fun android.view.ViewGroup.onHierarchyChangeListener(
-        context: CoroutineContext = UI,
-        init: __ViewGroup_OnHierarchyChangeListener.() -> Unit
+    context: CoroutineContext = UI,
+    init: __ViewGroup_OnHierarchyChangeListener.() -> Unit
 ) {
     val listener = __ViewGroup_OnHierarchyChangeListener(context)
     listener.init()
@@ -383,7 +367,6 @@ fun android.view.ViewGroup.onHierarchyChangeListener(
 class __ViewGroup_OnHierarchyChangeListener(private val context: CoroutineContext) : android.view.ViewGroup.OnHierarchyChangeListener {
 
     private var _onChildViewAdded: (suspend CoroutineScope.(android.view.View?, android.view.View?) -> Unit)? = null
-    
 
     override fun onChildViewAdded(parent: android.view.View?, child: android.view.View?) {
         val handler = _onChildViewAdded ?: return
@@ -393,13 +376,12 @@ class __ViewGroup_OnHierarchyChangeListener(private val context: CoroutineContex
     }
 
     fun onChildViewAdded(
-            listener: suspend CoroutineScope.(android.view.View?, android.view.View?) -> Unit
+        listener: suspend CoroutineScope.(android.view.View?, android.view.View?) -> Unit
     ) {
         _onChildViewAdded = listener
     }
 
     private var _onChildViewRemoved: (suspend CoroutineScope.(android.view.View?, android.view.View?) -> Unit)? = null
-    
 
     override fun onChildViewRemoved(parent: android.view.View?, child: android.view.View?) {
         val handler = _onChildViewRemoved ?: return
@@ -409,14 +391,13 @@ class __ViewGroup_OnHierarchyChangeListener(private val context: CoroutineContex
     }
 
     fun onChildViewRemoved(
-            listener: suspend CoroutineScope.(android.view.View?, android.view.View?) -> Unit
+        listener: suspend CoroutineScope.(android.view.View?, android.view.View?) -> Unit
     ) {
         _onChildViewRemoved = listener
     }
-
-}fun android.view.ViewStub.onInflate(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(stub: android.view.ViewStub?, inflated: android.view.View?) -> Unit
+} fun android.view.ViewStub.onInflate(
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(stub: android.view.ViewStub?, inflated: android.view.View?) -> Unit
 ) {
     setOnInflateListener { stub, inflated ->
         launch(context) {
@@ -426,8 +407,8 @@ class __ViewGroup_OnHierarchyChangeListener(private val context: CoroutineContex
 }
 
 fun android.widget.AbsListView.onScrollListener(
-        context: CoroutineContext = UI,
-        init: __AbsListView_OnScrollListener.() -> Unit
+    context: CoroutineContext = UI,
+    init: __AbsListView_OnScrollListener.() -> Unit
 ) {
     val listener = __AbsListView_OnScrollListener(context)
     listener.init()
@@ -437,7 +418,6 @@ fun android.widget.AbsListView.onScrollListener(
 class __AbsListView_OnScrollListener(private val context: CoroutineContext) : android.widget.AbsListView.OnScrollListener {
 
     private var _onScrollStateChanged: (suspend CoroutineScope.(android.widget.AbsListView?, Int) -> Unit)? = null
-    
 
     override fun onScrollStateChanged(view: android.widget.AbsListView?, scrollState: Int) {
         val handler = _onScrollStateChanged ?: return
@@ -447,13 +427,12 @@ class __AbsListView_OnScrollListener(private val context: CoroutineContext) : an
     }
 
     fun onScrollStateChanged(
-            listener: suspend CoroutineScope.(android.widget.AbsListView?, Int) -> Unit
+        listener: suspend CoroutineScope.(android.widget.AbsListView?, Int) -> Unit
     ) {
         _onScrollStateChanged = listener
     }
 
     private var _onScroll: (suspend CoroutineScope.(android.widget.AbsListView?, Int, Int, Int) -> Unit)? = null
-    
 
     override fun onScroll(view: android.widget.AbsListView?, firstVisibleItem: Int, visibleItemCount: Int, totalItemCount: Int) {
         val handler = _onScroll ?: return
@@ -463,14 +442,13 @@ class __AbsListView_OnScrollListener(private val context: CoroutineContext) : an
     }
 
     fun onScroll(
-            listener: suspend CoroutineScope.(android.widget.AbsListView?, Int, Int, Int) -> Unit
+        listener: suspend CoroutineScope.(android.widget.AbsListView?, Int, Int, Int) -> Unit
     ) {
         _onScroll = listener
     }
-
-}fun android.widget.AdapterView<out android.widget.Adapter>.onItemClick(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(p0: android.widget.AdapterView<*>?, p1: android.view.View?, p2: Int, p3: Long) -> Unit
+} fun android.widget.AdapterView<out android.widget.Adapter>.onItemClick(
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(p0: android.widget.AdapterView<*>?, p1: android.view.View?, p2: Int, p3: Long) -> Unit
 ) {
     setOnItemClickListener { p0, p1, p2, p3 ->
         launch(context) {
@@ -480,9 +458,9 @@ class __AbsListView_OnScrollListener(private val context: CoroutineContext) : an
 }
 
 fun android.widget.AdapterView<out android.widget.Adapter>.onItemLongClick(
-        context: CoroutineContext = UI,
-        returnValue: Boolean = false,
-        handler: suspend CoroutineScope.(p0: android.widget.AdapterView<*>?, p1: android.view.View?, p2: Int, p3: Long) -> Unit
+    context: CoroutineContext = UI,
+    returnValue: Boolean = false,
+    handler: suspend CoroutineScope.(p0: android.widget.AdapterView<*>?, p1: android.view.View?, p2: Int, p3: Long) -> Unit
 ) {
     setOnItemLongClickListener { p0, p1, p2, p3 ->
         launch(context) {
@@ -493,8 +471,8 @@ fun android.widget.AdapterView<out android.widget.Adapter>.onItemLongClick(
 }
 
 fun android.widget.AdapterView<out android.widget.Adapter>.onItemSelectedListener(
-        context: CoroutineContext = UI,
-        init: __AdapterView_OnItemSelectedListener.() -> Unit
+    context: CoroutineContext = UI,
+    init: __AdapterView_OnItemSelectedListener.() -> Unit
 ) {
     val listener = __AdapterView_OnItemSelectedListener(context)
     listener.init()
@@ -504,7 +482,6 @@ fun android.widget.AdapterView<out android.widget.Adapter>.onItemSelectedListene
 class __AdapterView_OnItemSelectedListener(private val context: CoroutineContext) : android.widget.AdapterView.OnItemSelectedListener {
 
     private var _onItemSelected: (suspend CoroutineScope.(android.widget.AdapterView<*>?, android.view.View?, Int, Long) -> Unit)? = null
-    
 
     override fun onItemSelected(p0: android.widget.AdapterView<*>?, p1: android.view.View?, p2: Int, p3: Long) {
         val handler = _onItemSelected ?: return
@@ -514,13 +491,12 @@ class __AdapterView_OnItemSelectedListener(private val context: CoroutineContext
     }
 
     fun onItemSelected(
-            listener: suspend CoroutineScope.(android.widget.AdapterView<*>?, android.view.View?, Int, Long) -> Unit
+        listener: suspend CoroutineScope.(android.widget.AdapterView<*>?, android.view.View?, Int, Long) -> Unit
     ) {
         _onItemSelected = listener
     }
 
     private var _onNothingSelected: (suspend CoroutineScope.(android.widget.AdapterView<*>?) -> Unit)? = null
-    
 
     override fun onNothingSelected(p0: android.widget.AdapterView<*>?) {
         val handler = _onNothingSelected ?: return
@@ -530,23 +506,22 @@ class __AdapterView_OnItemSelectedListener(private val context: CoroutineContext
     }
 
     fun onNothingSelected(
-            listener: suspend CoroutineScope.(android.widget.AdapterView<*>?) -> Unit
+        listener: suspend CoroutineScope.(android.widget.AdapterView<*>?) -> Unit
     ) {
         _onNothingSelected = listener
     }
-
-}fun android.widget.AutoCompleteTextView.onDismiss(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.() -> Unit
+} fun android.widget.AutoCompleteTextView.onDismiss(
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.() -> Unit
 ) {
-    setOnDismissListener {  ->
+    setOnDismissListener { ->
         launch(context, block = handler)
     }
 }
 
 fun android.widget.CalendarView.onDateChange(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(view: android.widget.CalendarView?, year: Int, month: Int, dayOfMonth: Int) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(view: android.widget.CalendarView?, year: Int, month: Int, dayOfMonth: Int) -> Unit
 ) {
     setOnDateChangeListener { view, year, month, dayOfMonth ->
         launch(context) {
@@ -556,8 +531,8 @@ fun android.widget.CalendarView.onDateChange(
 }
 
 fun android.widget.Chronometer.onChronometerTick(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(chronometer: android.widget.Chronometer?) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(chronometer: android.widget.Chronometer?) -> Unit
 ) {
     setOnChronometerTickListener { chronometer ->
         launch(context) {
@@ -567,8 +542,8 @@ fun android.widget.Chronometer.onChronometerTick(
 }
 
 fun android.widget.CompoundButton.onCheckedChange(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(buttonView: android.widget.CompoundButton?, isChecked: Boolean) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(buttonView: android.widget.CompoundButton?, isChecked: Boolean) -> Unit
 ) {
     setOnCheckedChangeListener { buttonView, isChecked ->
         launch(context) {
@@ -578,9 +553,9 @@ fun android.widget.CompoundButton.onCheckedChange(
 }
 
 fun android.widget.ExpandableListView.onChildClick(
-        context: CoroutineContext = UI,
-        returnValue: Boolean = false,
-        handler: suspend CoroutineScope.(parent: android.widget.ExpandableListView?, v: android.view.View?, groupPosition: Int, childPosition: Int, id: Long) -> Unit
+    context: CoroutineContext = UI,
+    returnValue: Boolean = false,
+    handler: suspend CoroutineScope.(parent: android.widget.ExpandableListView?, v: android.view.View?, groupPosition: Int, childPosition: Int, id: Long) -> Unit
 ) {
     setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
         launch(context) {
@@ -591,9 +566,9 @@ fun android.widget.ExpandableListView.onChildClick(
 }
 
 fun android.widget.ExpandableListView.onGroupClick(
-        context: CoroutineContext = UI,
-        returnValue: Boolean = false,
-        handler: suspend CoroutineScope.(parent: android.widget.ExpandableListView?, v: android.view.View?, groupPosition: Int, id: Long) -> Unit
+    context: CoroutineContext = UI,
+    returnValue: Boolean = false,
+    handler: suspend CoroutineScope.(parent: android.widget.ExpandableListView?, v: android.view.View?, groupPosition: Int, id: Long) -> Unit
 ) {
     setOnGroupClickListener { parent, v, groupPosition, id ->
         launch(context) {
@@ -604,8 +579,8 @@ fun android.widget.ExpandableListView.onGroupClick(
 }
 
 fun android.widget.ExpandableListView.onGroupCollapse(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(groupPosition: Int) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(groupPosition: Int) -> Unit
 ) {
     setOnGroupCollapseListener { groupPosition ->
         launch(context) {
@@ -615,8 +590,8 @@ fun android.widget.ExpandableListView.onGroupCollapse(
 }
 
 fun android.widget.ExpandableListView.onGroupExpand(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(groupPosition: Int) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(groupPosition: Int) -> Unit
 ) {
     setOnGroupExpandListener { groupPosition ->
         launch(context) {
@@ -626,8 +601,8 @@ fun android.widget.ExpandableListView.onGroupExpand(
 }
 
 fun android.widget.NumberPicker.onScroll(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(view: android.widget.NumberPicker?, scrollState: Int) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(view: android.widget.NumberPicker?, scrollState: Int) -> Unit
 ) {
     setOnScrollListener { view, scrollState ->
         launch(context) {
@@ -637,8 +612,8 @@ fun android.widget.NumberPicker.onScroll(
 }
 
 fun android.widget.NumberPicker.onValueChanged(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(picker: android.widget.NumberPicker?, oldVal: Int, newVal: Int) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(picker: android.widget.NumberPicker?, oldVal: Int, newVal: Int) -> Unit
 ) {
     setOnValueChangedListener { picker, oldVal, newVal ->
         launch(context) {
@@ -648,8 +623,8 @@ fun android.widget.NumberPicker.onValueChanged(
 }
 
 fun android.widget.RadioGroup.onCheckedChange(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(group: android.widget.RadioGroup?, checkedId: Int) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(group: android.widget.RadioGroup?, checkedId: Int) -> Unit
 ) {
     setOnCheckedChangeListener { group, checkedId ->
         launch(context) {
@@ -659,8 +634,8 @@ fun android.widget.RadioGroup.onCheckedChange(
 }
 
 fun android.widget.RatingBar.onRatingBarChange(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(ratingBar: android.widget.RatingBar?, rating: Float, fromUser: Boolean) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(ratingBar: android.widget.RatingBar?, rating: Float, fromUser: Boolean) -> Unit
 ) {
     setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
         launch(context) {
@@ -670,19 +645,19 @@ fun android.widget.RatingBar.onRatingBarChange(
 }
 
 fun android.widget.SearchView.onClose(
-        context: CoroutineContext = UI,
-        returnValue: Boolean = false,
-        handler: suspend CoroutineScope.() -> Unit
+    context: CoroutineContext = UI,
+    returnValue: Boolean = false,
+    handler: suspend CoroutineScope.() -> Unit
 ) {
-    setOnCloseListener {  ->
+    setOnCloseListener { ->
         launch(context, block = handler)
         returnValue
     }
 }
 
 fun android.widget.SearchView.onQueryTextFocusChange(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(v: android.view.View, hasFocus: Boolean) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(v: android.view.View, hasFocus: Boolean) -> Unit
 ) {
     setOnQueryTextFocusChangeListener { v, hasFocus ->
         launch(context) {
@@ -692,8 +667,8 @@ fun android.widget.SearchView.onQueryTextFocusChange(
 }
 
 fun android.widget.SearchView.onQueryTextListener(
-        context: CoroutineContext = UI,
-        init: __SearchView_OnQueryTextListener.() -> Unit
+    context: CoroutineContext = UI,
+    init: __SearchView_OnQueryTextListener.() -> Unit
 ) {
     val listener = __SearchView_OnQueryTextListener(context)
     listener.init()
@@ -705,7 +680,7 @@ class __SearchView_OnQueryTextListener(private val context: CoroutineContext) : 
     private var _onQueryTextSubmit: (suspend CoroutineScope.(String?) -> Boolean)? = null
     private var _onQueryTextSubmit_returnValue: Boolean = false
 
-    override fun onQueryTextSubmit(query: String?) : Boolean {
+    override fun onQueryTextSubmit(query: String?): Boolean {
         val returnValue = _onQueryTextSubmit_returnValue
         val handler = _onQueryTextSubmit ?: return returnValue
         launch(context) {
@@ -715,8 +690,8 @@ class __SearchView_OnQueryTextListener(private val context: CoroutineContext) : 
     }
 
     fun onQueryTextSubmit(
-            returnValue: Boolean = false,
-            listener: suspend CoroutineScope.(String?) -> Boolean
+        returnValue: Boolean = false,
+        listener: suspend CoroutineScope.(String?) -> Boolean
     ) {
         _onQueryTextSubmit = listener
         _onQueryTextSubmit_returnValue = returnValue
@@ -725,7 +700,7 @@ class __SearchView_OnQueryTextListener(private val context: CoroutineContext) : 
     private var _onQueryTextChange: (suspend CoroutineScope.(String?) -> Boolean)? = null
     private var _onQueryTextChange_returnValue: Boolean = false
 
-    override fun onQueryTextChange(newText: String?) : Boolean {
+    override fun onQueryTextChange(newText: String?): Boolean {
         val returnValue = _onQueryTextChange_returnValue
         val handler = _onQueryTextChange ?: return returnValue
         launch(context) {
@@ -735,16 +710,15 @@ class __SearchView_OnQueryTextListener(private val context: CoroutineContext) : 
     }
 
     fun onQueryTextChange(
-            returnValue: Boolean = false,
-            listener: suspend CoroutineScope.(String?) -> Boolean
+        returnValue: Boolean = false,
+        listener: suspend CoroutineScope.(String?) -> Boolean
     ) {
         _onQueryTextChange = listener
         _onQueryTextChange_returnValue = returnValue
     }
-
-}fun android.widget.SearchView.onSearchClick(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(v: android.view.View?) -> Unit
+} fun android.widget.SearchView.onSearchClick(
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(v: android.view.View?) -> Unit
 ) {
     setOnSearchClickListener { v ->
         launch(context) {
@@ -754,8 +728,8 @@ class __SearchView_OnQueryTextListener(private val context: CoroutineContext) : 
 }
 
 fun android.widget.SearchView.onSuggestionListener(
-        context: CoroutineContext = UI,
-        init: __SearchView_OnSuggestionListener.() -> Unit
+    context: CoroutineContext = UI,
+    init: __SearchView_OnSuggestionListener.() -> Unit
 ) {
     val listener = __SearchView_OnSuggestionListener(context)
     listener.init()
@@ -767,7 +741,7 @@ class __SearchView_OnSuggestionListener(private val context: CoroutineContext) :
     private var _onSuggestionSelect: (suspend CoroutineScope.(Int) -> Boolean)? = null
     private var _onSuggestionSelect_returnValue: Boolean = false
 
-    override fun onSuggestionSelect(position: Int) : Boolean {
+    override fun onSuggestionSelect(position: Int): Boolean {
         val returnValue = _onSuggestionSelect_returnValue
         val handler = _onSuggestionSelect ?: return returnValue
         launch(context) {
@@ -777,8 +751,8 @@ class __SearchView_OnSuggestionListener(private val context: CoroutineContext) :
     }
 
     fun onSuggestionSelect(
-            returnValue: Boolean = false,
-            listener: suspend CoroutineScope.(Int) -> Boolean
+        returnValue: Boolean = false,
+        listener: suspend CoroutineScope.(Int) -> Boolean
     ) {
         _onSuggestionSelect = listener
         _onSuggestionSelect_returnValue = returnValue
@@ -787,7 +761,7 @@ class __SearchView_OnSuggestionListener(private val context: CoroutineContext) :
     private var _onSuggestionClick: (suspend CoroutineScope.(Int) -> Boolean)? = null
     private var _onSuggestionClick_returnValue: Boolean = false
 
-    override fun onSuggestionClick(position: Int) : Boolean {
+    override fun onSuggestionClick(position: Int): Boolean {
         val returnValue = _onSuggestionClick_returnValue
         val handler = _onSuggestionClick ?: return returnValue
         launch(context) {
@@ -797,16 +771,15 @@ class __SearchView_OnSuggestionListener(private val context: CoroutineContext) :
     }
 
     fun onSuggestionClick(
-            returnValue: Boolean = false,
-            listener: suspend CoroutineScope.(Int) -> Boolean
+        returnValue: Boolean = false,
+        listener: suspend CoroutineScope.(Int) -> Boolean
     ) {
         _onSuggestionClick = listener
         _onSuggestionClick_returnValue = returnValue
     }
-
-}fun android.widget.SeekBar.onSeekBarChangeListener(
-        context: CoroutineContext = UI,
-        init: __SeekBar_OnSeekBarChangeListener.() -> Unit
+} fun android.widget.SeekBar.onSeekBarChangeListener(
+    context: CoroutineContext = UI,
+    init: __SeekBar_OnSeekBarChangeListener.() -> Unit
 ) {
     val listener = __SeekBar_OnSeekBarChangeListener(context)
     listener.init()
@@ -816,7 +789,6 @@ class __SearchView_OnSuggestionListener(private val context: CoroutineContext) :
 class __SeekBar_OnSeekBarChangeListener(private val context: CoroutineContext) : android.widget.SeekBar.OnSeekBarChangeListener {
 
     private var _onProgressChanged: (suspend CoroutineScope.(android.widget.SeekBar?, Int, Boolean) -> Unit)? = null
-    
 
     override fun onProgressChanged(seekBar: android.widget.SeekBar?, progress: Int, fromUser: Boolean) {
         val handler = _onProgressChanged ?: return
@@ -826,13 +798,12 @@ class __SeekBar_OnSeekBarChangeListener(private val context: CoroutineContext) :
     }
 
     fun onProgressChanged(
-            listener: suspend CoroutineScope.(android.widget.SeekBar?, Int, Boolean) -> Unit
+        listener: suspend CoroutineScope.(android.widget.SeekBar?, Int, Boolean) -> Unit
     ) {
         _onProgressChanged = listener
     }
 
     private var _onStartTrackingTouch: (suspend CoroutineScope.(android.widget.SeekBar?) -> Unit)? = null
-    
 
     override fun onStartTrackingTouch(seekBar: android.widget.SeekBar?) {
         val handler = _onStartTrackingTouch ?: return
@@ -842,13 +813,12 @@ class __SeekBar_OnSeekBarChangeListener(private val context: CoroutineContext) :
     }
 
     fun onStartTrackingTouch(
-            listener: suspend CoroutineScope.(android.widget.SeekBar?) -> Unit
+        listener: suspend CoroutineScope.(android.widget.SeekBar?) -> Unit
     ) {
         _onStartTrackingTouch = listener
     }
 
     private var _onStopTrackingTouch: (suspend CoroutineScope.(android.widget.SeekBar?) -> Unit)? = null
-    
 
     override fun onStopTrackingTouch(seekBar: android.widget.SeekBar?) {
         val handler = _onStopTrackingTouch ?: return
@@ -858,32 +828,31 @@ class __SeekBar_OnSeekBarChangeListener(private val context: CoroutineContext) :
     }
 
     fun onStopTrackingTouch(
-            listener: suspend CoroutineScope.(android.widget.SeekBar?) -> Unit
+        listener: suspend CoroutineScope.(android.widget.SeekBar?) -> Unit
     ) {
         _onStopTrackingTouch = listener
     }
-
-}fun android.widget.SlidingDrawer.onDrawerClose(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.() -> Unit
+} fun android.widget.SlidingDrawer.onDrawerClose(
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.() -> Unit
 ) {
-    setOnDrawerCloseListener {  ->
+    setOnDrawerCloseListener { ->
         launch(context, block = handler)
     }
 }
 
 fun android.widget.SlidingDrawer.onDrawerOpen(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.() -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.() -> Unit
 ) {
-    setOnDrawerOpenListener {  ->
+    setOnDrawerOpenListener { ->
         launch(context, block = handler)
     }
 }
 
 fun android.widget.SlidingDrawer.onDrawerScrollListener(
-        context: CoroutineContext = UI,
-        init: __SlidingDrawer_OnDrawerScrollListener.() -> Unit
+    context: CoroutineContext = UI,
+    init: __SlidingDrawer_OnDrawerScrollListener.() -> Unit
 ) {
     val listener = __SlidingDrawer_OnDrawerScrollListener(context)
     listener.init()
@@ -893,7 +862,6 @@ fun android.widget.SlidingDrawer.onDrawerScrollListener(
 class __SlidingDrawer_OnDrawerScrollListener(private val context: CoroutineContext) : android.widget.SlidingDrawer.OnDrawerScrollListener {
 
     private var _onScrollStarted: (suspend CoroutineScope.() -> Unit)? = null
-    
 
     override fun onScrollStarted() {
         val handler = _onScrollStarted ?: return
@@ -901,13 +869,12 @@ class __SlidingDrawer_OnDrawerScrollListener(private val context: CoroutineConte
     }
 
     fun onScrollStarted(
-            listener: suspend CoroutineScope.() -> Unit
+        listener: suspend CoroutineScope.() -> Unit
     ) {
         _onScrollStarted = listener
     }
 
     private var _onScrollEnded: (suspend CoroutineScope.() -> Unit)? = null
-    
 
     override fun onScrollEnded() {
         val handler = _onScrollEnded ?: return
@@ -915,14 +882,13 @@ class __SlidingDrawer_OnDrawerScrollListener(private val context: CoroutineConte
     }
 
     fun onScrollEnded(
-            listener: suspend CoroutineScope.() -> Unit
+        listener: suspend CoroutineScope.() -> Unit
     ) {
         _onScrollEnded = listener
     }
-
-}fun android.widget.TabHost.onTabChanged(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(tabId: String?) -> Unit
+} fun android.widget.TabHost.onTabChanged(
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(tabId: String?) -> Unit
 ) {
     setOnTabChangedListener { tabId ->
         launch(context) {
@@ -932,9 +898,9 @@ class __SlidingDrawer_OnDrawerScrollListener(private val context: CoroutineConte
 }
 
 fun android.widget.TextView.onEditorAction(
-        context: CoroutineContext = UI,
-        returnValue: Boolean = false,
-        handler: suspend CoroutineScope.(v: android.widget.TextView?, actionId: Int, event: android.view.KeyEvent?) -> Unit
+    context: CoroutineContext = UI,
+    returnValue: Boolean = false,
+    handler: suspend CoroutineScope.(v: android.widget.TextView?, actionId: Int, event: android.view.KeyEvent?) -> Unit
 ) {
     setOnEditorActionListener { v, actionId, event ->
         launch(context) {
@@ -945,8 +911,8 @@ fun android.widget.TextView.onEditorAction(
 }
 
 fun android.widget.TimePicker.onTimeChanged(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(view: android.widget.TimePicker?, hourOfDay: Int, minute: Int) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(view: android.widget.TimePicker?, hourOfDay: Int, minute: Int) -> Unit
 ) {
     setOnTimeChangedListener { view, hourOfDay, minute ->
         launch(context) {
@@ -956,8 +922,8 @@ fun android.widget.TimePicker.onTimeChanged(
 }
 
 fun android.widget.VideoView.onCompletion(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(mp: android.media.MediaPlayer?) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(mp: android.media.MediaPlayer?) -> Unit
 ) {
     setOnCompletionListener { mp ->
         launch(context) {
@@ -967,9 +933,9 @@ fun android.widget.VideoView.onCompletion(
 }
 
 fun android.widget.VideoView.onError(
-        context: CoroutineContext = UI,
-        returnValue: Boolean = false,
-        handler: suspend CoroutineScope.(mp: android.media.MediaPlayer?, what: Int, extra: Int) -> Unit
+    context: CoroutineContext = UI,
+    returnValue: Boolean = false,
+    handler: suspend CoroutineScope.(mp: android.media.MediaPlayer?, what: Int, extra: Int) -> Unit
 ) {
     setOnErrorListener { mp, what, extra ->
         launch(context) {
@@ -980,9 +946,9 @@ fun android.widget.VideoView.onError(
 }
 
 fun android.widget.VideoView.onInfo(
-        context: CoroutineContext = UI,
-        returnValue: Boolean = false,
-        handler: suspend CoroutineScope.(mp: android.media.MediaPlayer?, what: Int, extra: Int) -> Unit
+    context: CoroutineContext = UI,
+    returnValue: Boolean = false,
+    handler: suspend CoroutineScope.(mp: android.media.MediaPlayer?, what: Int, extra: Int) -> Unit
 ) {
     setOnInfoListener { mp, what, extra ->
         launch(context) {
@@ -993,8 +959,8 @@ fun android.widget.VideoView.onInfo(
 }
 
 fun android.widget.VideoView.onPrepared(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(mp: android.media.MediaPlayer?) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(mp: android.media.MediaPlayer?) -> Unit
 ) {
     setOnPreparedListener { mp ->
         launch(context) {
@@ -1004,8 +970,8 @@ fun android.widget.VideoView.onPrepared(
 }
 
 fun android.widget.ZoomControls.onZoomInClick(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(v: android.view.View?) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(v: android.view.View?) -> Unit
 ) {
     setOnZoomInClickListener { v ->
         launch(context) {
@@ -1015,8 +981,8 @@ fun android.widget.ZoomControls.onZoomInClick(
 }
 
 fun android.widget.ZoomControls.onZoomOutClick(
-        context: CoroutineContext = UI,
-        handler: suspend CoroutineScope.(v: android.view.View?) -> Unit
+    context: CoroutineContext = UI,
+    handler: suspend CoroutineScope.(v: android.view.View?) -> Unit
 ) {
     setOnZoomOutClickListener { v ->
         launch(context) {
@@ -1024,4 +990,3 @@ fun android.widget.ZoomControls.onZoomOutClick(
         }
     }
 }
-

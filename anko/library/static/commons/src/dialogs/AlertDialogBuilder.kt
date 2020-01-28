@@ -173,7 +173,7 @@ class AlertDialogBuilder(val ctx: Context) {
 
     /**
      * Set a listener to be invoked when the neutral button of the dialog is pressed.
-     * 
+     *
      * @param neutralText the text resource to display in the neutral button.
      * @param callback the callback that will be called if the neutral button is pressed.
      */
@@ -292,5 +292,4 @@ class AlertDialogBuilder(val ctx: Context) {
         checkBuilder()
         builder!!.setCursor(cursor, { dialog, which -> callback(which) }, labelColumn)
     }
-
 }

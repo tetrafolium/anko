@@ -1,15 +1,15 @@
 package org.jetbrains.kotlin.android.dslpreview
 
+import com.android.tools.idea.common.model.NlModel
 import com.android.tools.idea.gradle.project.BuildSettings
 import com.android.tools.idea.gradle.project.GradleProjectInfo
 import com.android.tools.idea.gradle.project.build.invoker.GradleBuildInvoker
+import com.android.tools.idea.gradle.project.build.invoker.GradleTaskFinder
+import com.android.tools.idea.gradle.project.build.invoker.TestCompileType
 import com.android.tools.idea.gradle.util.BuildMode
 import com.android.tools.idea.project.AndroidProjectInfo
 import com.android.tools.idea.uibuilder.editor.NlPreviewForm
 import com.android.tools.idea.uibuilder.editor.NlPreviewManager
-import com.android.tools.idea.common.model.NlModel
-import com.android.tools.idea.gradle.project.build.invoker.GradleTaskFinder
-import com.android.tools.idea.gradle.project.build.invoker.TestCompileType
 import com.intellij.ide.highlighter.XmlFileType
 import com.intellij.openapi.Disposable
 import com.intellij.openapi.application.ApplicationManager
@@ -27,19 +27,19 @@ import com.intellij.psi.*
 import com.intellij.psi.impl.PsiTreeChangePreprocessor
 import com.intellij.psi.xml.XmlFile
 import com.intellij.util.Alarm
-import org.jetbrains.android.uipreview.ViewLoaderExtension
-import org.jetbrains.kotlin.idea.util.InfinitePeriodicalTask
-import org.jetbrains.kotlin.psi.KtFile
-import org.jetbrains.kotlin.utils.addToStdlib.firstIsInstanceOrNull
 import java.awt.BorderLayout
 import java.awt.event.ItemEvent
 import javax.swing.ComboBoxModel
 import javax.swing.DefaultComboBoxModel
 import javax.swing.JPanel
+import org.jetbrains.android.uipreview.ViewLoaderExtension
+import org.jetbrains.kotlin.idea.util.InfinitePeriodicalTask
+import org.jetbrains.kotlin.psi.KtFile
+import org.jetbrains.kotlin.utils.addToStdlib.firstIsInstanceOrNull
 
 class AnkoNlPreviewManager(
-        project: Project,
-        fileEditorManager: FileEditorManager?
+    project: Project,
+    fileEditorManager: FileEditorManager?
 ) : NlPreviewManager(project, fileEditorManager), Disposable {
     internal val classResolver = DslPreviewClassResolver(project)
 

@@ -1,7 +1,6 @@
 @file:JvmName("DesignListenersListenersKt")
 package org.jetbrains.anko.design.listeners
 
-
 inline fun android.support.design.widget.AppBarLayout.onOffsetChanged(noinline l: (appBarLayout: android.support.design.widget.AppBarLayout?, verticalOffset: Int) -> Unit) {
     addOnOffsetChangedListener(l)
 }
@@ -43,7 +42,6 @@ class __TabLayout_OnTabSelectedListener : android.support.design.widget.TabLayou
     fun onTabReselected(listener: (android.support.design.widget.TabLayout.Tab?) -> Unit) {
         _onTabReselected = listener
     }
-
 }
 
 inline fun android.support.design.widget.BottomNavigationView.onNavigationItemSelected(noinline l: (item: android.view.MenuItem?) -> Boolean) {
@@ -77,6 +75,4 @@ class __ViewGroup_OnHierarchyChangeListener : android.view.ViewGroup.OnHierarchy
     fun onChildViewRemoved(listener: (android.view.View?, android.view.View?) -> Unit) {
         _onChildViewRemoved = listener
     }
-
 }
-

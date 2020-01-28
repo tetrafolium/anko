@@ -1,7 +1,6 @@
 @file:JvmName("Sdk15ListenersListenersKt")
 package org.jetbrains.anko.sdk15.listeners
 
-
 inline fun android.view.View.onLayoutChange(noinline l: (v: android.view.View?, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) -> Unit) {
     addOnLayoutChangeListener(l)
 }
@@ -33,7 +32,6 @@ class __View_OnAttachStateChangeListener : android.view.View.OnAttachStateChange
     fun onViewDetachedFromWindow(listener: (android.view.View) -> Unit) {
         _onViewDetachedFromWindow = listener
     }
-
 }
 
 fun android.widget.TextView.textChangedListener(init: __TextWatcher.() -> Unit) {
@@ -73,7 +71,6 @@ class __TextWatcher : android.text.TextWatcher {
     fun afterTextChanged(listener: (android.text.Editable?) -> Unit) {
         _afterTextChanged = listener
     }
-
 }
 
 fun android.gesture.GestureOverlayView.onGestureListener(init: __GestureOverlayView_OnGestureListener.() -> Unit) {
@@ -123,7 +120,6 @@ class __GestureOverlayView_OnGestureListener : android.gesture.GestureOverlayVie
     fun onGestureCancelled(listener: (android.gesture.GestureOverlayView?, android.view.MotionEvent?) -> Unit) {
         _onGestureCancelled = listener
     }
-
 }
 
 inline fun android.gesture.GestureOverlayView.onGesturePerformed(noinline l: (overlay: android.gesture.GestureOverlayView?, gesture: android.gesture.Gesture?) -> Unit) {
@@ -157,7 +153,6 @@ class __GestureOverlayView_OnGesturingListener : android.gesture.GestureOverlayV
     fun onGesturingEnded(listener: (android.gesture.GestureOverlayView?) -> Unit) {
         _onGesturingEnded = listener
     }
-
 }
 
 inline fun android.view.View.onClick(noinline l: (v: android.view.View?) -> Unit) {
@@ -227,7 +222,6 @@ class __ViewGroup_OnHierarchyChangeListener : android.view.ViewGroup.OnHierarchy
     fun onChildViewRemoved(listener: (android.view.View?, android.view.View?) -> Unit) {
         _onChildViewRemoved = listener
     }
-
 }
 
 inline fun android.view.ViewStub.onInflate(noinline l: (stub: android.view.ViewStub?, inflated: android.view.View?) -> Unit) {
@@ -261,7 +255,6 @@ class __AbsListView_OnScrollListener : android.widget.AbsListView.OnScrollListen
     fun onScroll(listener: (android.widget.AbsListView?, Int, Int, Int) -> Unit) {
         _onScroll = listener
     }
-
 }
 
 inline fun android.widget.AdapterView<out android.widget.Adapter>.onItemClick(noinline l: (p0: android.widget.AdapterView<*>?, p1: android.view.View?, p2: Int, p3: Long) -> Unit) {
@@ -299,7 +292,6 @@ class __AdapterView_OnItemSelectedListener : android.widget.AdapterView.OnItemSe
     fun onNothingSelected(listener: (android.widget.AdapterView<*>?) -> Unit) {
         _onNothingSelected = listener
     }
-
 }
 
 inline fun android.widget.CalendarView.onDateChange(noinline l: (view: android.widget.CalendarView?, year: Int, month: Int, dayOfMonth: Int) -> Unit) {
@@ -377,7 +369,6 @@ class __SearchView_OnQueryTextListener : android.widget.SearchView.OnQueryTextLi
     fun onQueryTextChange(listener: (String?) -> Boolean) {
         _onQueryTextChange = listener
     }
-
 }
 
 inline fun android.widget.SearchView.onSearchClick(noinline l: (v: android.view.View?) -> Unit) {
@@ -407,7 +398,6 @@ class __SearchView_OnSuggestionListener : android.widget.SearchView.OnSuggestion
     fun onSuggestionClick(listener: (Int) -> Boolean) {
         _onSuggestionClick = listener
     }
-
 }
 
 fun android.widget.SeekBar.onSeekBarChangeListener(init: __SeekBar_OnSeekBarChangeListener.() -> Unit) {
@@ -447,7 +437,6 @@ class __SeekBar_OnSeekBarChangeListener : android.widget.SeekBar.OnSeekBarChange
     fun onStopTrackingTouch(listener: (android.widget.SeekBar?) -> Unit) {
         _onStopTrackingTouch = listener
     }
-
 }
 
 inline fun android.widget.SlidingDrawer.onDrawerClose(noinline l: () -> Unit) {
@@ -485,7 +474,6 @@ class __SlidingDrawer_OnDrawerScrollListener : android.widget.SlidingDrawer.OnDr
     fun onScrollEnded(listener: () -> Unit) {
         _onScrollEnded = listener
     }
-
 }
 
 inline fun android.widget.TabHost.onTabChanged(noinline l: (tabId: String?) -> Unit) {
@@ -519,4 +507,3 @@ inline fun android.widget.ZoomControls.onZoomInClick(noinline l: (v: android.vie
 inline fun android.widget.ZoomControls.onZoomOutClick(noinline l: (v: android.view.View?) -> Unit) {
     setOnZoomOutClickListener(l)
 }
-

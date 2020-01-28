@@ -21,7 +21,7 @@ import org.robolectric.annotation.Config
 
 open class FindViewTestActivity : Activity() {
     @SuppressLint("SetTextI18n")
-    public override fun onCreate(savedInstanceState: Bundle?): Unit {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         verticalLayout {
@@ -68,5 +68,4 @@ open class FindViewTestActivity : Activity() {
 
         println("[COMPLETE]")
     }
-
 }

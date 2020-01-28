@@ -16,14 +16,14 @@
 
 package org.jetbrains.kotlin.android.xmlconverter
 
-import org.w3c.dom.Document
-import org.w3c.dom.Element
-import org.xml.sax.InputSource
 import java.io.File
 import java.io.StringReader
 import java.util.*
 import javax.xml.parsers.DocumentBuilderFactory
 import kotlinx.dom.childElements
+import org.w3c.dom.Document
+import org.w3c.dom.Element
+import org.xml.sax.InputSource
 
 private class Widget(val name: String, val attrs: List<KeyValuePair>, val layoutParams: String, val children: List<Widget>) {
     override fun toString(): String {
@@ -110,7 +110,6 @@ object XmlConverter {
 
         return ordinaryAttributes.map { transformAttribute(name, it.key, it.value) }.filterNotNull() to layoutParams
     }
-
 }
 
 fun main(args: Array<String>) {

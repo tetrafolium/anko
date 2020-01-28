@@ -16,8 +16,8 @@
 
 package org.jetbrains.android.anko.templates
 
-import org.jetbrains.android.anko.utils.ImportList
 import java.io.File
+import org.jetbrains.android.anko.utils.ImportList
 
 interface TemplateProvider {
     val extension: String
@@ -45,7 +45,7 @@ class TemplateContext {
 
     fun getArguments(): Map<String, Any?> = args
 
-    operator fun <T: Any?> String.rem(v: T): T {
+    operator fun <T : Any?> String.rem(v: T): T {
         args.put(this, v)
         return v
     }

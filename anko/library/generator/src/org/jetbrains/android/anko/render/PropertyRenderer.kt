@@ -17,9 +17,9 @@
 package org.jetbrains.android.anko.render
 
 import org.jetbrains.android.anko.*
-import org.jetbrains.android.anko.config.GeneratorContext
 import org.jetbrains.android.anko.config.AnkoFile
 import org.jetbrains.android.anko.config.ConfigurationKey
+import org.jetbrains.android.anko.config.GeneratorContext
 import org.jetbrains.android.anko.generator.GenerationState
 import org.jetbrains.android.anko.generator.PropertyElement
 import org.jetbrains.android.anko.generator.PropertyGenerator
@@ -73,10 +73,10 @@ class PropertyRenderer(context: GeneratorContext) : Renderer(context) {
     }
 
     private fun Buffer.renderResourceProperty(
-            otherSetters: List<MethodNodeWithClass>,
-            fullPropertyName: String,
-            returnType: KType,
-            importList: ImportList
+        otherSetters: List<MethodNodeWithClass>,
+        fullPropertyName: String,
+        returnType: KType,
+        importList: ImportList
     ) {
         if (otherSetters.isNotEmpty() && supportsResourceSetter(returnType)) {
             val resourceSetter = otherSetters.firstOrNull { it.method.parameterRawTypes.unique?.className == "int" }

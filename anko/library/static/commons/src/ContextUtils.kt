@@ -75,7 +75,7 @@ inline fun <reified T : View> Activity.findOptional(@IdRes id: Int): T? = findVi
 inline fun <reified T : View> Fragment.findOptional(@IdRes id: Int): T? = view?.findViewById(id) as? T
 inline fun <reified T : View> Dialog.findOptional(@IdRes id: Int): T? = findViewById(id) as? T
 
-inline fun <T: Fragment> T.withArguments(vararg params: Pair<String, Any?>): T {
+inline fun <T : Fragment> T.withArguments(vararg params: Pair<String, Any?>): T {
     arguments = bundleOf(*params)
     return this
 }

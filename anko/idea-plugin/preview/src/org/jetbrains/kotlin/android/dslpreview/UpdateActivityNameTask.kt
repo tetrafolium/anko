@@ -3,16 +3,16 @@ package org.jetbrains.kotlin.android.dslpreview
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.psi.PsiElement
+import javax.swing.DefaultComboBoxModel
 import org.jetbrains.kotlin.caches.resolve.KotlinCacheService
 import org.jetbrains.kotlin.idea.internal.Location
 import org.jetbrains.kotlin.idea.util.LongRunningReadTask
 import org.jetbrains.kotlin.idea.util.ProjectRootsUtil
-import javax.swing.DefaultComboBoxModel
 
 class UpdateActivityNameTask(
-        val previewManager: AnkoNlPreviewManager
+    val previewManager: AnkoNlPreviewManager
 ) : LongRunningReadTask<PsiElement, PreviewClassDescription>() {
-    override fun prepareRequestInfo(): PsiElement? = with (previewManager) {
+    override fun prepareRequestInfo(): PsiElement? = with(previewManager) {
         val toolWindow: ToolWindow = toolWindow ?: return null
         if (!toolWindow.isVisible) return null
 
@@ -34,7 +34,6 @@ class UpdateActivityNameTask(
     }
 
     override fun hideResultOnInvalidLocation() {
-
     }
 
     override fun processRequest(element: PsiElement): PreviewClassDescription? {
@@ -56,7 +55,7 @@ class UpdateActivityNameTask(
         return true
     }
 
-    override fun onResultReady(requestInfo: PsiElement, description: PreviewClassDescription?) = with (previewManager) {
+    override fun onResultReady(requestInfo: PsiElement, description: PreviewClassDescription?) = with(previewManager) {
         if (description == null) return
         val model = myActivityListModel
 

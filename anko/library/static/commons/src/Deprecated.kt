@@ -20,14 +20,14 @@ package org.jetbrains.anko.custom
 import android.app.Fragment
 import android.content.Context
 import android.view.View
+import java.lang.ref.WeakReference
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Future
 import org.jetbrains.anko.AnkoAsyncContext
 import org.jetbrains.anko.BackgroundExecutor
 import org.jetbrains.anko.applyRecursively
 import org.jetbrains.anko.collections.forEachReversedByIndex
 import org.jetbrains.anko.runOnUiThread
-import java.lang.ref.WeakReference
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Future
 
 @Deprecated("Use forEachReversedByIndex(f) instead.",
         ReplaceWith("forEachReversedByIndex(f)", "org.jetbrains.anko.collections.forEachReversedByIndex"))
@@ -66,7 +66,6 @@ fun <T, R> T.asyncResult(executorService: ExecutorService, task: AnkoAsyncContex
     val context = AnkoAsyncContext(WeakReference(this))
     return executorService.submit<R> { context.task() }
 }
-
 
 @Deprecated("Use applyRecursively(block) instead.", ReplaceWith("applyRecursively(style)"))
 fun <T : View> T.style(style: (View) -> Unit): T = applyRecursively(style)

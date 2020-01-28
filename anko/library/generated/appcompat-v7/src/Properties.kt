@@ -1,10 +1,9 @@
 @file:JvmName("AppcompatV7PropertiesKt")
 package org.jetbrains.anko.appcompat.v7
 
-import org.jetbrains.anko.*
-
-import org.jetbrains.anko.internals.AnkoInternals
 import kotlin.DeprecationLevel
+import org.jetbrains.anko.*
+import org.jetbrains.anko.internals.AnkoInternals
 
 var android.support.v7.widget.Toolbar.logoResource: Int
     @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
@@ -29,4 +28,3 @@ var android.support.v7.widget.Toolbar.subtitleResource: Int
 var android.support.v7.widget.Toolbar.titleResource: Int
     @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
     set(v) = setTitle(v)
-

@@ -9,5 +9,4 @@ class XmlConverterTest : BaseXmlConverterTest() {
     @Test fun testRelativeLayout() = doLayoutTest()
     @Test fun testDimensions() = doLayoutTest()
     @Test fun testAttributes() = doLayoutTest()
-
 }

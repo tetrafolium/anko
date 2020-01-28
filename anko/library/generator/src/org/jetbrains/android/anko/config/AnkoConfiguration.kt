@@ -16,8 +16,8 @@
 
 package org.jetbrains.android.anko.config
 
-import org.jetbrains.android.anko.artifact.Artifact
 import java.io.File
+import org.jetbrains.android.anko.artifact.Artifact
 
 interface AnkoConfiguration {
     val indent: String

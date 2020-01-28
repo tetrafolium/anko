@@ -21,8 +21,8 @@ import android.app.Activity
 import android.app.Service
 import android.content.Intent
 import android.support.v4.app.Fragment
-import org.jetbrains.anko.internals.AnkoInternals
 import org.jetbrains.anko.*
+import org.jetbrains.anko.internals.AnkoInternals
 
 fun Fragment.browse(url: String, newTask: Boolean = false): Boolean = activity.browse(url, newTask)
 
@@ -35,15 +35,15 @@ fun Fragment.makeCall(number: String): Boolean = activity.makeCall(number)
 
 fun Fragment.sendSMS(number: String, text: String = ""): Boolean = activity.sendSMS(number, text)
 
-inline fun <reified T: Activity> Fragment.startActivity(vararg params: Pair<String, Any?>) {
+inline fun <reified T : Activity> Fragment.startActivity(vararg params: Pair<String, Any?>) {
     AnkoInternals.internalStartActivity(activity, T::class.java, params)
 }
 
-inline fun <reified T: Activity> Fragment.startActivityForResult(requestCode: Int, vararg params: Pair<String, Any?>) {
+inline fun <reified T : Activity> Fragment.startActivityForResult(requestCode: Int, vararg params: Pair<String, Any?>) {
     startActivityForResult(AnkoInternals.createIntent(act, T::class.java, params), requestCode)
 }
 
-inline fun <reified T: Service> Fragment.startService(vararg params: Pair<String, Any?>) {
+inline fun <reified T : Service> Fragment.startService(vararg params: Pair<String, Any?>) {
     AnkoInternals.internalStartService(activity, T::class.java, params)
 }
 
@@ -51,5 +51,5 @@ inline fun <reified T : Service> Fragment.stopService(vararg params: Pair<String
     AnkoInternals.internalStopService(activity, T::class.java, params)
 }
 
-inline fun <reified T: Any> Fragment.intentFor(vararg params: Pair<String, Any?>): Intent =
+inline fun <reified T : Any> Fragment.intentFor(vararg params: Pair<String, Any?>): Intent =
         AnkoInternals.createIntent(activity, T::class.java, params)

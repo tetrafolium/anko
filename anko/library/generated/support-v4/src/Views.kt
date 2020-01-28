@@ -1,15 +1,12 @@
 @file:JvmName("SupportV4ViewsKt")
 package org.jetbrains.anko.support.v4
 
-import org.jetbrains.anko.custom.*
-import org.jetbrains.anko.AnkoViewDslMarker
-import android.view.ViewManager
-import android.view.ViewGroup.LayoutParams
 import android.app.Activity
-import android.app.Fragment
 import android.content.Context
-import android.os.Build
+import android.view.ViewManager
 import android.widget.*
+import org.jetbrains.anko.AnkoViewDslMarker
+import org.jetbrains.anko.custom.*
 
 @PublishedApi
 internal object `$$Anko$Factories$SupportV4View` {
@@ -288,4 +285,3 @@ inline fun Activity.themedSlidingPaneLayout(theme: Int = 0): android.support.v4.
 inline fun Activity.themedSlidingPaneLayout(theme: Int = 0, init: (@AnkoViewDslMarker _SlidingPaneLayout).() -> Unit): android.support.v4.widget.SlidingPaneLayout {
 return ankoView(`$$Anko$Factories$SupportV4ViewGroup`.SLIDING_PANE_LAYOUT, theme) { init() }
 }
-

@@ -20,8 +20,8 @@ import com.intellij.openapi.util.ModificationTracker
 import com.intellij.psi.PsiJavaFile
 import com.intellij.psi.impl.PsiTreeChangeEventImpl
 import com.intellij.psi.impl.PsiTreeChangePreprocessor
-import org.jetbrains.kotlin.psi.KtFile
 import java.util.concurrent.atomic.AtomicLong
+import org.jetbrains.kotlin.psi.KtFile
 
 class SourceFileModificationTracker : PsiTreeChangePreprocessor, ModificationTracker {
 

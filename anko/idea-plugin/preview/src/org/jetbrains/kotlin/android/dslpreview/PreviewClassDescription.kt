@@ -29,7 +29,7 @@ class PreviewClassDescription(val ktClass: KtClass, val fqName: String, val inte
             "<html><b>$name</b></html>"
     }
 
-    override fun equals(other: Any?): Boolean{
+    override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other?.javaClass != javaClass) return false
 
@@ -41,7 +41,7 @@ class PreviewClassDescription(val ktClass: KtClass, val fqName: String, val inte
         return true
     }
 
-    override fun hashCode(): Int{
+    override fun hashCode(): Int {
         var result = fqName.hashCode()
         result += 31 * result + internalName.hashCode()
         return result

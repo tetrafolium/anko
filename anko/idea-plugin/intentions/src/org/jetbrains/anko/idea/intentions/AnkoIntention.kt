@@ -20,9 +20,9 @@ import org.jetbrains.kotlin.resolve.descriptorUtil.resolveTopLevelClass
 import org.jetbrains.kotlin.types.lowerIfFlexible
 
 abstract class AnkoIntention<TElement : KtElement>(
-        elementType: Class<TElement>,
-        text: String,
-        familyName: String = text
+    elementType: Class<TElement>,
+    text: String,
+    familyName: String = text
 ) : SelfTargetingIntention<TElement>(elementType, text, familyName) {
 
     final override fun isApplicableTo(element: TElement, caretOffset: Int): Boolean {
@@ -40,9 +40,9 @@ abstract class AnkoIntention<TElement : KtElement>(
     }
 
     protected fun KtCallExpression.isValueParameterTypeOf(
-            parameterIndex: Int,
-            resolvedCall: ResolvedCall<*>?,
-            vararg fqName: String
+        parameterIndex: Int,
+        resolvedCall: ResolvedCall<*>?,
+        vararg fqName: String
     ): Boolean {
         val ctxArgumentDescriptor = (resolvedCall ?: getResolvedCall(analyze()))?.resultingDescriptor
                 ?.valueParameters?.get(parameterIndex)?.type?.lowerIfFlexible()
@@ -51,8 +51,8 @@ abstract class AnkoIntention<TElement : KtElement>(
     }
 
     protected fun KtCallExpression.isReceiverParameterTypeOf(
-            resolvedCall: ResolvedCall<*>?,
-            vararg fqName: String
+        resolvedCall: ResolvedCall<*>?,
+        vararg fqName: String
     ): Boolean {
         val receiverDescriptor = (resolvedCall ?: getResolvedCall(analyze()))?.resultingDescriptor
                 ?.dispatchReceiverParameter?.type?.lowerIfFlexible()
@@ -85,9 +85,9 @@ abstract class AnkoIntention<TElement : KtElement>(
     }
 
     protected inline fun PsiElement?.requireCall(
-            functionName: String? = null,
-            argCount: Int? = null,
-            sub: KtCallExpression.() -> Boolean
+        functionName: String? = null,
+        argCount: Int? = null,
+        sub: KtCallExpression.() -> Boolean
     ): Boolean {
         return requireCall(functionName, argCount) && (this as KtCallExpression).sub()
     }
@@ -139,7 +139,7 @@ object FqNames {
 
 class NewElement(val element: KtExpression, vararg val newNames: String) {
     operator fun component1() = element
-    operator fun component2() = newNames //fqName or name in anko package
+    operator fun component2() = newNames // fqName or name in anko package
 }
 
 abstract class A {

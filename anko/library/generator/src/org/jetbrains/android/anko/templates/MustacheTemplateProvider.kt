@@ -18,8 +18,8 @@ package org.jetbrains.android.anko.templates
 
 import com.samskivert.mustache.Mustache
 import com.samskivert.mustache.Template
-import org.jetbrains.android.anko.utils.ImportList
 import java.io.File
+import org.jetbrains.android.anko.utils.ImportList
 
 class MustacheTemplateProvider : TemplateProvider {
     override val extension = "mustache"

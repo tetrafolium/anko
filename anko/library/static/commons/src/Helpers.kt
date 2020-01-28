@@ -79,33 +79,33 @@ enum class Orientation {
  * Execute [f] if the device configuration matches all given constraints.
  * You can use named arguments to provide only the relevant constraints.
  * All null constraints are ignored.
- * 
+ *
  * @param screenSize the required screen size.
  * @param density the required screen density.
  * @param language the required system language.
  * @param orientation the current screen orientation.
  * @param long true, if the screen layout is long. See [Configuration.SCREENLAYOUT_LONG_YES] for more information.
  * @param fromSdk the minimal SDK version for code to execute.
- * @param sdk the target SDK version. Code will not be executed if the device Android SDK version is different 
+ * @param sdk the target SDK version. Code will not be executed if the device Android SDK version is different
  *        (lower or higher than the given value).
  * @param uiMode the required interface mode.
  * @param nightMode true, if the device should be in the night mode, false if should not.
  * @param rightToLeft true, if the device locale should be a right-to-left one, false if should not.
  * @param smallestWidth the required smallest width of the screen.
  */
-inline fun <T: Any> Context.configuration(
-        screenSize: ScreenSize? = null,
-        density: ClosedRange<Int>? = null,
-        language: String? = null,
-        orientation: Orientation? = null,
-        long: Boolean? = null,
-        fromSdk: Int? = null,
-        sdk: Int? = null,
-        uiMode: UiMode? = null,
-        nightMode: Boolean? = null,
-        rightToLeft: Boolean? = null,
-        smallestWidth: Int? = null,
-        f: () -> T
+inline fun <T : Any> Context.configuration(
+    screenSize: ScreenSize? = null,
+    density: ClosedRange<Int>? = null,
+    language: String? = null,
+    orientation: Orientation? = null,
+    long: Boolean? = null,
+    fromSdk: Int? = null,
+    sdk: Int? = null,
+    uiMode: UiMode? = null,
+    nightMode: Boolean? = null,
+    rightToLeft: Boolean? = null,
+    smallestWidth: Int? = null,
+    f: () -> T
 ): T? = if (AnkoInternals.testConfiguration(this, screenSize, density, language, orientation, long,
         fromSdk, sdk, uiMode, nightMode, rightToLeft, smallestWidth)) f() else null
 
@@ -127,19 +127,19 @@ inline fun <T: Any> Context.configuration(
  * @param rightToLeft true, if the device locale should be a right-to-left one, false if should not.
  * @param smallestWidth the required smallest width of the screen.
  */
-inline fun <T: Any> Activity.configuration(
-        screenSize: ScreenSize? = null,
-        density: ClosedRange<Int>? = null,
-        language: String? = null,
-        orientation: Orientation? = null,
-        long: Boolean? = null,
-        fromSdk: Int? = null,
-        sdk: Int? = null,
-        uiMode: UiMode? = null,
-        nightMode: Boolean? = null,
-        rightToLeft: Boolean? = null,
-        smallestWidth: Int? = null,
-        f: () -> T
+inline fun <T : Any> Activity.configuration(
+    screenSize: ScreenSize? = null,
+    density: ClosedRange<Int>? = null,
+    language: String? = null,
+    orientation: Orientation? = null,
+    long: Boolean? = null,
+    fromSdk: Int? = null,
+    sdk: Int? = null,
+    uiMode: UiMode? = null,
+    nightMode: Boolean? = null,
+    rightToLeft: Boolean? = null,
+    smallestWidth: Int? = null,
+    f: () -> T
 ): T? = if (AnkoInternals.testConfiguration(this, screenSize, density, language, orientation, long,
         fromSdk, sdk, uiMode, nightMode, rightToLeft, smallestWidth)) f() else null
 
@@ -161,19 +161,19 @@ inline fun <T: Any> Activity.configuration(
  * @param rightToLeft true, if the device locale should be a right-to-left one, false if should not.
  * @param smallestWidth the required smallest width of the screen.
  */
-inline fun <T: Any> AnkoContext<*>.configuration(
-        screenSize: ScreenSize? = null,
-        density: ClosedRange<Int>? = null,
-        language: String? = null,
-        orientation: Orientation? = null,
-        long: Boolean? = null,
-        fromSdk: Int? = null,
-        sdk: Int? = null,
-        uiMode: UiMode? = null,
-        nightMode: Boolean? = null,
-        rightToLeft: Boolean? = null,
-        smallestWidth: Int? = null,
-        f: () -> T
+inline fun <T : Any> AnkoContext<*>.configuration(
+    screenSize: ScreenSize? = null,
+    density: ClosedRange<Int>? = null,
+    language: String? = null,
+    orientation: Orientation? = null,
+    long: Boolean? = null,
+    fromSdk: Int? = null,
+    sdk: Int? = null,
+    uiMode: UiMode? = null,
+    nightMode: Boolean? = null,
+    rightToLeft: Boolean? = null,
+    smallestWidth: Int? = null,
+    f: () -> T
 ): T? = if (AnkoInternals.testConfiguration(ctx, screenSize, density, language, orientation, long,
         fromSdk, sdk, uiMode, nightMode, rightToLeft, smallestWidth)) f() else null
 
@@ -195,26 +195,25 @@ inline fun <T: Any> AnkoContext<*>.configuration(
  * @param rightToLeft true, if the device locale should be a right-to-left one, false if should not.
  * @param smallestWidth the required smallest width of the screen.
  */
-inline fun <T: Any> Fragment.configuration(
-        screenSize: ScreenSize? = null,
-        density: ClosedRange<Int>? = null,
-        language: String? = null,
-        orientation: Orientation? = null,
-        long: Boolean? = null,
-        fromSdk: Int? = null,
-        sdk: Int? = null,
-        uiMode: UiMode? = null,
-        nightMode: Boolean? = null,
-        rightToLeft: Boolean? = null,
-        smallestWidth: Int? = null,
-        f: () -> T
+inline fun <T : Any> Fragment.configuration(
+    screenSize: ScreenSize? = null,
+    density: ClosedRange<Int>? = null,
+    language: String? = null,
+    orientation: Orientation? = null,
+    long: Boolean? = null,
+    fromSdk: Int? = null,
+    sdk: Int? = null,
+    uiMode: UiMode? = null,
+    nightMode: Boolean? = null,
+    rightToLeft: Boolean? = null,
+    smallestWidth: Int? = null,
+    f: () -> T
 ): T? {
     val act = activity
     return if (act != null) {
         if (AnkoInternals.testConfiguration(act, screenSize, density, language, orientation, long,
                 fromSdk, sdk, uiMode, nightMode, rightToLeft, smallestWidth)) f() else null
-    }
-    else null
+    } else null
 }
 
 /**
@@ -244,7 +243,7 @@ inline fun doIfSdk(version: Int, f: () -> Unit) {
 /**
  * Result of the [attempt] function.
  * Either [value] or [error] is not null.
- * 
+ *
  * @property value the return value if code execution was finished without an exception, null otherwise.
  * @property error a caught [Throwable] or null if nothing was caught.
  */
@@ -273,7 +272,7 @@ inline fun <T> attempt(f: () -> T): AttemptResult<T> {
     var error: Throwable? = null
     try {
         value = f()
-    } catch(t: Throwable) {
+    } catch (t: Throwable) {
         error = t
     }
     return AttemptResult(value, error)

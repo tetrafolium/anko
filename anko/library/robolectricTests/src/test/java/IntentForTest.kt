@@ -10,7 +10,7 @@ import org.robolectric.RobolectricGradleTestRunner
 import org.robolectric.annotation.Config
 
 open class IntentForTestActivity : Activity() {
-    public override fun onCreate(savedInstanceState: Bundle?): Unit {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 }

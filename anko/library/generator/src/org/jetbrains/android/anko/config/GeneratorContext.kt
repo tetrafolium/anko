@@ -1,19 +1,19 @@
 package org.jetbrains.android.anko.config
 
+import java.io.File
 import org.jetbrains.android.anko.annotations.*
 import org.jetbrains.android.anko.sources.AndroidHomeSourceProvider
 import org.jetbrains.android.anko.sources.SourceManager
 import org.jetbrains.android.anko.templates.JtwigTemplateProvider
 import org.jetbrains.android.anko.templates.MustacheTemplateProvider
 import org.jetbrains.android.anko.templates.TemplateManager
-import java.io.File
 
 class GeneratorContext(
-        val annotationManager: AnnotationManager,
-        val sourceManager: SourceManager,
-        val templateManager: TemplateManager,
-        val logger: Logger,
-        val configuration: AnkoConfiguration
+    val annotationManager: AnnotationManager,
+    val sourceManager: SourceManager,
+    val templateManager: TemplateManager,
+    val logger: Logger,
+    val configuration: AnkoConfiguration
 ) {
     companion object {
         fun create(propsDir: File, logLevel: Logger.LogLevel, config: AnkoConfiguration): GeneratorContext {

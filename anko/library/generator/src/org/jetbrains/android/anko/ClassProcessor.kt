@@ -16,13 +16,13 @@
 
 package org.jetbrains.android.anko
 
+import java.io.File
+import java.io.InputStream
+import java.util.zip.ZipFile
 import org.jetbrains.android.anko.artifact.Artifact
 import org.jetbrains.android.anko.utils.ClassTree
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.tree.ClassNode
-import java.io.File
-import java.io.InputStream
-import java.util.zip.ZipFile
 
 class ClassProcessor(val artifact: Artifact) {
     fun genClassTree(): ClassTree {

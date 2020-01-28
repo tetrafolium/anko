@@ -16,7 +16,7 @@ import org.robolectric.annotation.Config
 class ClassParserTest {
     @Test
     fun test() {
-        with (classParser<Class1>()) {
+        with(classParser<Class1>()) {
             arrayOf<Any?>("A", Long.MAX_VALUE, Double.MIN_VALUE).also {
                 assertEquals(Class1("A", Long.MAX_VALUE, Double.MIN_VALUE), parseRow(it))
                 assertThrows { parseRow(emptyArray()) }
@@ -24,7 +24,7 @@ class ClassParserTest {
             }
         }
 
-        with (classParser<Class1>()) {
+        with(classParser<Class1>()) {
             arrayOf<Any?>('A', 5, -1.0).also {
                 val cl = Class1("A", 5, -1.0)
                 assertEquals(cl, parseRow(it))
@@ -33,7 +33,7 @@ class ClassParserTest {
             }
         }
 
-        with (classParser<Class2>()) {
+        with(classParser<Class2>()) {
             arrayOf<Any?>('c', 4, (-2).toShort(), -10.0F).also {
                 val cl = Class2('c', 4, (-2).toShort(), -10.0F)
                 assertEquals(cl, parseRow(it))
@@ -43,10 +43,10 @@ class ClassParserTest {
                 assertThrows { parseRow(arrayOf('c', 4.0, -2, -10.0)) }
             }
         }
-        
+
         assertThrows { classParser<Class3>() }
-        
-        with (classParser<Class4>()) {
+
+        with(classParser<Class4>()) {
             arrayOf<Any?>("ABC", "BCD", null).also {
                 assertEquals(Class4("ABC", "BCD", null), parseRow(it))
                 parseRow(arrayOf(SpannedString("ABC"), "BCD", 'c'))
@@ -67,7 +67,7 @@ class ClassParserTest {
 
         assertThrows { classParser<Class11>() }
 
-        with (classParser<Class12>()) {
+        with(classParser<Class12>()) {
             arrayOf<Any?>(0).also {
                 val clTrue = Class12(true)
                 val clFalse = Class12(false)

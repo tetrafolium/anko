@@ -12,6 +12,7 @@ import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiElement
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.searches.ClassInheritorsSearch
+import java.util.ArrayList
 import org.jetbrains.kotlin.asJava.elements.KtLightElement
 import org.jetbrains.kotlin.caches.resolve.KotlinCacheService
 import org.jetbrains.kotlin.codegen.ClassBuilderMode
@@ -28,7 +29,6 @@ import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameUnsafe
 import org.jetbrains.kotlin.resolve.lazy.ResolveSession
 import org.jetbrains.kotlin.types.typeUtil.supertypes
-import java.util.ArrayList
 
 internal class DslPreviewClassResolver(private val project: Project) {
 
@@ -76,8 +76,7 @@ internal class DslPreviewClassResolver(private val project: Project) {
             }
 
             previewClasses
-        }
-        catch (e: IndexNotReadyException) {
+        } catch (e: IndexNotReadyException) {
             emptyList()
         }
     }
@@ -88,14 +87,13 @@ internal class DslPreviewClassResolver(private val project: Project) {
         return parameters.isEmpty() || parameters.all { it.hasDefaultValue() }
     }
 
-
     fun isClassApplicableForPreview(clazz: KtClass): Boolean {
         val primaryConstructor = clazz.primaryConstructor
         val secondaryConstructors = clazz.secondaryConstructors
 
-        return (primaryConstructor == null && secondaryConstructors.isEmpty())
-                || isZeroParameterConstructor(primaryConstructor)
-                || secondaryConstructors.any(this::isZeroParameterConstructor)
+        return (primaryConstructor == null && secondaryConstructors.isEmpty()) ||
+                isZeroParameterConstructor(primaryConstructor) ||
+                secondaryConstructors.any(this::isZeroParameterConstructor)
     }
 
     fun resolveClassDescription(element: PsiElement, cacheService: KotlinCacheService): PreviewClassDescription? {
@@ -147,5 +145,4 @@ internal class DslPreviewClassResolver(private val project: Project) {
                     false)
         }
     }
-
 }

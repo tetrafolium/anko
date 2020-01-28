@@ -57,5 +57,4 @@ class SourceManager(private val provider: SourceProvider) {
             if (outerName.isNotEmpty()) "$outerName.${parent.name}" else parent.nameAsString
         } else ""
     }
-
 }

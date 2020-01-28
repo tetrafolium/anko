@@ -1,7 +1,6 @@
 @file:JvmName("RecyclerviewV7ListenersListenersKt")
 package org.jetbrains.anko.recyclerview.v7.listeners
 
-
 fun android.support.v7.widget.RecyclerView.onChildAttachStateChangeListener(init: __RecyclerView_OnChildAttachStateChangeListener.() -> Unit) {
     val listener = __RecyclerView_OnChildAttachStateChangeListener()
     listener.init()
@@ -29,7 +28,6 @@ class __RecyclerView_OnChildAttachStateChangeListener : android.support.v7.widge
     fun onChildViewDetachedFromWindow(listener: (android.view.View?) -> Unit) {
         _onChildViewDetachedFromWindow = listener
     }
-
 }
 
 fun android.support.v7.widget.RecyclerView.onItemTouchListener(init: __RecyclerView_OnItemTouchListener.() -> Unit) {
@@ -67,6 +65,4 @@ class __RecyclerView_OnItemTouchListener : android.support.v7.widget.RecyclerVie
     fun onRequestDisallowInterceptTouchEvent(listener: (Boolean) -> Unit) {
         _onRequestDisallowInterceptTouchEvent = listener
     }
-
 }
-

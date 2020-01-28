@@ -1,15 +1,12 @@
 @file:JvmName("CardviewV7ViewsKt")
 package org.jetbrains.anko.cardview.v7
 
-import org.jetbrains.anko.custom.*
-import org.jetbrains.anko.AnkoViewDslMarker
-import android.view.ViewManager
-import android.view.ViewGroup.LayoutParams
 import android.app.Activity
-import android.app.Fragment
 import android.content.Context
-import android.os.Build
+import android.view.ViewManager
 import android.widget.*
+import org.jetbrains.anko.AnkoViewDslMarker
+import org.jetbrains.anko.custom.*
 
 @PublishedApi
 internal object `$$Anko$Factories$CardviewV7ViewGroup` {
@@ -45,4 +42,3 @@ inline fun Activity.themedCardView(theme: Int = 0): android.support.v7.widget.Ca
 inline fun Activity.themedCardView(theme: Int = 0, init: (@AnkoViewDslMarker _CardView).() -> Unit): android.support.v7.widget.CardView {
 return ankoView(`$$Anko$Factories$CardviewV7ViewGroup`.CARD_VIEW, theme) { init() }
 }
-

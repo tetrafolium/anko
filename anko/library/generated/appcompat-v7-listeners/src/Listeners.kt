@@ -1,7 +1,6 @@
 @file:JvmName("AppcompatV7ListenersListenersKt")
 package org.jetbrains.anko.appcompat.v7.listeners
 
-
 inline fun android.support.v7.widget.ActionMenuView.onMenuItemClick(noinline l: (item: android.view.MenuItem?) -> Boolean) {
     setOnMenuItemClickListener(l)
 }
@@ -45,7 +44,6 @@ class __SearchView_OnQueryTextListener : android.support.v7.widget.SearchView.On
     fun onQueryTextChange(listener: (String?) -> Boolean) {
         _onQueryTextChange = listener
     }
-
 }
 
 inline fun android.support.v7.widget.SearchView.onSearchClick(noinline l: (v: android.view.View?) -> Unit) {
@@ -75,7 +73,6 @@ class __SearchView_OnSuggestionListener : android.support.v7.widget.SearchView.O
     fun onSuggestionClick(listener: (Int) -> Boolean) {
         _onSuggestionClick = listener
     }
-
 }
 
 inline fun android.support.v7.widget.Toolbar.onMenuItemClick(noinline l: (item: android.view.MenuItem?) -> Boolean) {
@@ -85,4 +82,3 @@ inline fun android.support.v7.widget.Toolbar.onMenuItemClick(noinline l: (item: 
 inline fun android.support.v7.widget.ViewStubCompat.onInflate(noinline l: (stub: android.support.v7.widget.ViewStubCompat?, inflated: android.view.View?) -> Unit) {
     setOnInflateListener(l)
 }
-

@@ -1,10 +1,8 @@
 @file:JvmName("Sdk21PropertiesKt")
 package org.jetbrains.anko
 
-import org.jetbrains.anko.*
-
-import org.jetbrains.anko.internals.AnkoInternals
 import kotlin.DeprecationLevel
+import org.jetbrains.anko.internals.AnkoInternals
 
 var android.view.View.backgroundColor: Int
     @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
@@ -113,4 +111,3 @@ var android.widget.Toolbar.subtitleResource: Int
 var android.widget.Toolbar.titleResource: Int
     @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
     set(v) = setTitle(v)
-

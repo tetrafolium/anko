@@ -1,12 +1,12 @@
 package org.jetbrains.android.anko.writer
 
+import java.io.File
 import org.jetbrains.android.anko.config.*
 import org.jetbrains.android.anko.config.AnkoFile.*
 import org.jetbrains.android.anko.render.*
 import org.jetbrains.android.anko.utils.toCamelCase
-import java.io.File
 
-abstract class AbstractWriter(private val renderFacade: RenderFacade): WithGeneratorContext {
+abstract class AbstractWriter(private val renderFacade: RenderFacade) : WithGeneratorContext {
     override val context: GeneratorContext
         get() = renderFacade.generationState.context
 
@@ -66,11 +66,11 @@ abstract class AbstractWriter(private val renderFacade: RenderFacade): WithGener
     }
 
     private fun write(
-            subsystem: AnkoFile,
-            renderer: Class<out Renderer>,
-            imports: String = "",
-            generatePackage: Boolean = true)
-    {
+        subsystem: AnkoFile,
+        renderer: Class<out Renderer>,
+        imports: String = "",
+        generatePackage: Boolean = true
+    ) {
         write(subsystem, renderFacade[renderer], imports, generatePackage)
     }
 

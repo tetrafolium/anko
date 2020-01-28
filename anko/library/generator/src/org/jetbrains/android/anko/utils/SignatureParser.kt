@@ -16,10 +16,10 @@
 
 package org.jetbrains.android.anko.utils
 
+import java.util.*
 import org.objectweb.asm.Opcodes
 import org.objectweb.asm.signature.SignatureReader
 import org.objectweb.asm.signature.SignatureVisitor
-import java.util.*
 
 internal interface Classifier
 internal data class BaseType(val descriptor: Char) : Classifier
@@ -30,7 +30,7 @@ internal data class TypeVariable(val name: String) : Classifier
 internal object ArrayC : Classifier
 
 internal enum class Wildcard {
-    SUPER,  // ? super X
+    SUPER, // ? super X
     EXTENDS // ? extends X
 }
 
@@ -150,4 +150,3 @@ private class GenericTypeParser(val result: GenericTypeImpl) : SignatureVisitor(
         return GenericTypeParser(argument)
     }
 }
-

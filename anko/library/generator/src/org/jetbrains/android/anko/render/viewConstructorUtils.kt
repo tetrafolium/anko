@@ -29,10 +29,10 @@ interface ViewConstructorUtils {
     }
 
     fun renderConstructorArgs(
-            view: ClassNode,
-            constructors: List<MethodNode?>,
-            ctxName: String,
-            argumentNames: Boolean = false
+        view: ClassNode,
+        constructors: List<MethodNode?>,
+        ctxName: String,
+        argumentNames: Boolean = false
     ): String {
         if (constructors.size != AVAILABLE_VIEW_CONSTRUCTORS.size) throw IllegalArgumentException("Invalid constructors list")
 
@@ -50,5 +50,4 @@ interface ViewConstructorUtils {
             }
         }
     }
-
 }

@@ -16,9 +16,9 @@
 
 package org.jetbrains.kotlin.android.xmlconverter
 
+import java.util.regex.Pattern
 import org.jetbrains.kotlin.android.attrs.Attr
 import org.jetbrains.kotlin.android.attrs.NoAttr
-import java.util.regex.Pattern
 
 internal fun renderLayoutAttributes(attributes: List<KeyValuePair>, parentName: String): String {
     val map = attributes.map { it.key.replace("android:layout_", "") to it.value }.toMap()
@@ -53,9 +53,9 @@ internal fun transformAttribute(widgetName: String, name: String, value: String)
             val shortName = name.substring("android:".length)
             // Search for attribute in `widgetName` styleable, then in superclass styleables,
             // then in `View` styleable, then in free attributes
-            val attr = attrs.free.firstOrNull { it.name == shortName } ?:
-                attrs.styleables[widgetName]?.attrs?.firstOrNull { it.name == shortName } ?:
-                viewHierarchy[widgetName]?.findFirst { attrs.styleables[it]?.attrs?.firstOrNull { it.name == shortName } }
+            val attr = attrs.free.firstOrNull { it.name == shortName }
+                ?: attrs.styleables[widgetName]?.attrs?.firstOrNull { it.name == shortName }
+                ?: viewHierarchy[widgetName]?.findFirst { attrs.styleables[it]?.attrs?.firstOrNull { it.name == shortName } }
                 attrs.styleables["View"]?.attrs?.firstOrNull { it.name == shortName }
 
             return if (attr != null) {

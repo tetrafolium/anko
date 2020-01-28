@@ -38,7 +38,6 @@ fun Context.dimenAttr(@AttrRes attribute: Int): Int =
 @ColorInt
 fun Context.colorAttr(@AttrRes attribute: Int): Int = theme.color(attribute)
 
-
 @Dimension(unit = Dimension.PX)
 inline fun AnkoContext<*>.dimenAttr(@AttrRes attribute: Int): Int = ctx.dimenAttr(attribute)
 
@@ -47,7 +46,6 @@ inline fun AnkoContext<*>.colorAttr(@AttrRes attribute: Int): Int = ctx.colorAtt
 
 inline fun AnkoContext<*>.attr(@AttrRes attribute: Int): TypedValue = ctx.attr(attribute)
 
-
 @Dimension(unit = Dimension.PX)
 inline fun View.dimenAttr(@AttrRes attribute: Int): Int = context.dimenAttr(attribute)
 
@@ -55,7 +53,6 @@ inline fun View.dimenAttr(@AttrRes attribute: Int): Int = context.dimenAttr(attr
 inline fun View.colorAttr(@AttrRes attribute: Int): Int = context.colorAttr(attribute)
 
 inline fun View.attr(@AttrRes attribute: Int): TypedValue = context.attr(attribute)
-
 
 @Dimension(unit = Dimension.PX)
 inline fun Fragment.dimenAttr(@AttrRes attribute: Int): Int = activity.dimenAttr(attribute)

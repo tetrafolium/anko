@@ -5,7 +5,7 @@ import android.os.Bundle
 import org.jetbrains.anko.*
 
 open class AndroidPropertiesTestActivity : Activity() {
-    public override fun onCreate(savedInstanceState: Bundle?): Unit {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         UI {
             linearLayout {
@@ -100,7 +100,6 @@ open class AndroidPropertiesTestActivity : Activity() {
                 chronometer {
                     base = 9
                     format = "%d%Y%m"
-
                 }
                 button {}
                 editText {}
@@ -118,7 +117,6 @@ open class AndroidPropertiesTestActivity : Activity() {
                 tabHost {
                     currentTab = 2
                     currentTabView
-
                 }
                 viewAnimator {}
                 expandableListView {
@@ -129,6 +127,4 @@ open class AndroidPropertiesTestActivity : Activity() {
             }
         }
     }
-
-
 }

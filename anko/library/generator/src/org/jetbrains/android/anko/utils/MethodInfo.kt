@@ -75,8 +75,8 @@ internal fun MethodNodeWithClass.formatArguments(context: GeneratorContext): Str
 }
 
 internal fun MethodNodeWithClass.formatLayoutParamsArguments(
-        context: GeneratorContext,
-        importList: ImportList
+    context: GeneratorContext,
+    importList: ImportList
 ): List<String> {
     return toKMethod(context).parameters.map { param ->
         val renderType = importList.let { it[param.type] }

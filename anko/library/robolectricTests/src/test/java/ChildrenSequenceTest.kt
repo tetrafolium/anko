@@ -13,7 +13,7 @@ import org.robolectric.Robolectric
 import org.robolectric.RobolectricGradleTestRunner
 import org.robolectric.annotation.Config
 
-open class ChildrenSequenceTestActivity: Activity() {
+open class ChildrenSequenceTestActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

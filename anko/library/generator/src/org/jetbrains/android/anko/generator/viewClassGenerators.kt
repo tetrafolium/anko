@@ -17,13 +17,12 @@
 package org.jetbrains.android.anko.generator
 
 import org.jetbrains.android.anko.utils.isAbstract
-import org.jetbrains.android.anko.utils.isInterface
 import org.jetbrains.android.anko.utils.isPublic
 import org.objectweb.asm.tree.ClassNode
 
 abstract class AbstractViewGenerator(private val forLayouts: Boolean) : Generator<ViewElement> {
 
-    override fun generate(state: GenerationState) = with (state) {
+    override fun generate(state: GenerationState) = with(state) {
         fun ClassNode.isViewGroupWithParams() = isViewGroup && hasLayoutParams(this)
 
         state.availableClasses

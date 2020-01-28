@@ -1,8 +1,8 @@
 package org.jetbrains.android.anko.artifact
 
 import com.google.gson.Gson
-import org.jetbrains.android.anko.config.ArtifactType
 import java.io.File
+import org.jetbrains.android.anko.config.ArtifactType
 
 class Artifact(val name: String, val type: ArtifactType, val platformJars: List<File>, val targetJars: List<File>) {
     override fun toString(): String {
@@ -43,9 +43,9 @@ class Tunes(val excludedClasses: Set<String>)
 class ExecutionConfiguration(val artifacts: List<Artifact>, val tunes: Tunes)
 
 private class ExecutionConfigurationData(
-        val templates: Map<String, String>,
-        val artifacts: List<ArtifactData>,
-        val tunes: Tunes
+    val templates: Map<String, String>,
+    val artifacts: List<ArtifactData>,
+    val tunes: Tunes
 ) {
     class ArtifactData(val name: String, val type: String, val platform: List<String>, val target: List<String>?)
 }

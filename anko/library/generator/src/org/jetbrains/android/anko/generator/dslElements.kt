@@ -51,19 +51,19 @@ abstract class ListenerElement(val setter: MethodNodeWithClass, val clazz: Class
 }
 
 class SimpleListenerElement(
-        setter: MethodNodeWithClass,
-        clazz: ClassNode,
-        val method: ListenerMethod
+    setter: MethodNodeWithClass,
+    clazz: ClassNode,
+    val method: ListenerMethod
 ) : ListenerElement(setter, clazz) {
     override val id: String
         get() = "${clazz.name}#${method.name}"
 }
 
 class ComplexListenerElement(
-        setter: MethodNodeWithClass,
-        clazz: ClassNode,
-        val name: String,
-        val methods: List<ListenerMethod>
+    setter: MethodNodeWithClass,
+    clazz: ClassNode,
+    val name: String,
+    val methods: List<ListenerMethod>
 ) : ListenerElement(setter, clazz) {
     override val id: String
         get() = "${clazz.name}#$name"

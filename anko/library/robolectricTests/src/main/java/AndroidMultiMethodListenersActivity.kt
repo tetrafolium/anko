@@ -6,13 +6,13 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.listeners.*
 
 open class AndroidMultiMethodListenersActivity : Activity() {
-    public override fun onCreate(savedInstanceState: Bundle?): Unit {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         UI {
             linearLayout {
                 listView {
                     onScrollListener {
-                        onScroll { _, _, _, _ ->  }
+                        onScroll { _, _, _, _ -> }
                         onScrollStateChanged { _, _ -> }
                     }
                 }

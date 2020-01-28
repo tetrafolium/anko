@@ -22,13 +22,12 @@ open class RelativeLayoutHelpersTestActivity : Activity()
 
         println("[COMPLETE]")
     }
-
 }
 
 fun test(activity: Activity) {
     val fst = 50
     val snd = 60
-    with (activity) {
+    with(activity) {
         fun get(rule: Int, l: RelativeLayout.LayoutParams.(View) -> Unit) = test(fst, snd, l).rules[rule]
         assertTrue(get(RelativeLayout.BELOW) { below(fst) } == fst)
         assertTrue(get(RelativeLayout.BELOW) { bottomOf(fst) } == fst)

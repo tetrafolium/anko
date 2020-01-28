@@ -32,10 +32,10 @@ import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.openapi.vfs.VfsUtilCore
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.VirtualFileVisitor
-import org.jetbrains.android.facet.AndroidFacet
-import org.jetbrains.kotlin.idea.refactoring.fqName.getKotlinFqName
 import java.io.File
 import java.io.IOException
+import org.jetbrains.android.facet.AndroidFacet
+import org.jetbrains.kotlin.idea.refactoring.fqName.getKotlinFqName
 
 class ConvertAction : AnAction() {
 
@@ -145,12 +145,10 @@ class ConvertAction : AnAction() {
     private fun FileToConvert.convert(project: Project) {
         try {
             ktFile.writeText(XmlConverter.convert(xmlFile.contentsToByteArray().toString(charset("UTF-8"))))
-        }
-        catch (e: IOException) {
+        } catch (e: IOException) {
             MessagesEx.error(project, e.message).showLater()
         }
     }
 
     private fun String.firstCapital() = if (isEmpty()) "" else Character.toUpperCase(this[0]) + substring(1)
-
 }

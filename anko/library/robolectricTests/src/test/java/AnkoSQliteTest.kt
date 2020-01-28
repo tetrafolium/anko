@@ -12,7 +12,6 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 import test.BuildConfig
 
-
 @RunWith(RobolectricGradleTestRunner::class)
 @Config(constants = BuildConfig::class) class AnkoSQliteTest {
 
@@ -130,8 +129,8 @@ import test.BuildConfig
                 FOREIGN_KEY("userId", "users", "id", ON_DELETE(ConstraintActions.CASCADE))
         )
 
-        insert("emails",  "email" to "johny@domain.org", "userId" to 1)
-        insert("emails",  "email" to "vasiliy@domain.org", "userId" to 2)
+        insert("emails", "email" to "johny@domain.org", "userId" to 1)
+        insert("emails", "email" to "vasiliy@domain.org", "userId" to 2)
 
         select("emails").exec {
             moveToNext()
@@ -143,9 +142,7 @@ import test.BuildConfig
             assertEquals("John", getString(1))
         }
 
-
         delete("users", "id = {userId}", "userId" to 1)
-
 
         select("emails").exec {
             moveToNext()
@@ -163,24 +160,21 @@ import test.BuildConfig
 }
 
 class DbHelper(
-        private val context: Context,
-        private val dbName: String = "test_db"
+    private val context: Context,
+    private val dbName: String = "test_db"
 ) : SQLiteOpenHelper(
         context,
         dbName,
-        null ,
+        null,
         1
 ) {
     override fun onCreate(db: SQLiteDatabase?) {
-
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-
     }
 
     fun deleteDatabase() {
         context.deleteDatabase(dbName)
     }
 }
-

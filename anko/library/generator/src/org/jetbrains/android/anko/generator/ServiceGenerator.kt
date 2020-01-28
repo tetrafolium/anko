@@ -27,8 +27,8 @@ class ServiceGenerator : Generator<ServiceElement> {
                 ?.filter { it.name.endsWith("_SERVICE") }
                 ?.mapNotNull { serviceField ->
                     state.availableClasses.find { classNode ->
-                        classNode.packageName.startsWith("android")
-                                && classNode.simpleName == serviceField.toServiceClassName()
+                        classNode.packageName.startsWith("android") &&
+                                classNode.simpleName == serviceField.toServiceClassName()
                     }
                     ?.let { ServiceElement(it, serviceField.name) }
                 }

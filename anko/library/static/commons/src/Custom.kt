@@ -23,7 +23,6 @@ import android.view.View
 import android.view.ViewManager
 import org.jetbrains.anko.internals.AnkoInternals
 
-
 inline fun <T : View> ViewManager.ankoView(factory: (ctx: Context) -> T, theme: Int, init: T.() -> Unit): T {
     val ctx = AnkoInternals.wrapContextIfNeeded(AnkoInternals.getContext(this), theme)
     val view = factory(ctx)

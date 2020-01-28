@@ -22,8 +22,8 @@ import android.database.sqlite.SQLiteDatabase
 import org.jetbrains.anko.AnkoException
 
 abstract class UpdateQueryBuilder(
-        val tableName: String,
-        val values: Array<out Pair<String, Any?>>
+    val tableName: String,
+    val values: Array<out Pair<String, Any?>>
 ) {
 
     private var selectionApplied = false
@@ -85,25 +85,23 @@ abstract class UpdateQueryBuilder(
     }
 
     abstract fun execUpdate(
-            table: String,
-            values: ContentValues,
-            whereClause: String?,
-            whereArgs: Array<out String>?
+        table: String,
+        values: ContentValues,
+        whereClause: String?,
+        whereArgs: Array<out String>?
     ): Int
-
 }
 
 class AndroidSdkDatabaseUpdateQueryBuilder(
-        private val db: SQLiteDatabase,
-        table: String,
-        values: Array<out Pair<String, Any?>>
+    private val db: SQLiteDatabase,
+    table: String,
+    values: Array<out Pair<String, Any?>>
 ) : UpdateQueryBuilder(table, values) {
 
     override fun execUpdate(
-            table: String,
-            values: ContentValues,
-            whereClause: String?,
-            whereArgs: Array<out String>?
+        table: String,
+        values: ContentValues,
+        whereClause: String?,
+        whereArgs: Array<out String>?
     ) = db.update(table, values, whereClause, whereArgs)
-
 }
