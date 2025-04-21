@@ -25,30 +25,31 @@ import org.objectweb.asm.tree.MethodNode
 
 class PropertyGenerator : Generator<PropertyElement> {
 
-    override fun generate(state: GenerationState) = with (state) {
+    override fun generate(state: GenerationState) = with(state) {
         val propertyGetters = availableMethods
-                .filter {
-                    it.clazz.isView &&
-                            it.method.isGetter() && !it.method.isOverridden && !it.method.isListenerGetter &&
-                            !config.excludedProperties.contains(it.clazz.fqName + "#" + it.method.name) &&
-                            !config.excludedProperties.contains(it.clazz.fqName + "#*")
-                }
-                .sortedBy { it.identifier }
+            .filter {
+                it.clazz.isView &&
+                    it.method.isGetter() && !it.method.isOverridden && !it.method.isListenerGetter &&
+                    !config.excludedProperties.contains(it.clazz.fqName + "#" + it.method.name) &&
+                    !config.excludedProperties.contains(it.clazz.fqName + "#*")
+            }
+            .sortedBy { it.identifier }
 
         val propertySetters = availableMethods
-                .filter {
-                    it.clazz.isView && it.method.isNonListenerSetter() && !it.method.isOverridden &&
-                            !config.excludedProperties.contains(it.clazz.fqName + "#" + it.method.name) &&
-                            !config.excludedProperties.contains(it.clazz.fqName + "#*")
-                }
-                .groupBy { it.identifier }
+            .filter {
+                it.clazz.isView && it.method.isNonListenerSetter() && !it.method.isOverridden &&
+                    !config.excludedProperties.contains(it.clazz.fqName + "#" + it.method.name) &&
+                    !config.excludedProperties.contains(it.clazz.fqName + "#*")
+            }
+            .groupBy { it.identifier }
 
         genProperties(propertyGetters, propertySetters)
     }
 
     private fun GenerationState.genProperties(
-            getters: Collection<MethodNodeWithClass>,
-            setters: Map<String, List<MethodNodeWithClass>>): List<PropertyElement> {
+        getters: Collection<MethodNodeWithClass>,
+        setters: Map<String, List<MethodNodeWithClass>>
+    ): List<PropertyElement> {
         val existingProperties = hashSetOf<String>()
 
         val propertyWithGetters = getters.map { getter ->
@@ -73,7 +74,9 @@ class PropertyGenerator : Generator<PropertyElement> {
                     logger.d("PropertyGenerator # Property was not generated for $id")
                     null
                 }
-            } else null
+            } else {
+                null
+            }
         }.filterNotNull()
         return propertyWithoutGetters + propertyWithGetters
     }

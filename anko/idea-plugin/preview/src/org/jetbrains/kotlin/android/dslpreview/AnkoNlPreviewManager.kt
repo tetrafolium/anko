@@ -1,15 +1,15 @@
 package org.jetbrains.kotlin.android.dslpreview
 
+import com.android.tools.idea.common.model.NlModel
 import com.android.tools.idea.gradle.project.BuildSettings
 import com.android.tools.idea.gradle.project.GradleProjectInfo
 import com.android.tools.idea.gradle.project.build.invoker.GradleBuildInvoker
+import com.android.tools.idea.gradle.project.build.invoker.GradleTaskFinder
+import com.android.tools.idea.gradle.project.build.invoker.TestCompileType
 import com.android.tools.idea.gradle.util.BuildMode
 import com.android.tools.idea.project.AndroidProjectInfo
 import com.android.tools.idea.uibuilder.editor.NlPreviewForm
 import com.android.tools.idea.uibuilder.editor.NlPreviewManager
-import com.android.tools.idea.common.model.NlModel
-import com.android.tools.idea.gradle.project.build.invoker.GradleTaskFinder
-import com.android.tools.idea.gradle.project.build.invoker.TestCompileType
 import com.intellij.ide.highlighter.XmlFileType
 import com.intellij.openapi.Disposable
 import com.intellij.openapi.application.ApplicationManager
@@ -38,8 +38,8 @@ import javax.swing.DefaultComboBoxModel
 import javax.swing.JPanel
 
 class AnkoNlPreviewManager(
-        project: Project,
-        fileEditorManager: FileEditorManager?
+    project: Project,
+    fileEditorManager: FileEditorManager?
 ) : NlPreviewManager(project, fileEditorManager), Disposable {
     internal val classResolver = DslPreviewClassResolver(project)
 
@@ -50,7 +50,7 @@ class AnkoNlPreviewManager(
 
     private val sourceFileModificationTracker by lazy {
         project.getExtensions(PsiTreeChangePreprocessor.EP_NAME)
-                .first { it is SourceFileModificationTracker } as SourceFileModificationTracker
+            .first { it is SourceFileModificationTracker } as SourceFileModificationTracker
     }
 
     private val viewLoaderExtension by lazy {
@@ -128,7 +128,7 @@ class AnkoNlPreviewManager(
 
         val viewLoaderExtension = this.viewLoaderExtension ?: return false
         val description = myActivityListModel.selectedItem as? PreviewClassDescription
-                ?: classResolver.getOnCursorPreviewClassDescription()
+            ?: classResolver.getOnCursorPreviewClassDescription()
 
         if (description != null && viewLoaderExtension.description != description) {
             viewLoaderExtension.description = description
@@ -140,9 +140,10 @@ class AnkoNlPreviewManager(
 
     override fun isApplicableEditor(textEditor: TextEditor, file: PsiFile?): Boolean {
         val psiFile =
-                file ?: PsiDocumentManager.getInstance(project).getPsiFile(textEditor.editor.document) ?: return false
+            file ?: PsiDocumentManager.getInstance(project).getPsiFile(textEditor.editor.document) ?: return false
         if (!GradleProjectInfo.getInstance(project).isBuildWithGradle &&
-                !AndroidProjectInfo.getInstance(project).isLegacyIdeaAndroidProject) {
+            !AndroidProjectInfo.getInstance(project).isLegacyIdeaAndroidProject
+        ) {
             return false
         }
 
@@ -200,8 +201,8 @@ class AnkoNlPreviewManager(
 
     fun resolveAvailableClasses() {
         val activityClasses = classResolver
-                .getAncestors(DslPreviewClassResolver.ANKO_COMPONENT_CLASS_NAME)
-                .filter { classResolver.isClassApplicableForPreview(it.ktClass) }
+            .getAncestors(DslPreviewClassResolver.ANKO_COMPONENT_CLASS_NAME)
+            .filter { classResolver.isClassApplicableForPreview(it.ktClass) }
 
         with(myActivityListModel) {
             selectedItem = null

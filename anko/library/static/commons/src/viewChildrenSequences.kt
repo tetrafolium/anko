@@ -15,6 +15,7 @@
  */
 
 @file:Suppress("unused")
+
 package org.jetbrains.anko
 
 import android.view.*
@@ -150,4 +151,3 @@ private class ViewChildrenRecursiveSequence(private val view: View) : Sequence<V
         }
     }
 }
-

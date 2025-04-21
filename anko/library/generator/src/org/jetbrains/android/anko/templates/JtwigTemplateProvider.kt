@@ -38,7 +38,8 @@ class JtwigTemplateProvider : TemplateProvider {
                 is BigDecimal -> o.toInt()
                 is Int -> o
                 else -> throw IllegalArgumentException(
-                        "Illegal argument type: ${o.javaClass.canonicalName}, expected Integer or BigDecimal")
+                    "Illegal argument type: ${o.javaClass.canonicalName}, expected Integer or BigDecimal"
+                )
             }
         })
 

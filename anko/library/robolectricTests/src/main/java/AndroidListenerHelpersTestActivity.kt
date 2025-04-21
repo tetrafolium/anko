@@ -6,24 +6,23 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.listeners.*
 
 open class AndroidListenerHelpersTestActivity : Activity() {
-    public override fun onCreate(savedInstanceState: Bundle?): Unit {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         UI {
             linearLayout {
-               button {
-                  onClick {
-                      text = "clicked"
-                  }
-               }
-               checkBox {
-                  onCheckedChange { _, checkState ->
-                        if(checkState)
+                button {
+                    onClick {
+                        text = "clicked"
+                    }
+                }
+                checkBox {
+                    onCheckedChange { _, checkState ->
+                        if (checkState) {
                             text = "checked"
-                  }
-               }
+                        }
+                    }
+                }
             }
         }
     }
-
-
 }

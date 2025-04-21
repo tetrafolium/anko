@@ -15,6 +15,7 @@
  */
 
 @file:Suppress("unused")
+
 package org.jetbrains.anko.db
 
 interface SqlType {

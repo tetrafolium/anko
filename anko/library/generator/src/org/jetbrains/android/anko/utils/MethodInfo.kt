@@ -24,14 +24,15 @@ import org.objectweb.asm.Type
 import org.objectweb.asm.tree.MethodNode
 
 private val specialLayoutParamsArguments = mapOf(
-        "width" to "android.view.ViewGroup.LayoutParams.WRAP_CONTENT",
-        "height" to "android.view.ViewGroup.LayoutParams.WRAP_CONTENT",
-        "w" to "android.view.ViewGroup.LayoutParams.WRAP_CONTENT",
-        "h" to "android.view.ViewGroup.LayoutParams.WRAP_CONTENT"
+    "width" to "android.view.ViewGroup.LayoutParams.WRAP_CONTENT",
+    "height" to "android.view.ViewGroup.LayoutParams.WRAP_CONTENT",
+    "w" to "android.view.ViewGroup.LayoutParams.WRAP_CONTENT",
+    "h" to "android.view.ViewGroup.LayoutParams.WRAP_CONTENT"
 )
 
 private val specialLayoutParamsNames = mapOf(
-        "w" to "width", "h" to "height"
+    "w" to "width",
+    "h" to "height"
 )
 
 internal val MethodNode.parameterRawTypes: Array<Type>
@@ -75,8 +76,8 @@ internal fun MethodNodeWithClass.formatArguments(context: GeneratorContext): Str
 }
 
 internal fun MethodNodeWithClass.formatLayoutParamsArguments(
-        context: GeneratorContext,
-        importList: ImportList
+    context: GeneratorContext,
+    importList: ImportList
 ): List<String> {
     return toKMethod(context).parameters.map { param ->
         val renderType = importList.let { it[param.type] }
@@ -84,10 +85,11 @@ internal fun MethodNodeWithClass.formatLayoutParamsArguments(
         val defaultValue = specialLayoutParamsArguments[param.name]
         val realName = specialLayoutParamsNames.getOrElse(param.name, { param.name })
 
-        if (defaultValue == null)
+        if (defaultValue == null) {
             "$realName: $renderType"
-        else
+        } else {
             "$realName: $renderType = $defaultValue"
+        }
     }
 }
 

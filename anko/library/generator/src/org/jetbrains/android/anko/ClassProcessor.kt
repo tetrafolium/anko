@@ -37,7 +37,7 @@ class ClassProcessor(val artifact: Artifact) {
         val hasTargetJars = artifact.targetJars.isNotEmpty()
 
         val platformClasses = (artifact.platformJars - artifact.targetJars)
-                .asSequence().flatMap { getEntries(it) }.map { it to hasTargetJars }
+            .asSequence().flatMap { getEntries(it) }.map { it to hasTargetJars }
         val targetJars = artifact.targetJars.asSequence().flatMap { getEntries(it) }.map { it to false }
 
         return platformClasses + targetJars
@@ -47,21 +47,21 @@ class ClassProcessor(val artifact: Artifact) {
         if (file.extension == "jar") {
             val zipFile = ZipFile(file)
             return zipFile.entries().asSequence()
-                    .filter { it.name.endsWith(".class") }
-                    .map { zipFile.getInputStream(it) }
+                .filter { it.name.endsWith(".class") }
+                .map { zipFile.getInputStream(it) }
         }
 
         assert(file.extension == "aar")
 
         val zipFile = ZipFile(file)
         return zipFile.entries().asSequence()
-                .filter { it.name.endsWith(".jar") }
-                .map {
-                    File.createTempFile("anko", ".jar").apply {
-                        deleteOnExit()
-                        zipFile.getInputStream(it).copyTo(outputStream())
-                    }
-                }.flatMap { getEntries(it) }
+            .filter { it.name.endsWith(".jar") }
+            .map {
+                File.createTempFile("anko", ".jar").apply {
+                    deleteOnExit()
+                    zipFile.getInputStream(it).copyTo(outputStream())
+                }
+            }.flatMap { getEntries(it) }
     }
 
     private fun processClassData(classData: InputStream): ClassNode {

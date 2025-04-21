@@ -29,9 +29,9 @@ internal interface ClassTreeUtils {
     fun findAvailableMethods(availableClasses: List<ClassNode>): List<MethodNodeWithClass> {
         return availableClasses.flatMap { classNode ->
             classNode.methods
-                    ?.map { MethodNodeWithClass(classNode, it) }
-                    ?.filter { !isExcluded(it) }
-                    ?: emptyList()
+                ?.map { MethodNodeWithClass(classNode, it) }
+                ?.filter { !isExcluded(it) }
+                ?: emptyList()
         }
     }
 
@@ -64,5 +64,4 @@ internal interface ClassTreeUtils {
         allMethodsTo(node, list)
         return list
     }
-
 }

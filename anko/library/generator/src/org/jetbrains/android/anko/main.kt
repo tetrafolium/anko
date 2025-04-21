@@ -15,14 +15,15 @@
  */
 
 @file:JvmName("Main")
+
 package org.jetbrains.android.anko
 
 import org.jetbrains.android.anko.artifact.Artifact
 import org.jetbrains.android.anko.config.*
 import org.jetbrains.android.anko.generator.GenerationState
 import org.jetbrains.android.anko.render.RenderFacade
-import org.jetbrains.android.anko.writer.VerifyWriter
 import org.jetbrains.android.anko.writer.GeneratorWriter
+import org.jetbrains.android.anko.writer.VerifyWriter
 import java.io.File
 
 fun main(args: Array<String>) {
@@ -44,7 +45,9 @@ fun main(args: Array<String>) {
             }
         }
         println("Done.")
-    } else println("Please specify a task.")
+    } else {
+        println("Please specify a task.")
+    }
 }
 
 private fun parseOptions(rawOptions: List<String>): MutableOptions {
@@ -54,8 +57,8 @@ private fun parseOptions(rawOptions: List<String>): MutableOptions {
         if (split.size != 2) error("Invalid option format: $rawOption")
         val key = split[0]
         val option: CliConfigurationKey<Any> =
-                CLI_CONFIGURATION_KEYS.firstOrNull { it.cliName == key }
-                        ?: error("Option not found: $key")
+            CLI_CONFIGURATION_KEYS.firstOrNull { it.cliName == key }
+                ?: error("Option not found: $key")
 
         options.setCliOption(option, split[1])
     }

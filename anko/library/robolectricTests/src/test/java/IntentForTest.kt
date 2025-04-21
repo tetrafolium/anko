@@ -10,7 +10,7 @@ import org.robolectric.RobolectricGradleTestRunner
 import org.robolectric.annotation.Config
 
 open class IntentForTestActivity : Activity() {
-    public override fun onCreate(savedInstanceState: Bundle?): Unit {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 }
@@ -27,9 +27,10 @@ class IntentForTest {
         assert(intent1.extras == null)
 
         val intent2 = activity.intentFor<IntentForTestActivity>(
-                "one" to 1,
-                "abc" to "ABC",
-                "null" to null)
+            "one" to 1,
+            "abc" to "ABC",
+            "null" to null
+        )
 
         val extras2 = intent2.extras!!
         assert(extras2.size() == 3)

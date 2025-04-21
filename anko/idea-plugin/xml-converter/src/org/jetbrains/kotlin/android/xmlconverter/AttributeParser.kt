@@ -39,7 +39,9 @@ internal fun renderLayoutAttributes(attributes: List<KeyValuePair>, parentName: 
     val options = (layoutAttributeRenderers.findFirst { it(parentName, map) } ?: emptyList()).filterNotNull()
     val optionsString = if (options.isNotEmpty()) {
         options.map { it.toString().indent(1) }.joinToString("\n", " {\n", "\n}")
-    } else ""
+    } else {
+        ""
+    }
 
     return ".lparams(width = $width, height = $height)$optionsString"
 }
@@ -53,14 +55,16 @@ internal fun transformAttribute(widgetName: String, name: String, value: String)
             val shortName = name.substring("android:".length)
             // Search for attribute in `widgetName` styleable, then in superclass styleables,
             // then in `View` styleable, then in free attributes
-            val attr = attrs.free.firstOrNull { it.name == shortName } ?:
-                attrs.styleables[widgetName]?.attrs?.firstOrNull { it.name == shortName } ?:
-                viewHierarchy[widgetName]?.findFirst { attrs.styleables[it]?.attrs?.firstOrNull { it.name == shortName } }
-                attrs.styleables["View"]?.attrs?.firstOrNull { it.name == shortName }
+            val attr = attrs.free.firstOrNull { it.name == shortName }
+                ?: attrs.styleables[widgetName]?.attrs?.firstOrNull { it.name == shortName }
+                ?: viewHierarchy[widgetName]?.findFirst { attrs.styleables[it]?.attrs?.firstOrNull { it.name == shortName } }
+            attrs.styleables["View"]?.attrs?.firstOrNull { it.name == shortName }
 
             return if (attr != null) {
                 renderAttribute(attr, shortName, value)
-            } else renderAttribute(NoAttr, shortName, value)
+            } else {
+                renderAttribute(NoAttr, shortName, value)
+            }
         }
         else -> name * value
     }

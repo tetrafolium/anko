@@ -42,7 +42,7 @@ object AnkoInternals {
     fun noGetter(): Nothing = throw AnkoException("Property does not have a getter")
 
     private class AnkoContextThemeWrapper(base: Context?, val theme: Int) : ContextThemeWrapper(base, theme)
-    
+
     fun <T : View> addView(manager: ViewManager, view: T) = when (manager) {
         is ViewGroup -> manager.addView(view)
         is AnkoContext<*> -> manager.addView(view, null)
@@ -71,7 +71,7 @@ object AnkoInternals {
         style(v)
         if (v is ViewGroup) {
             val maxIndex = v.childCount - 1
-            for (i in 0 .. maxIndex) {
+            for (i in 0..maxIndex) {
                 v.getChildAt(i)?.let { applyRecursively(it, style) }
             }
         }
@@ -84,9 +84,9 @@ object AnkoInternals {
     }
 
     inline fun <T> T.createAnkoContext(
-            ctx: Context,
-            init: AnkoContext<T>.() -> Unit,
-            setContentView: Boolean = false
+        ctx: Context,
+        init: AnkoContext<T>.() -> Unit,
+        setContentView: Boolean = false
     ): AnkoContext<T> {
         val dsl = AnkoContextImpl(ctx, this, setContentView)
         dsl.init()
@@ -112,35 +112,35 @@ object AnkoInternals {
 
     @JvmStatic
     fun internalStartActivity(
-            ctx: Context,
-            activity: Class<out Activity>,
-            params: Array<out Pair<String, Any?>>
+        ctx: Context,
+        activity: Class<out Activity>,
+        params: Array<out Pair<String, Any?>>
     ) {
         ctx.startActivity(createIntent(ctx, activity, params))
     }
 
     @JvmStatic
     fun internalStartActivityForResult(
-            act: Activity,
-            activity: Class<out Activity>,
-            requestCode: Int,
-            params: Array<out Pair<String, Any?>>
+        act: Activity,
+        activity: Class<out Activity>,
+        requestCode: Int,
+        params: Array<out Pair<String, Any?>>
     ) {
         act.startActivityForResult(createIntent(act, activity, params), requestCode)
     }
 
     @JvmStatic
     fun internalStartService(
-            ctx: Context,
-            service: Class<out Service>,
-            params: Array<out Pair<String, Any?>>
+        ctx: Context,
+        service: Class<out Service>,
+        params: Array<out Pair<String, Any?>>
     ): ComponentName? = ctx.startService(createIntent(ctx, service, params))
 
     @JvmStatic
     fun internalStopService(
-            ctx: Context,
-            service: Class<out Service>,
-            params: Array<out Pair<String, Any?>>
+        ctx: Context,
+        service: Class<out Service>,
+        params: Array<out Pair<String, Any?>>
     ): Boolean = ctx.stopService(createIntent(ctx, service, params))
 
     @JvmStatic
@@ -182,7 +182,7 @@ object AnkoInternals {
 
     // Cursor is not closeable in older versions of Android
     @JvmStatic
-    inline fun <T> useCursor(cursor: Cursor, f: (Cursor) -> T) : T {
+    inline fun <T> useCursor(cursor: Cursor, f: (Cursor) -> T): T {
         try {
             return f(cursor)
         } finally {
@@ -204,28 +204,26 @@ object AnkoInternals {
         } catch (e: NoSuchMethodException) {
             try {
                 return getConstructor2().newInstance(ctx, null)
-            }
-            catch (e: NoSuchMethodException) {
+            } catch (e: NoSuchMethodException) {
                 throw AnkoException("Can't initiate View of class ${viewClass.name}: can't find proper constructor")
             }
         }
-
     }
 
     @JvmStatic
     fun testConfiguration(
-            ctx: Context,
-            screenSize: ScreenSize?,
-            density: ClosedRange<Int>?,
-            language: String?,
-            orientation: Orientation?,
-            long: Boolean?,
-            fromSdk: Int?,
-            sdk: Int?,
-            uiMode: UiMode?,
-            nightMode: Boolean?,
-            rightToLeft: Boolean?,
-            smallestWidth: Int?
+        ctx: Context,
+        screenSize: ScreenSize?,
+        density: ClosedRange<Int>?,
+        language: String?,
+        orientation: Orientation?,
+        long: Boolean?,
+        fromSdk: Int?,
+        sdk: Int?,
+        uiMode: UiMode?,
+        nightMode: Boolean?,
+        rightToLeft: Boolean?,
+        smallestWidth: Int?
     ): Boolean {
         val config = ctx.resources?.configuration
 
@@ -298,8 +296,10 @@ object AnkoInternals {
 
         if (rightToLeft != null) {
             if (config == null) return false
-            val rtlMode = (config.screenLayout and
-                    InternalConfiguration.SCREENLAYOUT_LAYOUTDIR_MASK) == InternalConfiguration.SCREENLAYOUT_LAYOUTDIR_RTL
+            val rtlMode = (
+                config.screenLayout and
+                    InternalConfiguration.SCREENLAYOUT_LAYOUTDIR_MASK
+                ) == InternalConfiguration.SCREENLAYOUT_LAYOUTDIR_RTL
             if (rtlMode != rightToLeft) return false
         }
 
@@ -308,11 +308,9 @@ object AnkoInternals {
 
             if (config.smallestScreenWidthDp == Configuration.SMALLEST_SCREEN_WIDTH_DP_UNDEFINED) {
                 if (smallestWidth != Configuration.SMALLEST_SCREEN_WIDTH_DP_UNDEFINED) return false
-            }
-            else if (config.smallestScreenWidthDp < smallestWidth) return false
+            } else if (config.smallestScreenWidthDp < smallestWidth) return false
         }
 
         return true
     }
-
 }

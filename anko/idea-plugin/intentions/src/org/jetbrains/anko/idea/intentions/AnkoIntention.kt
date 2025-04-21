@@ -20,9 +20,9 @@ import org.jetbrains.kotlin.resolve.descriptorUtil.resolveTopLevelClass
 import org.jetbrains.kotlin.types.lowerIfFlexible
 
 abstract class AnkoIntention<TElement : KtElement>(
-        elementType: Class<TElement>,
-        text: String,
-        familyName: String = text
+    elementType: Class<TElement>,
+    text: String,
+    familyName: String = text
 ) : SelfTargetingIntention<TElement>(elementType, text, familyName) {
 
     final override fun isApplicableTo(element: TElement, caretOffset: Int): Boolean {
@@ -40,23 +40,23 @@ abstract class AnkoIntention<TElement : KtElement>(
     }
 
     protected fun KtCallExpression.isValueParameterTypeOf(
-            parameterIndex: Int,
-            resolvedCall: ResolvedCall<*>?,
-            vararg fqName: String
+        parameterIndex: Int,
+        resolvedCall: ResolvedCall<*>?,
+        vararg fqName: String
     ): Boolean {
         val ctxArgumentDescriptor = (resolvedCall ?: getResolvedCall(analyze()))?.resultingDescriptor
-                ?.valueParameters?.get(parameterIndex)?.type?.lowerIfFlexible()
-                ?.constructor?.declarationDescriptor ?: return false
+            ?.valueParameters?.get(parameterIndex)?.type?.lowerIfFlexible()
+            ?.constructor?.declarationDescriptor ?: return false
         return isTypeOf(ctxArgumentDescriptor, *fqName)
     }
 
     protected fun KtCallExpression.isReceiverParameterTypeOf(
-            resolvedCall: ResolvedCall<*>?,
-            vararg fqName: String
+        resolvedCall: ResolvedCall<*>?,
+        vararg fqName: String
     ): Boolean {
         val receiverDescriptor = (resolvedCall ?: getResolvedCall(analyze()))?.resultingDescriptor
-                ?.dispatchReceiverParameter?.type?.lowerIfFlexible()
-                ?.constructor?.declarationDescriptor ?: return false
+            ?.dispatchReceiverParameter?.type?.lowerIfFlexible()
+            ?.constructor?.declarationDescriptor ?: return false
         return isTypeOf(receiverDescriptor, *fqName)
     }
 
@@ -85,9 +85,9 @@ abstract class AnkoIntention<TElement : KtElement>(
     }
 
     protected inline fun PsiElement?.requireCall(
-            functionName: String? = null,
-            argCount: Int? = null,
-            sub: KtCallExpression.() -> Boolean
+        functionName: String? = null,
+        argCount: Int? = null,
+        sub: KtCallExpression.() -> Boolean
     ): Boolean {
         return requireCall(functionName, argCount) && (this as KtCallExpression).sub()
     }
@@ -115,11 +115,11 @@ abstract class AnkoIntention<TElement : KtElement>(
 
         ImportInsertHelper.getInstance(project).apply {
             fqNamesToImport
-                    .flatMap {
-                        val fqName = FqName(if ('.' in it) it else "$ANKO_PACKAGE$it")
-                        resolutionFacade.resolveImportReference(moduleDescriptor, fqName)
-                    }
-                    .forEach { if (it.importableFqName != null) importDescriptor(file, it) }
+                .flatMap {
+                    val fqName = FqName(if ('.' in it) it else "$ANKO_PACKAGE$it")
+                    resolutionFacade.resolveImportReference(moduleDescriptor, fqName)
+                }
+                .forEach { if (it.importableFqName != null) importDescriptor(file, it) }
         }
 
         element.replace(newExpression)
@@ -139,7 +139,7 @@ object FqNames {
 
 class NewElement(val element: KtExpression, vararg val newNames: String) {
     operator fun component1() = element
-    operator fun component2() = newNames //fqName or name in anko package
+    operator fun component2() = newNames // fqName or name in anko package
 }
 
 abstract class A {

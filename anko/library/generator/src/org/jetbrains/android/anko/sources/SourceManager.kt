@@ -55,7 +55,8 @@ class SourceManager(private val provider: SourceProvider) {
         return if (parent is TypeDeclaration<*>) {
             val outerName = parent.getParentClassName()
             if (outerName.isNotEmpty()) "$outerName.${parent.name}" else parent.nameAsString
-        } else ""
+        } else {
+            ""
+        }
     }
-
 }

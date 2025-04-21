@@ -14,7 +14,8 @@ import org.robolectric.annotation.Config
 open class RelativeLayoutHelpersTestActivity : Activity()
 
 @RunWith(RobolectricGradleTestRunner::class)
-@Config(constants = BuildConfig::class) class RelativeLayoutHelpersTest {
+@Config(constants = BuildConfig::class)
+class RelativeLayoutHelpersTest {
 
     @Test fun test() {
         val activity = Robolectric.buildActivity(RelativeLayoutHelpersTestActivity::class.java).create().get()
@@ -22,13 +23,12 @@ open class RelativeLayoutHelpersTestActivity : Activity()
 
         println("[COMPLETE]")
     }
-
 }
 
 fun test(activity: Activity) {
     val fst = 50
     val snd = 60
-    with (activity) {
+    with(activity) {
         fun get(rule: Int, l: RelativeLayout.LayoutParams.(View) -> Unit) = test(fst, snd, l).rules[rule]
         assertTrue(get(RelativeLayout.BELOW) { below(fst) } == fst)
         assertTrue(get(RelativeLayout.BELOW) { bottomOf(fst) } == fst)
@@ -63,13 +63,15 @@ fun test(activity: Activity) {
     }
 }
 
-fun Activity.test(fst: Int, snd: Int, l: RelativeLayout.LayoutParams.(View) -> Unit) = (UI {
-    relativeLayout {
-        val fstView = textView {
-            id = fst
+fun Activity.test(fst: Int, snd: Int, l: RelativeLayout.LayoutParams.(View) -> Unit) = (
+    UI {
+        relativeLayout {
+            val fstView = textView {
+                id = fst
+            }
+            textView {
+                id = snd
+            }.lparams { l(fstView) }
         }
-        textView {
-            id = snd
-        }.lparams { l(fstView) }
-    }
-}.view as RelativeLayout).findViewById(snd)?.layoutParams as RelativeLayout.LayoutParams
+    }.view as RelativeLayout
+    ).findViewById(snd)?.layoutParams as RelativeLayout.LayoutParams

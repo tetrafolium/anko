@@ -21,7 +21,7 @@ class Artifact(val name: String, val type: ArtifactType, val platformJars: List<
                 assert(platformJars.isNotEmpty())
                 val targetJars = artifactData.target?.map { File(substituteTemplates(it, templates)) } ?: platformJars
                 val type = ArtifactType.values().firstOrNull { it.nameInConfiguration == artifactData.type }
-                        ?: error("Type invalid or not specified for artifact ${artifactData.name}")
+                    ?: error("Type invalid or not specified for artifact ${artifactData.name}")
                 artifacts += Artifact(artifactData.name, type, platformJars, targetJars)
             }
 
@@ -43,9 +43,9 @@ class Tunes(val excludedClasses: Set<String>)
 class ExecutionConfiguration(val artifacts: List<Artifact>, val tunes: Tunes)
 
 private class ExecutionConfigurationData(
-        val templates: Map<String, String>,
-        val artifacts: List<ArtifactData>,
-        val tunes: Tunes
+    val templates: Map<String, String>,
+    val artifacts: List<ArtifactData>,
+    val tunes: Tunes
 ) {
     class ArtifactData(val name: String, val type: String, val platform: List<String>, val target: List<String>?)
 }

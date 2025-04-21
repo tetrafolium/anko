@@ -45,7 +45,7 @@ class TemplateContext {
 
     fun getArguments(): Map<String, Any?> = args
 
-    operator fun <T: Any?> String.rem(v: T): T {
+    operator fun <T : Any?> String.rem(v: T): T {
         args.put(this, v)
         return v
     }

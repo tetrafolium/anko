@@ -20,8 +20,8 @@ class LayoutGenerator : Generator<LayoutElement> {
 
     override fun generate(state: GenerationState): Iterable<LayoutElement> {
         return state[ViewGroupGenerator::class.java]
-                .map { state.extractLayoutParams(it.clazz) }
-                .filterNotNull()
-                .sortedBy { it.layout.name }
+            .map { state.extractLayoutParams(it.clazz) }
+            .filterNotNull()
+            .sortedBy { it.layout.name }
     }
 }

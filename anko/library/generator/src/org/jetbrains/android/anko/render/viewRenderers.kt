@@ -58,7 +58,7 @@ class ViewFactoryClass(val config: AnkoConfiguration, suffix: String) {
 }
 
 internal abstract class AbstractViewRenderer(
-        context: GeneratorContext
+    context: GeneratorContext
 ) : Renderer(context), ViewConstructorUtils {
 
     override val renderIf: Array<ConfigurationKey<Boolean>> = arrayOf(AnkoFile.VIEWS)
@@ -90,10 +90,10 @@ internal abstract class AbstractViewRenderer(
     }
 
     private fun StringBuilder.renderView(
-            view: ClassNode,
-            isContainer: Boolean,
-            className: String,
-            factoryClass: ViewFactoryClass
+        view: ClassNode,
+        isContainer: Boolean,
+        className: String,
+        factoryClass: ViewFactoryClass
     ) {
         val constructors = ViewConstructorUtils.AVAILABLE_VIEW_CONSTRUCTORS.map { constructor ->
             view.getConstructors().firstOrNull { Arrays.equals(it.parameterRawTypes, constructor) }
@@ -103,12 +103,13 @@ internal abstract class AbstractViewRenderer(
         val tinted = className21 != null
 
         val factoryPropertyName = functionName.capitalize().toUPPER_CASE()
-        with (factoryClass.entries) {
+        with(factoryClass.entries) {
             val constructorArgs = renderConstructorArgs(view, constructors, "ctx")
-            val constructorCall = if (tinted)
+            val constructorCall = if (tinted) {
                 "if (Build.VERSION.SDK_INT < 21) $className($constructorArgs) else $className21($constructorArgs)"
-            else
+            } else {
                 "$className($constructorArgs)"
+            }
             add("val $factoryPropertyName = { ctx: Context -> $constructorCall }")
         }
 
@@ -137,8 +138,8 @@ internal abstract class AbstractViewRenderer(
         val tinted = className21 != null
         val lambdaArgType = if (tinted) className21 else className
 
-        val helperConstructors = Props.helperConstructors[if (tinted) "android.widget.$className21" else view.fqName] ?:
-                throw RuntimeException("Helper constructors not found for $className")
+        val helperConstructors = Props.helperConstructors[if (tinted) "android.widget.$className21" else view.fqName]
+            ?: throw RuntimeException("Helper constructors not found for $className")
         val factory = factoryClass.fullName + "." + functionName.capitalize().toUPPER_CASE()
 
         for (constructor in helperConstructors) {
@@ -213,5 +214,4 @@ internal abstract class AbstractViewRenderer(
     private companion object {
         val APP_COMPAT_VIEW_PREFIX = "android.support.v7.widget.AppCompat"
     }
-
 }

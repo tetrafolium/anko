@@ -25,8 +25,10 @@ private val INTENT = "    "
 
 internal val attrs = Gson().fromJson(readResource("attrs.json"), Attrs::class.java)
 
-internal val viewHierarchy = Gson().fromJson<Map<String, List<String>>>(readResource("views.json"),
-        (object : TypeToken<Map<String, List<String>>>() {}).type)
+internal val viewHierarchy = Gson().fromJson<Map<String, List<String>>>(
+    readResource("views.json"),
+    (object : TypeToken<Map<String, List<String>>>() {}).type
+)
 
 internal data class KeyValuePair(val key: String, val value: String) {
     override fun toString() = if (value.isNotEmpty()) "$key = $value" else key
@@ -34,7 +36,7 @@ internal data class KeyValuePair(val key: String, val value: String) {
 
 internal operator fun String.times(value: String) = KeyValuePair(this, value)
 
-internal fun <T: Any, R: Any> List<T>.findFirst(transformer: (T) -> R?): R? {
+internal fun <T : Any, R : Any> List<T>.findFirst(transformer: (T) -> R?): R? {
     for (item in this) {
         val r = transformer(item)
         if (r != null) return r

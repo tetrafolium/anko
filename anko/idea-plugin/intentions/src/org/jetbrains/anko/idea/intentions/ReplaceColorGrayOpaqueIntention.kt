@@ -3,8 +3,8 @@ package org.jetbrains.anko.idea.intentions
 import org.jetbrains.kotlin.psi.*
 
 class ReplaceColorGrayOpaqueIntention : AnkoIntention<KtExpression>(
-        KtExpression::class.java,
-        "Simplify color numeric literal with Anko"
+    KtExpression::class.java,
+    "Simplify color numeric literal with Anko"
 ) {
     override fun isApplicable(element: KtExpression, caretOffset: Int): Boolean {
         return element.require<KtDotQualifiedExpression> {
@@ -47,12 +47,20 @@ class ReplaceColorGrayOpaqueIntention : AnkoIntention<KtExpression>(
 
     private data class ARGB(val color: String, val a: String, val r: String, val g: String, val b: String) {
         @JvmField val A = a.toUpperCase()
+
         @JvmField val R = r.toUpperCase()
+
         @JvmField val G = g.toUpperCase()
+
         @JvmField val B = b.toUpperCase()
 
-        constructor(color: String) : this(color.drop(2).toUpperCase(), color.substring(2, 4), color.substring(4, 6),
-                                          color.substring(6, 8), color.substring(8, 10))
+        constructor(color: String) : this(
+            color.drop(2).toUpperCase(),
+            color.substring(2, 4),
+            color.substring(4, 6),
+            color.substring(6, 8),
+            color.substring(8, 10)
+        )
 
         val isGray: Boolean
             get() = R == G && G == B
@@ -74,15 +82,16 @@ class ReplaceColorGrayOpaqueIntention : AnkoIntention<KtExpression>(
         val ANDROID_GRAPHICS_COLOR = "android.graphics.Color"
 
         val COLORS = mapOf(
-                "FFFFFFFF" to "WHITE",
-                "FF000000" to "BLACK",
-                "FF888888" to "GRAY",
-                "FFCCCCCC" to "LTGRAY",
-                "FFFF0000" to "RED",
-                "FF00FF00" to "GREEN",
-                "FF0000FF" to "BLUE",
-                "FFFFFF00" to "YELLOW",
-                "FF00FFFF" to "CYAN",
-                "FFFF00FF" to "MAGENTA")
+            "FFFFFFFF" to "WHITE",
+            "FF000000" to "BLACK",
+            "FF888888" to "GRAY",
+            "FFCCCCCC" to "LTGRAY",
+            "FFFF0000" to "RED",
+            "FF00FF00" to "GREEN",
+            "FF0000FF" to "BLUE",
+            "FFFFFF00" to "YELLOW",
+            "FF00FFFF" to "CYAN",
+            "FFFF00FF" to "MAGENTA"
+        )
     }
 }

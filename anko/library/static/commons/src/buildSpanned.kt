@@ -15,6 +15,7 @@
  */
 
 @file:Suppress("unused", "NOTHING_TO_INLINE")
+
 package org.jetbrains.anko
 
 import android.graphics.*
@@ -24,7 +25,7 @@ import android.view.View
 import org.jetbrains.anko.collections.forEachByIndex
 
 inline fun buildSpanned(f: SpannableStringBuilder.() -> Unit): Spanned =
-        SpannableStringBuilder().apply(f)
+    SpannableStringBuilder().apply(f)
 
 inline val SpannableStringBuilder.Bold: StyleSpan
     get() = StyleSpan(Typeface.BOLD)
@@ -39,10 +40,10 @@ inline val SpannableStringBuilder.Strikethrough: StrikethroughSpan
     get() = StrikethroughSpan()
 
 inline fun SpannableStringBuilder.foregroundColor(color: Int): ForegroundColorSpan =
-        ForegroundColorSpan(color)
+    ForegroundColorSpan(color)
 
 inline fun SpannableStringBuilder.backgroundColor(color: Int): BackgroundColorSpan =
-        BackgroundColorSpan(color)
+    BackgroundColorSpan(color)
 
 inline fun SpannableStringBuilder.clickable(crossinline onClick: (View) -> Unit): ClickableSpan {
     return object : ClickableSpan() {

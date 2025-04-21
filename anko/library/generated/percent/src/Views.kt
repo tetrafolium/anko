@@ -1,15 +1,13 @@
 @file:JvmName("PercentViewsKt")
+
 package org.jetbrains.anko.percent
 
-import org.jetbrains.anko.custom.*
-import org.jetbrains.anko.AnkoViewDslMarker
-import android.view.ViewManager
-import android.view.ViewGroup.LayoutParams
 import android.app.Activity
-import android.app.Fragment
 import android.content.Context
-import android.os.Build
+import android.view.ViewManager
 import android.widget.*
+import org.jetbrains.anko.AnkoViewDslMarker
+import org.jetbrains.anko.custom.*
 
 @PublishedApi
 internal object `$$Anko$Factories$PercentViewGroup` {
@@ -24,7 +22,7 @@ inline fun ViewManager.percentFrameLayout(init: (@AnkoViewDslMarker _PercentFram
 
 inline fun ViewManager.themedPercentFrameLayout(theme: Int = 0): android.support.percent.PercentFrameLayout = themedPercentFrameLayout(theme) {}
 inline fun ViewManager.themedPercentFrameLayout(theme: Int = 0, init: (@AnkoViewDslMarker _PercentFrameLayout).() -> Unit): android.support.percent.PercentFrameLayout {
-return ankoView(`$$Anko$Factories$PercentViewGroup`.PERCENT_FRAME_LAYOUT, theme) { init() }
+    return ankoView(`$$Anko$Factories$PercentViewGroup`.PERCENT_FRAME_LAYOUT, theme) { init() }
 }
 
 inline fun Context.percentFrameLayout(): android.support.percent.PercentFrameLayout = percentFrameLayout() {}
@@ -34,7 +32,7 @@ inline fun Context.percentFrameLayout(init: (@AnkoViewDslMarker _PercentFrameLay
 
 inline fun Context.themedPercentFrameLayout(theme: Int = 0): android.support.percent.PercentFrameLayout = themedPercentFrameLayout(theme) {}
 inline fun Context.themedPercentFrameLayout(theme: Int = 0, init: (@AnkoViewDslMarker _PercentFrameLayout).() -> Unit): android.support.percent.PercentFrameLayout {
-return ankoView(`$$Anko$Factories$PercentViewGroup`.PERCENT_FRAME_LAYOUT, theme) { init() }
+    return ankoView(`$$Anko$Factories$PercentViewGroup`.PERCENT_FRAME_LAYOUT, theme) { init() }
 }
 
 inline fun Activity.percentFrameLayout(): android.support.percent.PercentFrameLayout = percentFrameLayout() {}
@@ -44,7 +42,7 @@ inline fun Activity.percentFrameLayout(init: (@AnkoViewDslMarker _PercentFrameLa
 
 inline fun Activity.themedPercentFrameLayout(theme: Int = 0): android.support.percent.PercentFrameLayout = themedPercentFrameLayout(theme) {}
 inline fun Activity.themedPercentFrameLayout(theme: Int = 0, init: (@AnkoViewDslMarker _PercentFrameLayout).() -> Unit): android.support.percent.PercentFrameLayout {
-return ankoView(`$$Anko$Factories$PercentViewGroup`.PERCENT_FRAME_LAYOUT, theme) { init() }
+    return ankoView(`$$Anko$Factories$PercentViewGroup`.PERCENT_FRAME_LAYOUT, theme) { init() }
 }
 
 inline fun ViewManager.percentRelativeLayout(): android.support.percent.PercentRelativeLayout = percentRelativeLayout() {}
@@ -54,7 +52,7 @@ inline fun ViewManager.percentRelativeLayout(init: (@AnkoViewDslMarker _PercentR
 
 inline fun ViewManager.themedPercentRelativeLayout(theme: Int = 0): android.support.percent.PercentRelativeLayout = themedPercentRelativeLayout(theme) {}
 inline fun ViewManager.themedPercentRelativeLayout(theme: Int = 0, init: (@AnkoViewDslMarker _PercentRelativeLayout).() -> Unit): android.support.percent.PercentRelativeLayout {
-return ankoView(`$$Anko$Factories$PercentViewGroup`.PERCENT_RELATIVE_LAYOUT, theme) { init() }
+    return ankoView(`$$Anko$Factories$PercentViewGroup`.PERCENT_RELATIVE_LAYOUT, theme) { init() }
 }
 
 inline fun Context.percentRelativeLayout(): android.support.percent.PercentRelativeLayout = percentRelativeLayout() {}
@@ -64,7 +62,7 @@ inline fun Context.percentRelativeLayout(init: (@AnkoViewDslMarker _PercentRelat
 
 inline fun Context.themedPercentRelativeLayout(theme: Int = 0): android.support.percent.PercentRelativeLayout = themedPercentRelativeLayout(theme) {}
 inline fun Context.themedPercentRelativeLayout(theme: Int = 0, init: (@AnkoViewDslMarker _PercentRelativeLayout).() -> Unit): android.support.percent.PercentRelativeLayout {
-return ankoView(`$$Anko$Factories$PercentViewGroup`.PERCENT_RELATIVE_LAYOUT, theme) { init() }
+    return ankoView(`$$Anko$Factories$PercentViewGroup`.PERCENT_RELATIVE_LAYOUT, theme) { init() }
 }
 
 inline fun Activity.percentRelativeLayout(): android.support.percent.PercentRelativeLayout = percentRelativeLayout() {}
@@ -74,6 +72,5 @@ inline fun Activity.percentRelativeLayout(init: (@AnkoViewDslMarker _PercentRela
 
 inline fun Activity.themedPercentRelativeLayout(theme: Int = 0): android.support.percent.PercentRelativeLayout = themedPercentRelativeLayout(theme) {}
 inline fun Activity.themedPercentRelativeLayout(theme: Int = 0, init: (@AnkoViewDslMarker _PercentRelativeLayout).() -> Unit): android.support.percent.PercentRelativeLayout {
-return ankoView(`$$Anko$Factories$PercentViewGroup`.PERCENT_RELATIVE_LAYOUT, theme) { init() }
+    return ankoView(`$$Anko$Factories$PercentViewGroup`.PERCENT_RELATIVE_LAYOUT, theme) { init() }
 }
-

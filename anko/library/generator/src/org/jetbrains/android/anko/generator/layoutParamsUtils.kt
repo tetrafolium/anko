@@ -25,14 +25,14 @@ import org.jetbrains.android.anko.utils.getConstructors
 import org.jetbrains.android.anko.utils.unique
 import org.objectweb.asm.tree.ClassNode
 
-//return a pair<viewGroup, layoutParams> or null if the viewGroup doesn't contain custom LayoutParams
+// return a pair<viewGroup, layoutParams> or null if the viewGroup doesn't contain custom LayoutParams
 fun GenerationState.extractLayoutParams(viewGroup: ClassNode): LayoutElement? {
     fun findActualLayoutParamsClass(viewGroup: ClassNode): ClassNode? {
         fun findForParent() = findActualLayoutParamsClass(classTree.findNode(viewGroup)!!.parent!!.data)
 
         val generateMethod = viewGroup.methods.firstOrNull { method ->
-            method.name == "generateLayoutParams"
-                    && method.parameterRawTypes.unique?.internalName == "android/util/AttributeSet"
+            method.name == "generateLayoutParams" &&
+                method.parameterRawTypes.unique?.internalName == "android/util/AttributeSet"
         } ?: return findForParent()
 
         val returnTypeClass = classTree.findNode(generateMethod.returnType.internalName)!!.data
@@ -49,7 +49,7 @@ fun GenerationState.extractLayoutParams(viewGroup: ClassNode): LayoutElement? {
     if (hasGenerateViewAnnotation || (lpInnerClass == null && !hasGenerateLayoutAnnotation)) return null
 
     val layoutParams = lpInnerClass?.takeIf { it.name.startsWith(viewGroup.name) }
-            ?: findActualLayoutParamsClass(viewGroup)?.takeIf { it.name != "android/view/ViewGroup\$LayoutParams" }
+        ?: findActualLayoutParamsClass(viewGroup)?.takeIf { it.name != "android/view/ViewGroup\$LayoutParams" }
 
     return layoutParams?.let { classNode ->
         LayoutElement(viewGroup, classNode, classNode.getConstructors().filter { it.isPublic })

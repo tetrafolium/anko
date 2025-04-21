@@ -29,11 +29,12 @@ class SourceFileModificationTracker : PsiTreeChangePreprocessor, ModificationTra
 
     companion object {
         private val HANDLED_EVENTS = setOf(
-                PsiTreeChangeEventImpl.PsiEventType.CHILD_ADDED,
-                PsiTreeChangeEventImpl.PsiEventType.CHILD_MOVED,
-                PsiTreeChangeEventImpl.PsiEventType.CHILD_REMOVED,
-                PsiTreeChangeEventImpl.PsiEventType.CHILD_REPLACED,
-                PsiTreeChangeEventImpl.PsiEventType.CHILDREN_CHANGED)
+            PsiTreeChangeEventImpl.PsiEventType.CHILD_ADDED,
+            PsiTreeChangeEventImpl.PsiEventType.CHILD_MOVED,
+            PsiTreeChangeEventImpl.PsiEventType.CHILD_REMOVED,
+            PsiTreeChangeEventImpl.PsiEventType.CHILD_REPLACED,
+            PsiTreeChangeEventImpl.PsiEventType.CHILDREN_CHANGED
+        )
     }
 
     override fun treeChanged(event: PsiTreeChangeEventImpl) {

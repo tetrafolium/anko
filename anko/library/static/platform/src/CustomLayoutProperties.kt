@@ -15,6 +15,7 @@
  */
 
 @file:Suppress("NOTHING_TO_INLINE", "unused")
+
 package org.jetbrains.anko
 
 import android.view.ViewGroup
@@ -26,18 +27,21 @@ val matchParent: Int = android.view.ViewGroup.LayoutParams.MATCH_PARENT
 val wrapContent: Int = android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 
 var ViewGroup.MarginLayoutParams.verticalMargin: Int
-    @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
+    @Deprecated(NO_GETTER, level = ERROR)
+    get() = noGetter()
     set(v) {
         topMargin = v
         bottomMargin = v
     }
 
 var ViewGroup.MarginLayoutParams.horizontalMargin: Int
-    @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
+    @Deprecated(NO_GETTER, level = ERROR)
+    get() = noGetter()
     set(v) { leftMargin = v; rightMargin = v }
 
 var ViewGroup.MarginLayoutParams.margin: Int
-    @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
+    @Deprecated(NO_GETTER, level = ERROR)
+    get() = noGetter()
     set(v) {
         leftMargin = v
         rightMargin = v

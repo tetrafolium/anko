@@ -15,6 +15,7 @@
  */
 
 @file:Suppress("NOTHING_TO_INLINE", "unused")
+
 package org.jetbrains.anko
 
 import android.app.Fragment
@@ -22,24 +23,24 @@ import android.content.Context
 import android.content.DialogInterface
 
 inline fun <D : DialogInterface> AnkoContext<*>.selector(
-        noinline factory: AlertBuilderFactory<D>,
-        title: CharSequence? = null,
-        items: List<CharSequence>,
-        noinline onClick: (DialogInterface, CharSequence, Int) -> Unit
+    noinline factory: AlertBuilderFactory<D>,
+    title: CharSequence? = null,
+    items: List<CharSequence>,
+    noinline onClick: (DialogInterface, CharSequence, Int) -> Unit
 ) = ctx.selector(factory, title, items, onClick)
 
 inline fun <D : DialogInterface> Fragment.selector(
-        noinline factory: AlertBuilderFactory<D>,
-        title: CharSequence? = null,
-        items: List<CharSequence>,
-        noinline onClick: (DialogInterface, CharSequence, Int) -> Unit
+    noinline factory: AlertBuilderFactory<D>,
+    title: CharSequence? = null,
+    items: List<CharSequence>,
+    noinline onClick: (DialogInterface, CharSequence, Int) -> Unit
 ) = activity.selector(factory, title, items, onClick)
 
 fun <D : DialogInterface> Context.selector(
-        factory: AlertBuilderFactory<D>,
-        title: CharSequence? = null,
-        items: List<CharSequence>,
-        onClick: (DialogInterface, CharSequence, Int) -> Unit
+    factory: AlertBuilderFactory<D>,
+    title: CharSequence? = null,
+    items: List<CharSequence>,
+    onClick: (DialogInterface, CharSequence, Int) -> Unit
 ) {
     with(factory(this)) {
         if (title != null) {

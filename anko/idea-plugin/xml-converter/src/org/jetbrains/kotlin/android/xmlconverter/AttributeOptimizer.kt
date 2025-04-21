@@ -19,8 +19,8 @@ package org.jetbrains.kotlin.android.xmlconverter
 import org.jetbrains.kotlin.android.attrs.NoAttr
 
 internal val attributeOptimizations = listOf(
-        ::optimizeInclude,
-        ::optimizeHelperConstructors
+    ::optimizeInclude,
+    ::optimizeHelperConstructors
 )
 
 internal fun optimizeInclude(name: String, attrs: List<KeyValuePair>): Pair<String, List<KeyValuePair>>? {
@@ -28,16 +28,20 @@ internal fun optimizeInclude(name: String, attrs: List<KeyValuePair>): Pair<Stri
     return if (name == "include" && layout != null) {
         val rendered = renderReference(NoAttr, "layout", layout)
         "$name<View>(${rendered?.value ?: layout})" to attrs.filter { it.key != "layout" }
-    } else null
+    } else {
+        null
+    }
 }
 
 internal fun optimizeHelperConstructors(name: String, attrs: List<KeyValuePair>): Pair<String, List<KeyValuePair>>? {
     val helpers = listOf(
-            attrs.firstOrNull { it.key == "text" },
-            attrs.firstOrNull { it.key == "textResource" }
+        attrs.firstOrNull { it.key == "text" },
+        attrs.firstOrNull { it.key == "textResource" }
     ).filterNotNull()
     return if (helpers.isNotEmpty()) {
         val helper = helpers.first()
         "$name(${helper.value})" to attrs.filter { it.key != helper.key }
-    } else null
+    } else {
+        null
+    }
 }

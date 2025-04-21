@@ -36,7 +36,8 @@ internal class DslPreviewClassResolver(private val project: Project) {
         return if (psiElement is KtLightElement<*, *>) {
             getKtClass(psiElement.kotlinOrigin)
         } else if (psiElement is KtClass && !psiElement.isEnum() && !psiElement.isInterface() &&
-                !psiElement.isAnnotation() && !psiElement.isSealed()) {
+            !psiElement.isAnnotation() && !psiElement.isSealed()
+        ) {
             psiElement
         } else {
             val parent = psiElement?.parent ?: return null
@@ -45,9 +46,11 @@ internal class DslPreviewClassResolver(private val project: Project) {
     }
 
     fun getOnCursorPreviewClassDescription(): PreviewClassDescription? {
-        val editor = ApplicationManager.getApplication().runReadAction(Computable {
-            FileEditorManager.getInstance(project).selectedTextEditor
-        }) ?: return null
+        val editor = ApplicationManager.getApplication().runReadAction(
+            Computable {
+                FileEditorManager.getInstance(project).selectedTextEditor
+            }
+        ) ?: return null
 
         val psiFile = PsiDocumentManager.getInstance(project).getPsiFile(editor.document)
 
@@ -63,7 +66,7 @@ internal class DslPreviewClassResolver(private val project: Project) {
     fun getAncestors(baseClassName: String): Collection<PreviewClassDescription> {
         if (DumbService.isDumb(project)) return emptyList()
         val baseClasses = JavaPsiFacade.getInstance(project)
-                .findClasses(baseClassName, GlobalSearchScope.allScope(project))
+            .findClasses(baseClassName, GlobalSearchScope.allScope(project))
 
         if (baseClasses.isEmpty()) return emptyList()
 
@@ -76,8 +79,7 @@ internal class DslPreviewClassResolver(private val project: Project) {
             }
 
             previewClasses
-        }
-        catch (e: IndexNotReadyException) {
+        } catch (e: IndexNotReadyException) {
             emptyList()
         }
     }
@@ -88,14 +90,13 @@ internal class DslPreviewClassResolver(private val project: Project) {
         return parameters.isEmpty() || parameters.all { it.hasDefaultValue() }
     }
 
-
     fun isClassApplicableForPreview(clazz: KtClass): Boolean {
         val primaryConstructor = clazz.primaryConstructor
         val secondaryConstructors = clazz.secondaryConstructors
 
-        return (primaryConstructor == null && secondaryConstructors.isEmpty())
-                || isZeroParameterConstructor(primaryConstructor)
-                || secondaryConstructors.any(this::isZeroParameterConstructor)
+        return (primaryConstructor == null && secondaryConstructors.isEmpty()) ||
+            isZeroParameterConstructor(primaryConstructor) ||
+            secondaryConstructors.any(this::isZeroParameterConstructor)
     }
 
     fun resolveClassDescription(element: PsiElement, cacheService: KotlinCacheService): PreviewClassDescription? {
@@ -104,20 +105,24 @@ internal class DslPreviewClassResolver(private val project: Project) {
         if (!isClassApplicableForPreview(ktClass)) return null
 
         val resolveSession = cacheService.getResolutionFacade(listOf(ktClass))
-                .getFrontendService(ResolveSession::class.java)
+            .getFrontendService(ResolveSession::class.java)
         val classDescriptor = resolveSession.getClassDescriptor(ktClass, NoLookupLocation.FROM_IDE)
 
         if (!classDescriptor.defaultType.supertypes().any {
             val fqName = it.constructor.declarationDescriptor?.fqNameUnsafe?.asString() ?: ""
             fqName == ANKO_COMPONENT_CLASS_NAME
-        }) {
+        }
+        ) {
             return null
         }
 
         val typeMapper = createTypeMapper(resolveSession.bindingContext)
 
-        return PreviewClassDescription(ktClass, classDescriptor.fqNameSafe.asString(),
-                typeMapper.mapType(classDescriptor).internalName)
+        return PreviewClassDescription(
+            ktClass,
+            classDescriptor.fqNameSafe.asString(),
+            typeMapper.mapType(classDescriptor).internalName
+        )
     }
 
     companion object {
@@ -128,24 +133,25 @@ internal class DslPreviewClassResolver(private val project: Project) {
             val typeMapperConstructor12 = KotlinTypeMapper::class.java.constructors.find { it.parameterCount == 6 }
             if (typeMapperConstructor12 != null) {
                 return typeMapperConstructor12
-                        .newInstance(
-                                bindingContext,
-                                ClassBuilderMode.LIGHT_CLASSES,
-                                IncompatibleClassTracker.DoNothing,
-                                "main",
-                                false,
-                                false) as KotlinTypeMapper
+                    .newInstance(
+                        bindingContext,
+                        ClassBuilderMode.LIGHT_CLASSES,
+                        IncompatibleClassTracker.DoNothing,
+                        "main",
+                        false,
+                        false
+                    ) as KotlinTypeMapper
             }
 
             return KotlinTypeMapper(
-                    bindingContext,
-                    ClassBuilderMode.LIGHT_CLASSES,
-                    CodegenFileClassesProvider(),
-                    IncompatibleClassTracker.DoNothing,
-                    "main",
-                    false,
-                    false)
+                bindingContext,
+                ClassBuilderMode.LIGHT_CLASSES,
+                CodegenFileClassesProvider(),
+                IncompatibleClassTracker.DoNothing,
+                "main",
+                false,
+                false
+            )
         }
     }
-
 }

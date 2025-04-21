@@ -15,6 +15,7 @@
  */
 
 @file:Suppress("UNREACHABLE_CODE", "OverridingDeprecatedMember", "DEPRECATION")
+
 package org.jetbrains.kotlin.android.dslpreview
 
 import com.intellij.injected.editor.DocumentWindow
@@ -110,10 +111,10 @@ class LayoutPsiFile(private val myPsiFile: XmlFile, val originalFile: KtFile, mo
     }
 
     override fun addBefore(psiElement: PsiElement, psiElement2: PsiElement?): PsiElement? =
-            myPsiFile.addBefore(psiElement, psiElement2)
+        myPsiFile.addBefore(psiElement, psiElement2)
 
     override fun addAfter(psiElement: PsiElement, psiElement2: PsiElement?): PsiElement? =
-            myPsiFile.addAfter(psiElement, psiElement2)
+        myPsiFile.addAfter(psiElement, psiElement2)
 
     override fun checkAdd(psiElement: PsiElement) = myPsiFile.checkAdd(psiElement)
 
@@ -133,8 +134,8 @@ class LayoutPsiFile(private val myPsiFile: XmlFile, val originalFile: KtFile, mo
 
     override fun checkDelete() = myPsiFile.checkDelete()
 
-    override fun deleteChildRange(psiElement: PsiElement, psiElement2: PsiElement)
-            = myPsiFile.deleteChildRange(psiElement, psiElement2)
+    override fun deleteChildRange(psiElement: PsiElement, psiElement2: PsiElement) =
+        myPsiFile.deleteChildRange(psiElement, psiElement2)
 
     override fun replace(psiElement: PsiElement): PsiElement? = myPsiFile.replace(psiElement)
     override fun isValid() = myPsiFile.isValid
@@ -145,10 +146,10 @@ class LayoutPsiFile(private val myPsiFile: XmlFile, val originalFile: KtFile, mo
     override fun <T> putCopyableUserData(tKey: Key<T>, t: T?) = myPsiFile.putCopyableUserData(tKey, t)
 
     override fun processDeclarations(
-            psiScopeProcessor: PsiScopeProcessor,
-            resolveState: ResolveState,
-            psiElement: PsiElement?,
-            psiElement2: PsiElement
+        psiScopeProcessor: PsiScopeProcessor,
+        resolveState: ResolveState,
+        psiElement: PsiElement?,
+        psiElement2: PsiElement
     ): Boolean {
         return myPsiFile.processDeclarations(psiScopeProcessor, resolveState, psiElement, psiElement2)
     }
@@ -181,7 +182,7 @@ class LayoutPsiFile(private val myPsiFile: XmlFile, val originalFile: KtFile, mo
         private val parentDir by lazy {
             val facet = AndroidFacet.getInstance(module) ?: return@lazy null
             val dir = ModuleResourceManagers.getInstance(facet).localResourceManager.resourceDirs
-                    .firstOrNull() ?: return@lazy null
+                .firstOrNull() ?: return@lazy null
             PsiManager.getInstance(module.project).findDirectory(dir)
         }
 
@@ -225,7 +226,6 @@ class LayoutPsiFile(private val myPsiFile: XmlFile, val originalFile: KtFile, mo
 
         @Throws(IncorrectOperationException::class)
         override fun checkCreateSubdirectory(s: String) {
-
         }
 
         @Throws(IncorrectOperationException::class)
@@ -240,7 +240,6 @@ class LayoutPsiFile(private val myPsiFile: XmlFile, val originalFile: KtFile, mo
 
         @Throws(IncorrectOperationException::class)
         override fun checkCreateFile(s: String) {
-
         }
 
         override fun isDirectory(): Boolean {
@@ -256,7 +255,6 @@ class LayoutPsiFile(private val myPsiFile: XmlFile, val originalFile: KtFile, mo
         }
 
         override fun navigate(b: Boolean) {
-
         }
 
         override fun canNavigate(): Boolean {
@@ -269,7 +267,6 @@ class LayoutPsiFile(private val myPsiFile: XmlFile, val originalFile: KtFile, mo
 
         @Throws(IncorrectOperationException::class)
         override fun checkSetName(s: String) {
-
         }
 
         @Throws(PsiInvalidElementAccessException::class)
@@ -363,11 +360,9 @@ class LayoutPsiFile(private val myPsiFile: XmlFile, val originalFile: KtFile, mo
         }
 
         override fun accept(psiElementVisitor: PsiElementVisitor) {
-
         }
 
         override fun acceptChildren(psiElementVisitor: PsiElementVisitor) {
-
         }
 
         override fun copy(): PsiElement? {
@@ -391,7 +386,6 @@ class LayoutPsiFile(private val myPsiFile: XmlFile, val originalFile: KtFile, mo
 
         @Throws(IncorrectOperationException::class)
         override fun checkAdd(psiElement: PsiElement) {
-
         }
 
         @Throws(IncorrectOperationException::class)
@@ -411,17 +405,14 @@ class LayoutPsiFile(private val myPsiFile: XmlFile, val originalFile: KtFile, mo
 
         @Throws(IncorrectOperationException::class)
         override fun delete() {
-
         }
 
         @Throws(IncorrectOperationException::class)
         override fun checkDelete() {
-
         }
 
         @Throws(IncorrectOperationException::class)
         override fun deleteChildRange(psiElement: PsiElement, psiElement2: PsiElement) {
-
         }
 
         @Throws(IncorrectOperationException::class)
@@ -450,14 +441,13 @@ class LayoutPsiFile(private val myPsiFile: XmlFile, val originalFile: KtFile, mo
         }
 
         override fun <T> putCopyableUserData(tKey: Key<T>, t: T?) {
-
         }
 
         override fun processDeclarations(
-                psiScopeProcessor: PsiScopeProcessor,
-                resolveState: ResolveState,
-                psiElement: PsiElement?,
-                psiElement2: PsiElement
+            psiScopeProcessor: PsiScopeProcessor,
+            resolveState: ResolveState,
+            psiElement: PsiElement?,
+            psiElement2: PsiElement
         ): Boolean {
             return false
         }
@@ -495,7 +485,6 @@ class LayoutPsiFile(private val myPsiFile: XmlFile, val originalFile: KtFile, mo
         }
 
         override fun <T> putUserData(tKey: Key<T>, t: T?) {
-
         }
     }
 
@@ -505,185 +494,185 @@ class LayoutPsiFile(private val myPsiFile: XmlFile, val originalFile: KtFile, mo
          */
         override fun getDocumentWindow(): DocumentWindow? {
             val documentManager = PsiDocumentManager.getInstance(project)
-            val documentWindowStub =  object : UserDataHolderBase(), DocumentWindow {
+            val documentWindowStub = object : UserDataHolderBase(), DocumentWindow {
                 override fun removeDocumentListener(p0: DocumentListener) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun deleteString(p0: Int, p1: Int) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun getTextLength(): Int {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun getHostRanges(): Array<Segment> {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun getText(): String {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun getText(p0: TextRange): String {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun getLineStartOffset(p0: Int): Int {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun createRangeMarker(p0: Int, p1: Int): RangeMarker {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun createRangeMarker(p0: Int, p1: Int, p2: Boolean): RangeMarker {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun createRangeMarker(p0: TextRange): RangeMarker {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun insertString(p0: Int, p1: CharSequence) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun setText(p0: CharSequence) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun startGuardedBlockChecking() {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun getHostRange(p0: Int): TextRange? {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun getChars(): CharArray {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun getLineCount(): Int {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun stopGuardedBlockChecking() {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun areRangesEqual(p0: DocumentWindow): Boolean {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun isValid(): Boolean {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun removeGuardedBlock(p0: RangeMarker) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun getLineSeparatorLength(p0: Int): Int {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun injectedToHostLine(p0: Int): Int {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun addPropertyChangeListener(p0: PropertyChangeListener) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun createGuardedBlock(p0: Int, p1: Int): RangeMarker {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun replaceString(p0: Int, p1: Int, p2: CharSequence) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun getModificationStamp(): Long {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun setReadOnly(p0: Boolean) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun intersectWithEditable(p0: TextRange): TextRange? {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun fireReadOnlyModificationAttempt() {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun getLineNumber(p0: Int): Int {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun setCyclicBufferSize(p0: Int) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun hostToInjected(p0: Int): Int {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun getImmutableCharSequence(): CharSequence {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun getOffsetGuard(p0: Int): RangeMarker? {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun isWritable(): Boolean {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun getLineEndOffset(p0: Int): Int {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun getCharsSequence(): CharSequence {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun getDelegate(): Document {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun containsRange(p0: Int, p1: Int): Boolean {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun addDocumentListener(p0: DocumentListener) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun addDocumentListener(p0: DocumentListener, p1: Disposable) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun removePropertyChangeListener(p0: PropertyChangeListener) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun getRangeGuard(p0: Int, p1: Int): RangeMarker? {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun injectedToHost(p0: Int): Int {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun injectedToHost(p0: TextRange): TextRange {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
                 }
             }
             (documentManager as PsiDocumentManagerImpl).associatePsi(documentWindowStub, this@LayoutPsiFile)

@@ -15,6 +15,7 @@
  */
 
 @file:Suppress("NOTHING_TO_INLINE", "unused")
+
 package org.jetbrains.anko
 
 import android.annotation.SuppressLint
@@ -34,32 +35,41 @@ interface AlertBuilder<out D : DialogInterface> {
     val ctx: Context
 
     var title: CharSequence
-        @Deprecated(NO_GETTER, level = ERROR) get
+        @Deprecated(NO_GETTER, level = ERROR)
+        get
 
     var titleResource: Int
-        @Deprecated(NO_GETTER, level = ERROR) get
+        @Deprecated(NO_GETTER, level = ERROR)
+        get
 
     var message: CharSequence
-        @Deprecated(NO_GETTER, level = ERROR) get
+        @Deprecated(NO_GETTER, level = ERROR)
+        get
 
     var messageResource: Int
-        @Deprecated(NO_GETTER, level = ERROR) get
+        @Deprecated(NO_GETTER, level = ERROR)
+        get
 
     var icon: Drawable
-        @Deprecated(NO_GETTER, level = ERROR) get
+        @Deprecated(NO_GETTER, level = ERROR)
+        get
 
     @setparam:DrawableRes
     var iconResource: Int
-        @Deprecated(NO_GETTER, level = ERROR) get
-    
+        @Deprecated(NO_GETTER, level = ERROR)
+        get
+
     var customTitle: View
-        @Deprecated(NO_GETTER, level = ERROR) get
+        @Deprecated(NO_GETTER, level = ERROR)
+        get
 
     var customView: View
-        @Deprecated(NO_GETTER, level = ERROR) get
+        @Deprecated(NO_GETTER, level = ERROR)
+        get
 
     var isCancelable: Boolean
-        @Deprecated(NO_GETTER, level = ERROR) get
+        @Deprecated(NO_GETTER, level = ERROR)
+        get
 
     fun onCancelled(handler: (dialog: DialogInterface) -> Unit)
 

@@ -7,7 +7,7 @@ import android.widget.RelativeLayout
 import org.jetbrains.anko.*
 
 open class AndroidLayoutParamsTestActivity : Activity() {
-    public override fun onCreate(savedInstanceState: Bundle?): Unit {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         UI {
             linearLayout {

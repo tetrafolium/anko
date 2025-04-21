@@ -15,6 +15,7 @@
  */
 
 @file:Suppress("NOTHING_TO_INLINE", "unused")
+
 package org.jetbrains.anko
 
 import android.app.Activity
@@ -26,48 +27,47 @@ import android.content.Intent
 import android.net.Uri
 import org.jetbrains.anko.internals.AnkoInternals
 
+inline fun <reified T : Activity> Context.startActivity(vararg params: Pair<String, Any?>) =
+    AnkoInternals.internalStartActivity(this, T::class.java, params)
 
-inline fun <reified T: Activity> Context.startActivity(vararg params: Pair<String, Any?>) =
-        AnkoInternals.internalStartActivity(this, T::class.java, params)
+inline fun <reified T : Activity> AnkoContext<*>.startActivity(vararg params: Pair<String, Any?>) =
+    AnkoInternals.internalStartActivity(ctx, T::class.java, params)
 
-inline fun <reified T: Activity> AnkoContext<*>.startActivity(vararg params: Pair<String, Any?>) =
-        AnkoInternals.internalStartActivity(ctx, T::class.java, params)
+inline fun <reified T : Activity> Fragment.startActivity(vararg params: Pair<String, Any?>) =
+    AnkoInternals.internalStartActivity(activity, T::class.java, params)
 
-inline fun <reified T: Activity> Fragment.startActivity(vararg params: Pair<String, Any?>) =
-        AnkoInternals.internalStartActivity(activity, T::class.java, params)
+inline fun <reified T : Activity> Activity.startActivityForResult(requestCode: Int, vararg params: Pair<String, Any?>) =
+    AnkoInternals.internalStartActivityForResult(this, T::class.java, requestCode, params)
 
-inline fun <reified T: Activity> Activity.startActivityForResult(requestCode: Int, vararg params: Pair<String, Any?>) =
-        AnkoInternals.internalStartActivityForResult(this, T::class.java, requestCode, params)
+inline fun <reified T : Activity> Fragment.startActivityForResult(requestCode: Int, vararg params: Pair<String, Any?>) =
+    startActivityForResult(AnkoInternals.createIntent(act, T::class.java, params), requestCode)
 
-inline fun <reified T: Activity> Fragment.startActivityForResult(requestCode: Int, vararg params: Pair<String, Any?>) =
-        startActivityForResult(AnkoInternals.createIntent(act, T::class.java, params), requestCode)
+inline fun <reified T : Service> Context.startService(vararg params: Pair<String, Any?>) =
+    AnkoInternals.internalStartService(this, T::class.java, params)
 
-inline fun <reified T: Service> Context.startService(vararg params: Pair<String, Any?>) =
-        AnkoInternals.internalStartService(this, T::class.java, params)
+inline fun <reified T : Service> AnkoContext<*>.startService(vararg params: Pair<String, Any?>) =
+    AnkoInternals.internalStartService(ctx, T::class.java, params)
 
-inline fun <reified T: Service> AnkoContext<*>.startService(vararg params: Pair<String, Any?>) =
-        AnkoInternals.internalStartService(ctx, T::class.java, params)
-
-inline fun <reified T: Service> Fragment.startService(vararg params: Pair<String, Any?>) =
-        AnkoInternals.internalStartService(activity, T::class.java, params)
+inline fun <reified T : Service> Fragment.startService(vararg params: Pair<String, Any?>) =
+    AnkoInternals.internalStartService(activity, T::class.java, params)
 
 inline fun <reified T : Service> Context.stopService(vararg params: Pair<String, Any?>) =
-        AnkoInternals.internalStopService(this, T::class.java, params)
+    AnkoInternals.internalStopService(this, T::class.java, params)
 
 inline fun <reified T : Service> AnkoContext<*>.stopService(vararg params: Pair<String, Any?>) =
-        AnkoInternals.internalStopService(ctx, T::class.java, params)
+    AnkoInternals.internalStopService(ctx, T::class.java, params)
 
 inline fun <reified T : Service> Fragment.stopService(vararg params: Pair<String, Any?>) =
-        AnkoInternals.internalStopService(activity, T::class.java, params)
+    AnkoInternals.internalStopService(activity, T::class.java, params)
 
-inline fun <reified T: Any> Context.intentFor(vararg params: Pair<String, Any?>): Intent =
-        AnkoInternals.createIntent(this, T::class.java, params)
+inline fun <reified T : Any> Context.intentFor(vararg params: Pair<String, Any?>): Intent =
+    AnkoInternals.createIntent(this, T::class.java, params)
 
-inline fun <reified T: Any> AnkoContext<*>.intentFor(vararg params: Pair<String, Any?>): Intent =
-        AnkoInternals.createIntent(ctx, T::class.java, params)
+inline fun <reified T : Any> AnkoContext<*>.intentFor(vararg params: Pair<String, Any?>): Intent =
+    AnkoInternals.createIntent(ctx, T::class.java, params)
 
-inline fun <reified T: Any> Fragment.intentFor(vararg params: Pair<String, Any?>): Intent =
-        AnkoInternals.createIntent(activity, T::class.java, params)
+inline fun <reified T : Any> Fragment.intentFor(vararg params: Pair<String, Any?>): Intent =
+    AnkoInternals.createIntent(activity, T::class.java, params)
 
 /**
  * Add the [Intent.FLAG_ACTIVITY_CLEAR_TASK] flag to the [Intent].
@@ -174,16 +174,17 @@ fun Context.email(email: String, subject: String = "", text: String = ""): Boole
     val intent = Intent(Intent.ACTION_SENDTO)
     intent.data = Uri.parse("mailto:")
     intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
-    if (subject.isNotEmpty())
+    if (subject.isNotEmpty()) {
         intent.putExtra(Intent.EXTRA_SUBJECT, subject)
-    if (text.isNotEmpty())
+    }
+    if (text.isNotEmpty()) {
         intent.putExtra(Intent.EXTRA_TEXT, text)
+    }
     if (intent.resolveActivity(packageManager) != null) {
         startActivity(intent)
         return true
     }
     return false
-
 }
 
 inline fun AnkoContext<*>.makeCall(number: String): Boolean = ctx.makeCall(number)

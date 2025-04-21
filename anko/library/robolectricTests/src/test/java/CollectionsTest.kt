@@ -9,7 +9,8 @@ import org.robolectric.RobolectricGradleTestRunner
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricGradleTestRunner::class)
-@Config(constants = BuildConfig::class) class CollectionsTest {
+@Config(constants = BuildConfig::class)
+class CollectionsTest {
     @Test fun test() {
         testArray(emptyArray<Int>())
         testArray(emptyArray<String>())
@@ -114,5 +115,4 @@ import org.robolectric.annotation.Config
 
         return elements
     }
-
 }

@@ -15,13 +15,12 @@
  */
 
 @file:Suppress("unused")
+
 package org.jetbrains.anko.db
 
 import android.database.Cursor
 import android.database.sqlite.SQLiteException
-import org.jetbrains.anko.AnkoException
 import org.jetbrains.anko.internals.AnkoInternals
-import java.lang.reflect.Modifier
 import java.util.*
 
 interface RowParser<out T> {
@@ -34,8 +33,9 @@ interface MapRowParser<out T> {
 
 private class SingleColumnParser<out T> : RowParser<T> {
     override fun parseRow(columns: Array<Any?>): T {
-        if (columns.size != 1)
+        if (columns.size != 1) {
             throw SQLiteException("Invalid row: row for SingleColumnParser must contain exactly one column")
+        }
         @Suppress("UNCHECKED_CAST")
         return columns[0] as T
     }
@@ -43,13 +43,15 @@ private class SingleColumnParser<out T> : RowParser<T> {
 
 private class ScalarColumnParser<in R, out T>(val modifier: ((R) -> T)? = null) : RowParser<T> {
     override fun parseRow(columns: Array<Any?>): T {
-        if (columns.size != 1)
+        if (columns.size != 1) {
             throw SQLiteException("Invalid row: row for SingleColumnParser must contain exactly one column")
+        }
         @Suppress("UNCHECKED_CAST", "UNNECESSARY_NOT_NULL_ASSERTION")
-        return if (modifier != null)
+        return if (modifier != null) {
             modifier!!(columns[0] as R)
-        else
+        } else {
             columns[0] as T
+        }
     }
 }
 
@@ -61,23 +63,26 @@ val DoubleParser: RowParser<Double> = SingleColumnParser()
 val StringParser: RowParser<String> = SingleColumnParser()
 val BlobParser: RowParser<ByteArray> = SingleColumnParser()
 
-fun <T: Any> Cursor.parseSingle(parser: RowParser<T>): T = AnkoInternals.useCursor(this) {
-    if (count != 1)
+fun <T : Any> Cursor.parseSingle(parser: RowParser<T>): T = AnkoInternals.useCursor(this) {
+    if (count != 1) {
         throw SQLiteException("parseSingle accepts only cursors with a single entry")
+    }
     moveToFirst()
     return parser.parseRow(readColumnsArray(this))
 }
 
-fun <T: Any> Cursor.parseOpt(parser: RowParser<T>): T? = AnkoInternals.useCursor(this) {
-    if (count > 1)
+fun <T : Any> Cursor.parseOpt(parser: RowParser<T>): T? = AnkoInternals.useCursor(this) {
+    if (count > 1) {
         throw SQLiteException("parseSingle accepts only cursors with a single entry or empty cursors")
-    if (count == 0)
+    }
+    if (count == 0) {
         return null
+    }
     moveToFirst()
     return parser.parseRow(readColumnsArray(this))
 }
 
-fun <T: Any> Cursor.parseList(parser: RowParser<T>): List<T> = AnkoInternals.useCursor(this) {
+fun <T : Any> Cursor.parseList(parser: RowParser<T>): List<T> = AnkoInternals.useCursor(this) {
     val list = ArrayList<T>(count)
     moveToFirst()
     while (!isAfterLast) {
@@ -87,23 +92,26 @@ fun <T: Any> Cursor.parseList(parser: RowParser<T>): List<T> = AnkoInternals.use
     return list
 }
 
-fun <T: Any> Cursor.parseSingle(parser: MapRowParser<T>): T = AnkoInternals.useCursor(this) {
-    if (count != 1)
+fun <T : Any> Cursor.parseSingle(parser: MapRowParser<T>): T = AnkoInternals.useCursor(this) {
+    if (count != 1) {
         throw SQLiteException("parseSingle accepts only cursors with getCount() == 1")
+    }
     moveToFirst()
     return parser.parseRow(readColumnsMap(this))
 }
 
-fun <T: Any> Cursor.parseOpt(parser: MapRowParser<T>): T? = AnkoInternals.useCursor(this) {
-    if (count > 1)
+fun <T : Any> Cursor.parseOpt(parser: MapRowParser<T>): T? = AnkoInternals.useCursor(this) {
+    if (count > 1) {
         throw SQLiteException("parseSingle accepts only cursors with getCount() == 1 or empty cursors")
-    if (count == 0)
+    }
+    if (count == 0) {
         return null
+    }
     moveToFirst()
     return parser.parseRow(readColumnsMap(this))
 }
 
-fun <T: Any> Cursor.parseList(parser: MapRowParser<T>): List<T> = AnkoInternals.useCursor(this) {
+fun <T : Any> Cursor.parseList(parser: MapRowParser<T>): List<T> = AnkoInternals.useCursor(this) {
     val list = ArrayList<T>(count)
     moveToFirst()
     while (!isAfterLast) {

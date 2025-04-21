@@ -15,6 +15,7 @@
  */
 
 @file:Suppress("unused")
+
 package org.jetbrains.anko.custom
 
 import android.app.Fragment
@@ -29,12 +30,16 @@ import java.lang.ref.WeakReference
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Future
 
-@Deprecated("Use forEachReversedByIndex(f) instead.",
-        ReplaceWith("forEachReversedByIndex(f)", "org.jetbrains.anko.collections.forEachReversedByIndex"))
+@Deprecated(
+    "Use forEachReversedByIndex(f) instead.",
+    ReplaceWith("forEachReversedByIndex(f)", "org.jetbrains.anko.collections.forEachReversedByIndex")
+)
 inline fun <T> Array<T>.forEachReversed(f: (T) -> Unit) = forEachReversedByIndex(f)
 
-@Deprecated("Use forEachReversedByIndex(f) instead.",
-        ReplaceWith("forEachReversedByIndex(f)", "org.jetbrains.anko.collections.forEachReversedByIndex"))
+@Deprecated(
+    "Use forEachReversedByIndex(f) instead.",
+    ReplaceWith("forEachReversedByIndex(f)", "org.jetbrains.anko.collections.forEachReversedByIndex")
+)
 inline fun <T> List<T>.forEachReversed(f: (T) -> Unit) = forEachReversedByIndex(f)
 
 @Deprecated("Use runOnUiThread(f) instead.", ReplaceWith("runOnUiThread(f)"))
@@ -66,7 +71,6 @@ fun <T, R> T.asyncResult(executorService: ExecutorService, task: AnkoAsyncContex
     val context = AnkoAsyncContext(WeakReference(this))
     return executorService.submit<R> { context.task() }
 }
-
 
 @Deprecated("Use applyRecursively(block) instead.", ReplaceWith("applyRecursively(style)"))
 fun <T : View> T.style(style: (View) -> Unit): T = applyRecursively(style)

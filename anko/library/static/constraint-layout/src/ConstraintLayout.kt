@@ -30,17 +30,18 @@ val ConstraintLayout.matchConstraint
     get() = ConstraintLayout.LayoutParams.MATCH_CONSTRAINT
 
 fun ConstraintLayout.applyConstraintSet(init: ConstraintSetBuilder.() -> Unit): ConstraintSet =
-        constraintSet(init).also { it.applyTo(this) }
+    constraintSet(init).also { it.applyTo(this) }
 
 fun ConstraintLayout.constraintSet(init: ConstraintSetBuilder.() -> Unit): ConstraintSet =
-        ConstraintSetBuilder().also { it.clone(this) }.apply(init)
+    ConstraintSetBuilder().also { it.clone(this) }.apply(init)
 
 class ViewConstraintBuilder(
-        private @IdRes val viewId: Int,
-        private val constraintSetBuilder: ConstraintSetBuilder) {
+    @IdRes private val viewId: Int,
+    private val constraintSetBuilder: ConstraintSetBuilder
+) {
 
     infix fun Pair<Side, Side>.of(@IdRes targetViewId: Int): BasicConnection =
-            constraintSetBuilder.run { (first of viewId) to (second of targetViewId) }
+        constraintSetBuilder.run { (first of viewId) to (second of targetViewId) }
 
     infix fun Pair<Side, Side>.of(targetView: View): BasicConnection = this of targetView.id
 
@@ -61,31 +62,36 @@ class ViewConstraintBuilder(
     }
 
     var horizontalBias: Float
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setHorizontalBias(viewId, value)
         }
 
     var verticalBias: Float
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setVerticalBias(viewId, value)
         }
 
     var dimensionRation: String
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setDimensionRatio(viewId, value)
         }
 
     var visibility: Int
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setVisibility(viewId, value)
         }
 
     var alpha: Float
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setAlpha(viewId, value)
         }
@@ -97,133 +103,155 @@ class ViewConstraintBuilder(
         }
 
     var elevation: Float
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setElevation(viewId, value)
         }
 
     var rotationX: Float
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setRotationX(viewId, value)
         }
 
     var rotationY: Float
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setRotationY(viewId, value)
         }
 
     var scaleX: Float
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setScaleX(viewId, value)
         }
 
     var scaleY: Float
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setScaleY(viewId, value)
         }
 
     var transformPivotX: Float
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setTransformPivotX(viewId, value)
         }
 
     var transformPivotY: Float
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setTransformPivotY(viewId, value)
         }
 
     var translationX: Float
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setTranslationX(viewId, value)
         }
 
     var translationY: Float
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setTranslationY(viewId, value)
         }
 
     var translationZ: Float
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setTranslationZ(viewId, value)
         }
 
     var height: Int
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.constrainHeight(viewId, value)
         }
 
     var width: Int
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.constrainWidth(viewId, value)
         }
 
     var maxHeight: Int
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.constrainMaxHeight(viewId, value)
         }
 
     var maxWidth: Int
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.constrainMaxWidth(viewId, value)
         }
 
     var minHeight: Int
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.constrainMinHeight(viewId, value)
         }
 
     var minWidth: Int
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.constrainMinWidth(viewId, value)
         }
 
     var defaultHeight: Int
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.constrainDefaultHeight(viewId, value)
         }
 
     var defaultWidth: Int
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.constrainDefaultWidth(viewId, value)
         }
 
     var horizontalWeight: Float
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setHorizontalWeight(viewId, value)
         }
 
     var verticalWeight: Float
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setVerticalWeight(viewId, value)
         }
 
     var horizontalChainStyle: Int
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setHorizontalChainStyle(viewId, value)
         }
 
     var verticalChainStyle: Int
-        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             constraintSetBuilder.setVerticalChainStyle(viewId, value)
         }
@@ -260,17 +288,17 @@ class ConstraintSetBuilder : ConstraintSet() {
         for (connection in connections) {
             when (connection) {
                 is Connection.MarginConnection -> connect(
-                        connection.from.viewId,
-                        connection.from.sideId,
-                        connection.to.viewId,
-                        connection.to.sideId,
-                        connection.margin
+                    connection.from.viewId,
+                    connection.from.sideId,
+                    connection.to.viewId,
+                    connection.to.sideId,
+                    connection.margin
                 )
                 is BasicConnection -> connect(
-                        connection.from.viewId,
-                        connection.from.sideId,
-                        connection.to.viewId,
-                        connection.to.sideId
+                    connection.from.viewId,
+                    connection.from.sideId,
+                    connection.to.viewId,
+                    connection.to.sideId
                 )
             }
         }
@@ -283,7 +311,7 @@ class ConstraintSetBuilder : ConstraintSet() {
         BOTTOM,
         BASELINE,
         START,
-        END,
+        END
     }
 
     sealed class ViewSide(@IdRes val viewId: Int) {
@@ -296,7 +324,7 @@ class ConstraintSetBuilder : ConstraintSet() {
         class End(@IdRes viewId: Int) : ViewSide(viewId)
 
         val sideId: Int
-            get() = when(this) {
+            get() = when (this) {
                 is ViewSide.Left -> ConstraintSet.LEFT
                 is ViewSide.Right -> ConstraintSet.RIGHT
                 is ViewSide.Top -> ConstraintSet.TOP

@@ -15,10 +15,11 @@
  */
 
 @file:Suppress("unused")
+
 package org.jetbrains.anko
 
-import android.os.Build
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
@@ -32,7 +33,8 @@ var View.backgroundDrawable: Drawable?
     set(value) = setBackgroundDrawable(value)
 
 var View.backgroundColorResource: Int
-    @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
+    @Deprecated(NO_GETTER, level = ERROR)
+    get() = noGetter()
     set(colorId) = setBackgroundColor(context.resources.getColor(colorId))
 
 var View.leftPadding: Int
@@ -53,32 +55,39 @@ var View.bottomPadding: Int
 
 @Deprecated("Use horizontalPadding instead", ReplaceWith("horizontalPadding"))
 var View.paddingHorizontal: Int
-    @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
+    @Deprecated(NO_GETTER, level = ERROR)
+    get() = noGetter()
     set(value) = setPadding(value, paddingTop, value, paddingBottom)
 
 var View.horizontalPadding: Int
-    @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
+    @Deprecated(NO_GETTER, level = ERROR)
+    get() = noGetter()
     set(value) = setPadding(value, paddingTop, value, paddingBottom)
 
 @Deprecated("Use verticalPadding instead", ReplaceWith("verticalPadding"))
 var View.paddingVertical: Int
-    @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
+    @Deprecated(NO_GETTER, level = ERROR)
+    get() = noGetter()
     set(value) = setPadding(paddingLeft, value, paddingRight, value)
 
 var View.verticalPadding: Int
-    @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
+    @Deprecated(NO_GETTER, level = ERROR)
+    get() = noGetter()
     set(value) = setPadding(paddingLeft, value, paddingRight, value)
 
 var View.padding: Int
-    @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
+    @Deprecated(NO_GETTER, level = ERROR)
+    get() = noGetter()
     inline set(value) = setPadding(value, value, value, value)
 
 var TextView.allCaps: Boolean
-    @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
+    @Deprecated(NO_GETTER, level = ERROR)
+    get() = noGetter()
     inline set(value) = setAllCaps(value)
 
 var TextView.ems: Int
-    @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
+    @Deprecated(NO_GETTER, level = ERROR)
+    get() = noGetter()
     inline set(value) = setEms(value)
 
 inline var TextView.isSelectable: Boolean
@@ -86,15 +95,18 @@ inline var TextView.isSelectable: Boolean
     set(value) = setTextIsSelectable(value)
 
 var TextView.textAppearance: Int
-    @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
+    @Deprecated(NO_GETTER, level = ERROR)
+    get() = noGetter()
     set(value) = if (Build.VERSION.SDK_INT >= 23) setTextAppearance(value) else setTextAppearance(context, value)
 
 var TextView.textSizeDimen: Int
-    @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
+    @Deprecated(NO_GETTER, level = ERROR)
+    get() = noGetter()
     set(value) = setTextSize(TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(value))
 
 var TextView.textColorResource: Int
-    @Deprecated(NO_GETTER, level = ERROR) get() = noGetter()
+    @Deprecated(NO_GETTER, level = ERROR)
+    get() = noGetter()
     set(colorId) = setTextColor(context.resources.getColor(colorId))
 
 var ImageView.image: Drawable?

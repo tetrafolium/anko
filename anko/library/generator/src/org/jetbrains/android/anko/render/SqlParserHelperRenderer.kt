@@ -16,17 +16,19 @@
 
 package org.jetbrains.android.anko.render
 
-import org.jetbrains.android.anko.config.GeneratorContext
 import org.jetbrains.android.anko.config.AnkoFile
 import org.jetbrains.android.anko.config.ConfigurationKey
+import org.jetbrains.android.anko.config.GeneratorContext
 import org.jetbrains.android.anko.generator.GenerationState
 
 class SqlParserHelperRenderer(context: GeneratorContext) : Renderer(context) {
     override val renderIf: Array<ConfigurationKey<Boolean>> = arrayOf(AnkoFile.SQL_PARSER_HELPERS)
 
     override fun processElements(state: GenerationState) = generatedFile { importList ->
-        append(render("sql_parser_helpers") {
-            "count" % 22
-        })
+        append(
+            render("sql_parser_helpers") {
+                "count" % 22
+            }
+        )
     }
 }

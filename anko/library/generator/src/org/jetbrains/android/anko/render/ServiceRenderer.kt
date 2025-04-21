@@ -16,9 +16,9 @@
 
 package org.jetbrains.android.anko.render
 
-import org.jetbrains.android.anko.config.GeneratorContext
 import org.jetbrains.android.anko.config.AnkoFile
 import org.jetbrains.android.anko.config.ConfigurationKey
+import org.jetbrains.android.anko.config.GeneratorContext
 import org.jetbrains.android.anko.generator.GenerationState
 import org.jetbrains.android.anko.generator.ServiceGenerator
 
@@ -27,9 +27,10 @@ class ServiceRenderer(context: GeneratorContext) : Renderer(context) {
     override val renderIf: Array<ConfigurationKey<Boolean>> = arrayOf(AnkoFile.SERVICES)
 
     override fun processElements(state: GenerationState) = generatedFile("Suppress(\"unused\")") { importList ->
-        append(render("services", importList) {
-            "services" % state[ServiceGenerator::class.java]
-        })
+        append(
+            render("services", importList) {
+                "services" % state[ServiceGenerator::class.java]
+            }
+        )
     }
-
 }

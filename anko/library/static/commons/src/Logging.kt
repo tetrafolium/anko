@@ -53,7 +53,7 @@ fun AnkoLogger(tag: String): AnkoLogger = object : AnkoLogger {
     override val loggerTag = tag
 }
 
-inline fun <reified T: Any> AnkoLogger(): AnkoLogger = AnkoLogger(T::class.java)
+inline fun <reified T : Any> AnkoLogger(): AnkoLogger = AnkoLogger(T::class.java)
 
 /**
  * Send a log message with the [Log.VERBOSE] severity.
@@ -67,9 +67,14 @@ inline fun <reified T: Any> AnkoLogger(): AnkoLogger = AnkoLogger(T::class.java)
  * @see [Log.v].
  */
 fun AnkoLogger.verbose(message: Any?, thr: Throwable? = null) {
-    log(this, message, thr, Log.VERBOSE,
-            { tag, msg -> Log.v(tag, msg) },
-            { tag, msg, thr -> Log.v(tag, msg, thr) })
+    log(
+        this,
+        message,
+        thr,
+        Log.VERBOSE,
+        { tag, msg -> Log.v(tag, msg) },
+        { tag, msg, thr -> Log.v(tag, msg, thr) }
+    )
 }
 
 /**
@@ -84,9 +89,14 @@ fun AnkoLogger.verbose(message: Any?, thr: Throwable? = null) {
  * @see [Log.d].
  */
 fun AnkoLogger.debug(message: Any?, thr: Throwable? = null) {
-    log(this, message, thr, Log.DEBUG,
-            { tag, msg -> Log.d(tag, msg) },
-            { tag, msg, thr -> Log.d(tag, msg, thr) })
+    log(
+        this,
+        message,
+        thr,
+        Log.DEBUG,
+        { tag, msg -> Log.d(tag, msg) },
+        { tag, msg, thr -> Log.d(tag, msg, thr) }
+    )
 }
 
 /**
@@ -101,9 +111,14 @@ fun AnkoLogger.debug(message: Any?, thr: Throwable? = null) {
  * @see [Log.i].
  */
 fun AnkoLogger.info(message: Any?, thr: Throwable? = null) {
-    log(this, message, thr, Log.INFO,
-            { tag, msg -> Log.i(tag, msg) },
-            { tag, msg, thr -> Log.i(tag, msg, thr) })
+    log(
+        this,
+        message,
+        thr,
+        Log.INFO,
+        { tag, msg -> Log.i(tag, msg) },
+        { tag, msg, thr -> Log.i(tag, msg, thr) }
+    )
 }
 
 /**
@@ -118,9 +133,14 @@ fun AnkoLogger.info(message: Any?, thr: Throwable? = null) {
  * @see [Log.w].
  */
 fun AnkoLogger.warn(message: Any?, thr: Throwable? = null) {
-    log(this, message, thr, Log.WARN,
-            { tag, msg -> Log.w(tag, msg) },
-            { tag, msg, thr -> Log.w(tag, msg, thr) })
+    log(
+        this,
+        message,
+        thr,
+        Log.WARN,
+        { tag, msg -> Log.w(tag, msg) },
+        { tag, msg, thr -> Log.w(tag, msg, thr) }
+    )
 }
 
 /**
@@ -135,9 +155,14 @@ fun AnkoLogger.warn(message: Any?, thr: Throwable? = null) {
  * @see [Log.e].
  */
 fun AnkoLogger.error(message: Any?, thr: Throwable? = null) {
-    log(this, message, thr, Log.ERROR,
-            { tag, msg -> Log.e(tag, msg) },
-            { tag, msg, thr -> Log.e(tag, msg, thr) })
+    log(
+        this,
+        message,
+        thr,
+        Log.ERROR,
+        { tag, msg -> Log.e(tag, msg) },
+        { tag, msg, thr -> Log.e(tag, msg, thr) }
+    )
 }
 
 /**
@@ -249,12 +274,13 @@ inline fun AnkoLogger.error(message: () -> Any?) {
 inline fun Throwable.getStackTraceString(): String = Log.getStackTraceString(this)
 
 private inline fun log(
-        logger: AnkoLogger,
-        message: Any?,
-        thr: Throwable?,
-        level: Int,
-        f: (String, String) -> Unit,
-        fThrowable: (String, String, Throwable) -> Unit) {
+    logger: AnkoLogger,
+    message: Any?,
+    thr: Throwable?,
+    level: Int,
+    f: (String, String) -> Unit,
+    fThrowable: (String, String, Throwable) -> Unit
+) {
     val tag = logger.loggerTag
     if (Log.isLoggable(tag, level)) {
         if (thr != null) {

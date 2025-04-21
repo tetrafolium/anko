@@ -19,16 +19,21 @@ package org.jetbrains.kotlin.android.xmlconverter
 import org.jetbrains.kotlin.android.attrs.NoAttr
 
 internal val layoutAttributeRenderers = listOf(
-        ::linearLayoutRenderer,
-        ::relativeLayoutRenderer
+    ::linearLayoutRenderer,
+    ::relativeLayoutRenderer
 )
 
-internal fun linearLayoutRenderer(parentName: String, attrs: Map<String, String>) = if (parentName == "LinearLayout") listOf(
+internal fun linearLayoutRenderer(parentName: String, attrs: Map<String, String>) = if (parentName == "LinearLayout") {
+    listOf(
         attrs.prop("gravity") { renderAttribute(NoAttr, it) },
         attrs.prop("weight")
-) + marginLayoutRenderer(parentName, attrs) else null
+    ) + marginLayoutRenderer(parentName, attrs)
+} else {
+    null
+}
 
-internal fun relativeLayoutRenderer(parentName: String, attrs: Map<String, String>) = if (parentName == "RelativeLayout") listOf(
+internal fun relativeLayoutRenderer(parentName: String, attrs: Map<String, String>) = if (parentName == "RelativeLayout") {
+    listOf(
         attrs.func("above") { renderReference(NoAttr, it.key, it.value) },
         attrs.func("below") { renderReference(NoAttr, it.key, it.value) },
         attrs.func("toRightOf") { renderReference(NoAttr, "toRightOf", it.value) },
@@ -47,13 +52,16 @@ internal fun relativeLayoutRenderer(parentName: String, attrs: Map<String, Strin
         attrs.func("centerHorizontal") { "centerHorizontally" * "" },
         attrs.func("centerVertical") { "centerVertically" * "" }
 
-) + marginLayoutRenderer(parentName, attrs) else null
+    ) + marginLayoutRenderer(parentName, attrs)
+} else {
+    null
+}
 
 @Suppress("UNUSED_PARAMETER")
 internal fun marginLayoutRenderer(parentName: String, attrs: Map<String, String>) =
-        listOf("margin", "marginLeft", "marginTop", "marginRight", "marginBottom").map {
-            attrs.prop(it) { renderDimension(NoAttr, it.key.swapCamelCase(), it.value) }
-        }
+    listOf("margin", "marginLeft", "marginTop", "marginRight", "marginBottom").map {
+        attrs.prop(it) { renderDimension(NoAttr, it.key.swapCamelCase(), it.value) }
+    }
 
 private fun Map<String, String>.func(key: String, transformer: ((KeyValuePair) -> KeyValuePair?)? = null): KeyValuePair? {
     val value = get(key)
@@ -61,13 +69,19 @@ private fun Map<String, String>.func(key: String, transformer: ((KeyValuePair) -
         if (transformer != null) {
             val result = transformer(key * value)
             return if (result != null) (result.key + "(" + result.value + ")") * "" else null
-        } else "$key($value)" * ""
-    } else null
+        } else {
+            "$key($value)" * ""
+        }
+    } else {
+        null
+    }
 }
 
 private fun Map<String, String>.prop(key: String, transformer: ((KeyValuePair) -> KeyValuePair?)? = null): KeyValuePair? {
     val value = get(key)
     return if (value != null) {
         if (transformer != null) transformer(key * value) else key * value
-    } else null
+    } else {
+        null
+    }
 }

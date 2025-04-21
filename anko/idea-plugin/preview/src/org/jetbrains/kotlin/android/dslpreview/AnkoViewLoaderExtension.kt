@@ -25,14 +25,14 @@ class AnkoViewLoaderExtension : ViewLoaderExtension {
         val viewInternalName = viewFqName.replace('.', '/')
         val superClassInternalName = "android/widget/FrameLayout"
 
-        val bytes = with (ClassWriter(0)) {
+        val bytes = with(ClassWriter(0)) {
             visit(49, Opcodes.ACC_PUBLIC, viewInternalName, null, superClassInternalName, null)
             visitSource(null, null)
 
             fun visitConstructor(vararg params: String) {
                 val signature = "(${params.joinToString("")})V"
 
-                with (visitMethod(Opcodes.ACC_PUBLIC, "<init>", signature, null, null)) {
+                with(visitMethod(Opcodes.ACC_PUBLIC, "<init>", signature, null, null)) {
                     visitVarInsn(Opcodes.ALOAD, 0)
                     params.forEachIndexed { i, param ->
                         when (param) {
@@ -60,22 +60,34 @@ class AnkoViewLoaderExtension : ViewLoaderExtension {
             }
              */
 
-            with (visitMethod(Opcodes.ACC_PRIVATE, "init", "()V", null, null)) {
+            with(visitMethod(Opcodes.ACC_PRIVATE, "init", "()V", null, null)) {
                 visitVarInsn(Opcodes.ALOAD, 0)
                 visitTypeInsn(Opcodes.NEW, uiInternalName)
                 visitInsn(Opcodes.DUP)
                 visitMethodInsn(Opcodes.INVOKESPECIAL, uiInternalName, "<init>", "()V")
-                visitFieldInsn(Opcodes.GETSTATIC, "org/jetbrains/anko/AnkoContext", "Companion",
-                        "Lorg/jetbrains/anko/AnkoContext" + '$' + "Companion;")
+                visitFieldInsn(
+                    Opcodes.GETSTATIC,
+                    "org/jetbrains/anko/AnkoContext",
+                    "Companion",
+                    "Lorg/jetbrains/anko/AnkoContext" + '$' + "Companion;"
+                )
                 visitVarInsn(Opcodes.ALOAD, 0)
                 visitMethodInsn(Opcodes.INVOKEVIRTUAL, viewInternalName, "getContext", "()Landroid/content/Context;")
 
                 visitInsn(Opcodes.ICONST_0)
-                visitMethodInsn(Opcodes.INVOKEVIRTUAL, "org/jetbrains/anko/AnkoContext" + '$' + "Companion", "create",
-                        "(Landroid/content/Context;Z)Lorg/jetbrains/anko/AnkoContext;")
+                visitMethodInsn(
+                    Opcodes.INVOKEVIRTUAL,
+                    "org/jetbrains/anko/AnkoContext" + '$' + "Companion",
+                    "create",
+                    "(Landroid/content/Context;Z)Lorg/jetbrains/anko/AnkoContext;"
+                )
 
-                visitMethodInsn(Opcodes.INVOKEVIRTUAL, uiInternalName, "createView",
-                        "(Lorg/jetbrains/anko/AnkoContext;)Landroid/view/View;")
+                visitMethodInsn(
+                    Opcodes.INVOKEVIRTUAL,
+                    uiInternalName,
+                    "createView",
+                    "(Lorg/jetbrains/anko/AnkoContext;)Landroid/view/View;"
+                )
                 visitMethodInsn(Opcodes.INVOKEVIRTUAL, viewInternalName, "addView", "(Landroid/view/View;)V")
 
                 visitInsn(Opcodes.RETURN)
@@ -92,9 +104,9 @@ class AnkoViewLoaderExtension : ViewLoaderExtension {
 
     private fun loadClass(fqName: String, bytes: ByteArray, delegateClassLoader: ClassLoader): Class<*>? {
         class ByteClassLoader(
-                urls: Array<out URL>?,
-                parent: ClassLoader?,
-                private var extraClasses: MutableMap<String, ByteArray>
+            urls: Array<out URL>?,
+            parent: ClassLoader?,
+            private var extraClasses: MutableMap<String, ByteArray>
         ) : URLClassLoader(urls, parent) {
             override fun findClass(name: String): Class<*>? {
                 return extraClasses.remove(name)?.let {

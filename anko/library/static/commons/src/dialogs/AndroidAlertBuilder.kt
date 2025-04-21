@@ -32,39 +32,48 @@ internal class AndroidAlertBuilder(override val ctx: Context) : AlertBuilder<Ale
     private val builder = AlertDialog.Builder(ctx)
 
     override var title: CharSequence
-        @Deprecated(NO_GETTER, level = ERROR) get() = AnkoInternals.noGetter()
+        @Deprecated(NO_GETTER, level = ERROR)
+        get() = AnkoInternals.noGetter()
         set(value) { builder.setTitle(value) }
 
     override var titleResource: Int
-        @Deprecated(NO_GETTER, level = ERROR) get() = AnkoInternals.noGetter()
+        @Deprecated(NO_GETTER, level = ERROR)
+        get() = AnkoInternals.noGetter()
         set(value) { builder.setTitle(value) }
 
     override var message: CharSequence
-        @Deprecated(NO_GETTER, level = ERROR) get() = AnkoInternals.noGetter()
+        @Deprecated(NO_GETTER, level = ERROR)
+        get() = AnkoInternals.noGetter()
         set(value) { builder.setMessage(value) }
 
     override var messageResource: Int
-        @Deprecated(NO_GETTER, level = ERROR) get() = AnkoInternals.noGetter()
+        @Deprecated(NO_GETTER, level = ERROR)
+        get() = AnkoInternals.noGetter()
         set(value) { builder.setMessage(value) }
 
     override var icon: Drawable
-        @Deprecated(NO_GETTER, level = ERROR) get() = AnkoInternals.noGetter()
+        @Deprecated(NO_GETTER, level = ERROR)
+        get() = AnkoInternals.noGetter()
         set(value) { builder.setIcon(value) }
 
     override var iconResource: Int
-        @Deprecated(NO_GETTER, level = ERROR) get() = AnkoInternals.noGetter()
+        @Deprecated(NO_GETTER, level = ERROR)
+        get() = AnkoInternals.noGetter()
         set(value) { builder.setIcon(value) }
 
     override var customTitle: View
-        @Deprecated(NO_GETTER, level = ERROR) get() = AnkoInternals.noGetter()
+        @Deprecated(NO_GETTER, level = ERROR)
+        get() = AnkoInternals.noGetter()
         set(value) { builder.setCustomTitle(value) }
 
     override var customView: View
-        @Deprecated(NO_GETTER, level = ERROR) get() = AnkoInternals.noGetter()
+        @Deprecated(NO_GETTER, level = ERROR)
+        get() = AnkoInternals.noGetter()
         set(value) { builder.setView(value) }
 
     override var isCancelable: Boolean
-        @Deprecated(NO_GETTER, level = ERROR) get() = AnkoInternals.noGetter()
+        @Deprecated(NO_GETTER, level = ERROR)
+        get() = AnkoInternals.noGetter()
         set(value) { builder.setCancelable(value) }
 
     override fun onCancelled(handler: (DialogInterface) -> Unit) {

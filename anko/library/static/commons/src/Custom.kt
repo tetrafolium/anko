@@ -15,6 +15,7 @@
  */
 
 @file:Suppress("unused")
+
 package org.jetbrains.anko.custom
 
 import android.app.Activity
@@ -22,7 +23,6 @@ import android.content.Context
 import android.view.View
 import android.view.ViewManager
 import org.jetbrains.anko.internals.AnkoInternals
-
 
 inline fun <T : View> ViewManager.ankoView(factory: (ctx: Context) -> T, theme: Int, init: T.() -> Unit): T {
     val ctx = AnkoInternals.wrapContextIfNeeded(AnkoInternals.getContext(this), theme)
@@ -49,10 +49,10 @@ inline fun <T : View> Activity.ankoView(factory: (ctx: Context) -> T, theme: Int
 }
 
 inline fun <reified T : View> ViewManager.customView(theme: Int = 0, init: T.() -> Unit): T =
-        ankoView({ ctx -> AnkoInternals.initiateView(ctx, T::class.java) }, theme) { init() }
+    ankoView({ ctx -> AnkoInternals.initiateView(ctx, T::class.java) }, theme) { init() }
 
 inline fun <reified T : View> Context.customView(theme: Int = 0, init: T.() -> Unit): T =
-        ankoView({ ctx -> AnkoInternals.initiateView(ctx, T::class.java) }, theme) { init() }
+    ankoView({ ctx -> AnkoInternals.initiateView(ctx, T::class.java) }, theme) { init() }
 
 inline fun <reified T : View> Activity.customView(theme: Int = 0, init: T.() -> Unit): T =
-        ankoView({ ctx -> AnkoInternals.initiateView(ctx, T::class.java) }, theme) { init() }
+    ankoView({ ctx -> AnkoInternals.initiateView(ctx, T::class.java) }, theme) { init() }

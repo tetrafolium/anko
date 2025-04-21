@@ -19,7 +19,7 @@ open class SimpleTestActivity : Activity() {
     var ctxProperty: Context? = null
     var actProperty: Activity? = null
 
-    public override fun onCreate(savedInstanceState: Bundle?): Unit {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         ctxProperty = ctx
@@ -38,7 +38,8 @@ open class SimpleTestActivity : Activity() {
 }
 
 @RunWith(RobolectricGradleTestRunner::class)
-@Config(constants = BuildConfig::class) class SimpleTest {
+@Config(constants = BuildConfig::class)
+class SimpleTest {
 
     @Test fun test() {
         val activity = Robolectric.buildActivity(SimpleTestActivity::class.java).create().get()
@@ -57,5 +58,4 @@ open class SimpleTestActivity : Activity() {
 
         println("[COMPLETE]")
     }
-
 }

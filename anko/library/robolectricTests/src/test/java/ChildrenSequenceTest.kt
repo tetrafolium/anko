@@ -13,7 +13,7 @@ import org.robolectric.Robolectric
 import org.robolectric.RobolectricGradleTestRunner
 import org.robolectric.annotation.Config
 
-open class ChildrenSequenceTestActivity: Activity() {
+open class ChildrenSequenceTestActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -43,7 +43,8 @@ open class ChildrenSequenceTestActivity: Activity() {
 }
 
 @RunWith(RobolectricGradleTestRunner::class)
-@Config(constants = BuildConfig::class) class ChildrenSequenceTest {
+@Config(constants = BuildConfig::class)
+class ChildrenSequenceTest {
     @Test fun testChildrenSequence() {
         val activity = Robolectric.buildActivity(ChildrenSequenceTestActivity::class.java).create().get()
 

@@ -94,14 +94,14 @@ class ConvertAction : AnAction() {
 
         val activityClasses = activities.map { it.activityClass.value }
         val activity = activityClasses
-                .filter { it?.getKotlinFqName()?.asString()?.startsWith(appPackage) ?: false }
-                .firstOrNull()
+            .filter { it?.getKotlinFqName()?.asString()?.startsWith(appPackage) ?: false }
+            .firstOrNull()
         return activity?.containingFile?.containingDirectory?.virtualFile?.canonicalPath
     }
 
     private fun getMainAndroidSourceRoot(androidFacet: AndroidFacet): String? {
         return ModuleRootManager.getInstance(androidFacet.module)
-                .contentRoots.filter { !it.canonicalPath!!.endsWith("/gen") }.first().canonicalPath
+            .contentRoots.filter { !it.canonicalPath!!.endsWith("/gen") }.first().canonicalPath
     }
 
     override fun update(e: AnActionEvent) {
@@ -117,13 +117,16 @@ class ConvertAction : AnAction() {
     private fun allFilesToConvert(filesOrDirs: Array<VirtualFile>, project: Project): List<FileToConvert> {
         val result = arrayListOf<FileToConvert>()
         for (file in filesOrDirs) {
-            VfsUtilCore.visitChildrenRecursively(file, object : VirtualFileVisitor<Unit>() {
-                override fun visitFile(file: VirtualFile): Boolean {
-                    val fileToConvert = file.getFileToConvert(project)
-                    if (fileToConvert != null) result.add(fileToConvert)
-                    return true
+            VfsUtilCore.visitChildrenRecursively(
+                file,
+                object : VirtualFileVisitor<Unit>() {
+                    override fun visitFile(file: VirtualFile): Boolean {
+                        val fileToConvert = file.getFileToConvert(project)
+                        if (fileToConvert != null) result.add(fileToConvert)
+                        return true
+                    }
                 }
-            })
+            )
         }
         return result
     }
@@ -145,12 +148,10 @@ class ConvertAction : AnAction() {
     private fun FileToConvert.convert(project: Project) {
         try {
             ktFile.writeText(XmlConverter.convert(xmlFile.contentsToByteArray().toString(charset("UTF-8"))))
-        }
-        catch (e: IOException) {
+        } catch (e: IOException) {
             MessagesEx.error(project, e.message).showLater()
         }
     }
 
     private fun String.firstCapital() = if (isEmpty()) "" else Character.toUpperCase(this[0]) + substring(1)
-
 }

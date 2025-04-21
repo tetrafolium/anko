@@ -15,12 +15,13 @@
  */
 
 @file:Suppress("unused")
+
 package org.jetbrains.anko.support.v4
 
 import android.support.v4.app.Fragment
 import org.jetbrains.anko.*
 
-fun <T: Fragment> AnkoAsyncContext<T>.supportFragmentUiThread(f: (T) -> Unit): Boolean {
+fun <T : Fragment> AnkoAsyncContext<T>.supportFragmentUiThread(f: (T) -> Unit): Boolean {
     val fragment = weakRef.get() ?: return true
     if (fragment.isDetached) return true
     val activity = fragment.activity ?: return true

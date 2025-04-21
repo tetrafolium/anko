@@ -24,16 +24,16 @@ class ServiceGenerator : Generator<ServiceElement> {
 
     override fun generate(state: GenerationState): Iterable<ServiceElement> {
         return state.classTree.findNode("android/content/Context")?.data?.fields
-                ?.filter { it.name.endsWith("_SERVICE") }
-                ?.mapNotNull { serviceField ->
-                    state.availableClasses.find { classNode ->
-                        classNode.packageName.startsWith("android")
-                                && classNode.simpleName == serviceField.toServiceClassName()
-                    }
-                    ?.let { ServiceElement(it, serviceField.name) }
+            ?.filter { it.name.endsWith("_SERVICE") }
+            ?.mapNotNull { serviceField ->
+                state.availableClasses.find { classNode ->
+                    classNode.packageName.startsWith("android") &&
+                        classNode.simpleName == serviceField.toServiceClassName()
                 }
-                ?.sortedBy { it.simpleName }
-                ?: emptyList()
+                    ?.let { ServiceElement(it, serviceField.name) }
+            }
+            ?.sortedBy { it.simpleName }
+            ?: emptyList()
     }
 
     private fun FieldNode.toServiceClassName(): String {
@@ -42,9 +42,11 @@ class ServiceGenerator : Generator<ServiceElement> {
         for (char in name.replace("_SERVICE", "_MANAGER").toCharArray()) when (char) {
             '_' -> nextCapital = true
             else -> builder.append(
-                    if (nextCapital) {
-                        nextCapital = false; char
-                    } else Character.toLowerCase(char)
+                if (nextCapital) {
+                    nextCapital = false; char
+                } else {
+                    Character.toLowerCase(char)
+                }
             )
         }
         return builder.toString()

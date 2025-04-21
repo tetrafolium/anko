@@ -16,8 +16,8 @@
 
 package org.jetbrains.android.anko.render
 
-import org.jetbrains.android.anko.config.GeneratorContext
 import org.jetbrains.android.anko.config.ConfigurationKey
+import org.jetbrains.android.anko.config.GeneratorContext
 import org.jetbrains.android.anko.config.WithGeneratorContext
 import org.jetbrains.android.anko.config.get
 import org.jetbrains.android.anko.generator.GenerationState
@@ -25,7 +25,7 @@ import org.jetbrains.android.anko.templates.TemplateContext
 import org.jetbrains.android.anko.utils.ImportList
 import org.jetbrains.android.anko.utils.ReflectionUtils
 
-abstract class Renderer(override val context: GeneratorContext): WithGeneratorContext {
+abstract class Renderer(override val context: GeneratorContext) : WithGeneratorContext {
     protected abstract fun processElements(state: GenerationState): GeneratedFile
 
     abstract val renderIf: Array<ConfigurationKey<Boolean>>
@@ -42,14 +42,14 @@ abstract class Renderer(override val context: GeneratorContext): WithGeneratorCo
         }
     }
 
-    private fun generate(vararg option: ConfigurationKey<Boolean>, init: () -> String) : String {
+    private fun generate(vararg option: ConfigurationKey<Boolean>, init: () -> String): String {
         return if (option.any { config[it] }) init() else ""
     }
 
     protected fun render(
-            templateName: String,
-            importList: ImportList = ImportList(),
-            body: TemplateContext.() -> Unit
+        templateName: String,
+        importList: ImportList = ImportList(),
+        body: TemplateContext.() -> Unit
     ): String {
         return templateManager.render(templateName, importList, body)
     }
@@ -65,7 +65,7 @@ fun generatedFile(vararg fileAnnotations: String, builder: StringBuilder.(Import
 class GeneratedFile(val body: String, val importList: ImportList, val fileAnnotations: List<String>)
 
 class RenderFacade(
-        val generationState: GenerationState
+    val generationState: GenerationState
 ) : ViewConstructorUtils, ReflectionUtils {
     private val cachedResults: MutableMap<Class<out Renderer>, String> = hashMapOf()
 

@@ -48,7 +48,6 @@ class DirectoryAnnotationProvider(val directory: File) : AnnotationProvider {
         if (!annotationFile.exists()) return emptyMap()
         return parseAnnotations(parseXml(annotationFile.readText()))
     }
-
 }
 
 class CachingAnnotationProvider(val underlyingProvider: AnnotationProvider) : AnnotationProvider {
@@ -59,7 +58,7 @@ class CachingAnnotationProvider(val underlyingProvider: AnnotationProvider) : An
     }
 }
 
-class CompoundAnnotationProvider(vararg private val providers: AnnotationProvider) : AnnotationProvider {
+class CompoundAnnotationProvider(private vararg val providers: AnnotationProvider) : AnnotationProvider {
     override fun getExternalAnnotations(packageName: String): Map<String, Set<ExternalAnnotation>> {
         val providerAnnotations = providers.map { it.getExternalAnnotations(packageName) }
 

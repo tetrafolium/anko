@@ -40,9 +40,9 @@ fun parseAnnotations(doc: Document): Map<String, Set<ExternalAnnotation>> {
 
     for (element in doc.documentElement.childElements("item")) {
         val annotations = element.childElements("annotation")
-                .map { parseAnnotation(it.getAttribute("name")) }
-                .filterNotNull()
-                .toSet()
+            .map { parseAnnotation(it.getAttribute("name")) }
+            .filterNotNull()
+            .toSet()
 
         map.put(element.getAttribute("name"), annotations)
     }

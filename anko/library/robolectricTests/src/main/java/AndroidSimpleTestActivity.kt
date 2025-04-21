@@ -2,12 +2,12 @@ package com.example.android_test
 
 import android.app.Activity
 import android.os.Bundle
-import org.jetbrains.anko.*
 import android.widget.LinearLayout
+import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.listeners.onClick
 
 open class AndroidSimpleTestActivity : Activity() {
-    public override fun onCreate(savedInstanceState: Bundle?): Unit {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         UI {
             linearLayout {
@@ -18,7 +18,6 @@ open class AndroidSimpleTestActivity : Activity() {
                 button {
                     text = "Buttons1231"
                     onClick {
-
                     }
                     setOnClickListener {
                         tv1.text = text
@@ -36,6 +35,4 @@ open class AndroidSimpleTestActivity : Activity() {
             }
         }
     }
-
-
 }

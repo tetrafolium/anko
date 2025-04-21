@@ -19,19 +19,19 @@ package org.jetbrains.anko.idea.intentions
 import org.jetbrains.kotlin.psi.*
 
 class ToastMakeTextShowIntention : AnkoIntention<KtExpression>(
-        KtExpression::class.java,
-        "Simplify Toast.makeText().show() with Anko"
+    KtExpression::class.java,
+    "Simplify Toast.makeText().show() with Anko"
 ) {
 
     override fun isApplicable(element: KtExpression, caretOffset: Int): Boolean {
         return element.require<KtDotQualifiedExpression> {
             receiver.require<KtDotQualifiedExpression> {
-                receiver.require<KtReferenceExpression>("Toast")
-                && selector.requireCall("makeText", 3) {
-                    isLongToast() != null && isValueParameterTypeOf(0, null, FqNames.CONTEXT_FQNAME)
-                }
-            }
-            && selector.requireCall("show", 0)
+                receiver.require<KtReferenceExpression>("Toast") &&
+                    selector.requireCall("makeText", 3) {
+                        isLongToast() != null && isValueParameterTypeOf(0, null, FqNames.CONTEXT_FQNAME)
+                    }
+            } &&
+                selector.requireCall("show", 0)
         }
     }
 
@@ -61,5 +61,4 @@ class ToastMakeTextShowIntention : AnkoIntention<KtExpression>(
         }
         return null
     }
-
 }

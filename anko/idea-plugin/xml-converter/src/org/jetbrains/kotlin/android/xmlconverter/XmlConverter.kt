@@ -16,6 +16,7 @@
 
 package org.jetbrains.kotlin.android.xmlconverter
 
+import kotlinx.dom.childElements
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 import org.xml.sax.InputSource
@@ -23,7 +24,6 @@ import java.io.File
 import java.io.StringReader
 import java.util.*
 import javax.xml.parsers.DocumentBuilderFactory
-import kotlinx.dom.childElements
 
 private class Widget(val name: String, val attrs: List<KeyValuePair>, val layoutParams: String, val children: List<Widget>) {
     override fun toString(): String {
@@ -53,28 +53,30 @@ object XmlConverter {
         if ("raw" in options) return widget.toString()
 
         val imports = listOf(
-                "android.app.*",
-                "android.view.*",
-                "android.widget.*",
-                "org.jetbrains.anko.*",
-                "android.os.Bundle"
+            "android.app.*",
+            "android.view.*",
+            "android.widget.*",
+            "org.jetbrains.anko.*",
+            "android.os.Bundle"
         )
 
         val idsToProcess = ids.filter { it.startsWith("Ids.") }
         val idsObject = if (idsToProcess.isNotEmpty()) {
             "private object Ids {\n" +
-                    idsToProcess.withIndex().map {
-                        "val " + it.value.replace("Ids.", "") + " = " + (it.index + 1)
-                    }.joinToString("\n").indent(1) + "\n}"
-        } else ""
+                idsToProcess.withIndex().map {
+                    "val " + it.value.replace("Ids.", "") + " = " + (it.index + 1)
+                }.joinToString("\n").indent(1) + "\n}"
+        } else {
+            ""
+        }
 
         return imports.map { "import $it" }.joinToString("\n", postfix = "\n\n") +
-                "class SomeActivity : Activity() {\n" +
-                "    override fun onCreate(savedInstanceState: Bundle?) {\n" +
-                "        super<Activity>.onCreate(savedInstanceState)\n\n" +
-                widget.toString().indent(2) +
-                "\n    }\n\n" + idsObject.indent(1) +
-                "\n}"
+            "class SomeActivity : Activity() {\n" +
+            "    override fun onCreate(savedInstanceState: Bundle?) {\n" +
+            "        super<Activity>.onCreate(savedInstanceState)\n\n" +
+            widget.toString().indent(2) +
+            "\n    }\n\n" + idsObject.indent(1) +
+            "\n}"
     }
 
     private fun parseView(widget: Element, parentName: String?, idsCollector: SortedSet<String>): Widget {
@@ -110,7 +112,6 @@ object XmlConverter {
 
         return ordinaryAttributes.map { transformAttribute(name, it.key, it.value) }.filterNotNull() to layoutParams
     }
-
 }
 
 fun main(args: Array<String>) {

@@ -6,21 +6,23 @@ import org.jetbrains.kotlin.psi.*
 import org.jetbrains.kotlin.resolve.calls.callUtil.getResolvedCall
 
 class FindViewByIdIntention : AnkoIntention<KtExpression>(
-        KtExpression::class.java,
-        "Simplify findViewById() with Anko"
+    KtExpression::class.java,
+    "Simplify findViewById() with Anko"
 ) {
     override fun isApplicable(element: KtExpression, caretOffset: Int): Boolean {
         fun PsiElement?.requireFindViewByIdCall() = requireCall(FIND_VIEW_BY_ID, 1) {
             val resolvedCall = getResolvedCall(analyze())
-            isValueParameterTypeOf(0, resolvedCall, "kotlin.Int")
-                    && isReceiverParameterTypeOf(resolvedCall, FqNames.ACTIVITY_FQNAME, FqNames.VIEW_FQNAME)
+            isValueParameterTypeOf(0, resolvedCall, "kotlin.Int") &&
+                isReceiverParameterTypeOf(resolvedCall, FqNames.ACTIVITY_FQNAME, FqNames.VIEW_FQNAME)
         }
 
         return element.require<KtBinaryExpressionWithTypeRHS>() {
-            operation.require<KtSimpleNameExpression>("as")
-            && (left.requireFindViewByIdCall() || left.require<KtDotQualifiedExpression> {
-                selector.requireFindViewByIdCall()
-            })
+            operation.require<KtSimpleNameExpression>("as") &&
+                (
+                    left.requireFindViewByIdCall() || left.require<KtDotQualifiedExpression> {
+                        selector.requireFindViewByIdCall()
+                    }
+                    )
         }
     }
 
@@ -50,5 +52,4 @@ class FindViewByIdIntention : AnkoIntention<KtExpression>(
     private companion object {
         val FIND_VIEW_BY_ID = "findViewById"
     }
-
 }

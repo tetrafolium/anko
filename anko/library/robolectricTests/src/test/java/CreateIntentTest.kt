@@ -15,11 +15,14 @@ class CreateIntentTest {
         val intent1 = AnkoInternals.createIntent(RuntimeEnvironment.application, Activity::class.java, arrayOf())
         assert(intent1.extras == null)
 
-        val intent2 = AnkoInternals.createIntent(RuntimeEnvironment.application, Activity::class.java, arrayOf(
+        val intent2 = AnkoInternals.createIntent(
+            RuntimeEnvironment.application, Activity::class.java,
+            arrayOf(
                 "one" to 1,
                 "abc" to "ABC",
                 "null" to null
-        ))
+            )
+        )
 
         assert(intent2.extras.size() == 3)
         assert(intent2.extras.get("one") == 1)

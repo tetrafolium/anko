@@ -30,7 +30,7 @@ internal data class TypeVariable(val name: String) : Classifier
 internal object ArrayC : Classifier
 
 internal enum class Wildcard {
-    SUPER,  // ? super X
+    SUPER, // ? super X
     EXTENDS // ? extends X
 }
 
@@ -141,13 +141,14 @@ private class GenericTypeParser(val result: GenericTypeImpl) : SignatureVisitor(
 
     override fun visitTypeArgument(wildcard: Char): SignatureVisitor {
         val argument = GenericTypeImpl()
-        result.arguments.add(when (wildcard) {
-            SignatureVisitor.EXTENDS -> BoundedWildcard(Wildcard.EXTENDS, argument)
-            SignatureVisitor.SUPER -> BoundedWildcard(Wildcard.SUPER, argument)
-            SignatureVisitor.INSTANCEOF -> NoWildcard(argument)
-            else -> throw IllegalArgumentException("Unknown wildcard: $wildcard")
-        })
+        result.arguments.add(
+            when (wildcard) {
+                SignatureVisitor.EXTENDS -> BoundedWildcard(Wildcard.EXTENDS, argument)
+                SignatureVisitor.SUPER -> BoundedWildcard(Wildcard.SUPER, argument)
+                SignatureVisitor.INSTANCEOF -> NoWildcard(argument)
+                else -> throw IllegalArgumentException("Unknown wildcard: $wildcard")
+            }
+        )
         return GenericTypeParser(argument)
     }
 }
-

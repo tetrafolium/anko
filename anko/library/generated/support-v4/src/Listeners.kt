@@ -1,6 +1,6 @@
 @file:JvmName("SupportV4ListenersKt")
-package org.jetbrains.anko.support.v4
 
+package org.jetbrains.anko.support.v4
 
 fun android.support.v4.widget.DrawerLayout.drawerListener(init: __DrawerLayout_DrawerListener.() -> Unit) {
     val listener = __DrawerLayout_DrawerListener()
@@ -45,7 +45,6 @@ class __DrawerLayout_DrawerListener : android.support.v4.widget.DrawerLayout.Dra
     fun onDrawerStateChanged(listener: (Int) -> Unit) {
         _onDrawerStateChanged = listener
     }
-
 }
 
 inline fun android.support.v4.view.ViewPager.onAdapterChange(noinline l: (viewPager: android.support.v4.view.ViewPager?, oldAdapter: android.support.v4.view.PagerAdapter?, newAdapter: android.support.v4.view.PagerAdapter?) -> Unit) {
@@ -86,7 +85,6 @@ class __ViewPager_OnPageChangeListener : android.support.v4.view.ViewPager.OnPag
     fun onPageScrollStateChanged(listener: (Int) -> Unit) {
         _onPageScrollStateChanged = listener
     }
-
 }
 
 inline fun android.support.v4.app.FragmentTabHost.onTabChanged(noinline l: (tabId: String?) -> Unit) {
@@ -100,4 +98,3 @@ inline fun android.support.v4.widget.NestedScrollView.onScrollChange(noinline l:
 inline fun android.support.v4.widget.SwipeRefreshLayout.onRefresh(noinline l: () -> Unit) {
     setOnRefreshListener(l)
 }
-

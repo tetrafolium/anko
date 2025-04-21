@@ -11,14 +11,15 @@ import org.robolectric.RobolectricGradleTestRunner
 import org.robolectric.annotation.Config
 
 open class ServiceTestActivity : Activity() {
-    public override fun onCreate(savedInstanceState: Bundle?): Unit {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         linearLayout {}
     }
 }
 
 @RunWith(RobolectricGradleTestRunner::class)
-@Config(constants = BuildConfig::class) class ServiceTest {
+@Config(constants = BuildConfig::class)
+class ServiceTest {
 
     @Test fun test() {
         val activity = Robolectric.buildActivity(ServiceTestActivity::class.java).create().get()
@@ -28,5 +29,4 @@ open class ServiceTestActivity : Activity() {
 
         println("[COMPLETE]")
     }
-
 }

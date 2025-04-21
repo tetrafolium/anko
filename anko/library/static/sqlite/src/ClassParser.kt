@@ -15,6 +15,7 @@
  */
 
 @file:Suppress("unused")
+
 package org.jetbrains.anko.db
 
 import org.jetbrains.anko.AnkoException
@@ -25,7 +26,7 @@ import java.lang.reflect.Modifier
 annotation class ClassParserConstructor
 
 @Suppress("NOTHING_TO_INLINE")
-inline fun <reified T: Any> classParser(): RowParser<T> = classParser(T::class.java)
+inline fun <reified T : Any> classParser(): RowParser<T> = classParser(T::class.java)
 
 @PublishedApi
 internal fun <T> classParser(clazz: Class<T>): RowParser<T> {
@@ -41,9 +42,9 @@ internal fun <T> classParser(clazz: Class<T>): RowParser<T> {
 
     val preferredConstructor = if (applicableConstructors.size > 1) {
         applicableConstructors
-                .filter { it.isAnnotationPresent(ClassParserConstructor::class.java) }
-                .singleOrNull()
-                ?: throw AnkoException("Several constructors are annotated with ClassParserConstructor")
+            .filter { it.isAnnotationPresent(ClassParserConstructor::class.java) }
+            .singleOrNull()
+            ?: throw AnkoException("Several constructors are annotated with ClassParserConstructor")
     } else {
         applicableConstructors[0]
     }
@@ -55,8 +56,10 @@ internal fun <T> classParser(clazz: Class<T>): RowParser<T> {
             if (parameterTypes.size != columns.size) {
                 val columnsRendered = columns.joinToString(prefix = "[", postfix = "]")
                 val parameterTypesRendered = parameterTypes.joinToString(prefix = "[", postfix = "]") { it.canonicalName }
-                throw AnkoException("Class parser for ${preferredConstructor.name} " +
-                        "failed to parse the row: $columnsRendered (constructor parameter types: $parameterTypesRendered)")
+                throw AnkoException(
+                    "Class parser for ${preferredConstructor.name} " +
+                        "failed to parse the row: $columnsRendered (constructor parameter types: $parameterTypesRendered)"
+                )
             }
 
             for (index in 0..(parameterTypes.size - 1)) {
@@ -142,8 +145,9 @@ private fun castValue(value: Any?, type: Class<*>): Any? {
         }
     }
 
-    if (value is String && value.length == 1
-            && (type == java.lang.Character.TYPE || type == java.lang.Character::class.java)) {
+    if (value is String && value.length == 1 &&
+        (type == java.lang.Character.TYPE || type == java.lang.Character::class.java)
+    ) {
         return value[0]
     }
 

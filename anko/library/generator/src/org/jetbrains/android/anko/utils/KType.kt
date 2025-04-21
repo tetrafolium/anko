@@ -1,10 +1,10 @@
 package org.jetbrains.android.anko.utils
 
 data class KType(
-        val fqName: String,
-        val isNullable: Boolean = false,
-        val variance: Variance = KType.Variance.INVARIANT,
-        val arguments: List<KType> = emptyList()
+    val fqName: String,
+    val isNullable: Boolean = false,
+    val variance: Variance = KType.Variance.INVARIANT,
+    val arguments: List<KType> = emptyList()
 ) {
     init {
         assert(!fqName.endsWith("?"))

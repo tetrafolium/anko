@@ -12,9 +12,9 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 import test.BuildConfig
 
-
 @RunWith(RobolectricGradleTestRunner::class)
-@Config(constants = BuildConfig::class) class AnkoSQliteTest {
+@Config(constants = BuildConfig::class)
+class AnkoSQliteTest {
 
     private var databaseHelper: DbHelper? = null
 
@@ -32,11 +32,11 @@ import test.BuildConfig
     @Test
     fun testSimpleCRUD() = databaseTest {
         createTable(
-                "User",
-                true,
-                "id" to INTEGER + PRIMARY_KEY + UNIQUE,
-                "name" to TEXT,
-                "email" to TEXT
+            "User",
+            true,
+            "id" to INTEGER + PRIMARY_KEY + UNIQUE,
+            "name" to TEXT,
+            "email" to TEXT
         )
 
         insert("User", "id" to 0, "name" to "John", "email" to "johny@domain.org")
@@ -56,8 +56,8 @@ import test.BuildConfig
         }
 
         update("User", "name" to "Fedor")
-                .whereArgs("id = {userId}", "userId" to 1)
-                .exec()
+            .whereArgs("id = {userId}", "userId" to 1)
+            .exec()
 
         select("User").exec {
             moveToNext()
@@ -75,11 +75,11 @@ import test.BuildConfig
     @Test
     fun testAutoincrement() = databaseTest {
         createTable(
-                "User",
-                true,
-                "id" to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
-                "name" to TEXT,
-                "email" to TEXT
+            "User",
+            true,
+            "id" to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            "name" to TEXT,
+            "email" to TEXT
         )
 
         insert("User", "name" to "John", "email" to "johny@domain.org")
@@ -108,30 +108,29 @@ import test.BuildConfig
 
     @Test
     fun testForeignKeyOnDeleteCascade() = databaseTest {
-
         rawQuery("PRAGMA foreign_keys = ON", emptyArray()).close()
 
         createTable(
-                "users",
-                true,
-                "id" to INTEGER + PRIMARY_KEY + UNIQUE,
-                "name" to TEXT
+            "users",
+            true,
+            "id" to INTEGER + PRIMARY_KEY + UNIQUE,
+            "name" to TEXT
         )
 
         insert("users", "name" to "John")
         insert("users", "name" to "Vasya")
 
         createTable(
-                "emails",
-                true,
-                "id" to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
-                "email" to TEXT,
-                "userId" to INTEGER,
-                FOREIGN_KEY("userId", "users", "id", ON_DELETE(ConstraintActions.CASCADE))
+            "emails",
+            true,
+            "id" to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            "email" to TEXT,
+            "userId" to INTEGER,
+            FOREIGN_KEY("userId", "users", "id", ON_DELETE(ConstraintActions.CASCADE))
         )
 
-        insert("emails",  "email" to "johny@domain.org", "userId" to 1)
-        insert("emails",  "email" to "vasiliy@domain.org", "userId" to 2)
+        insert("emails", "email" to "johny@domain.org", "userId" to 1)
+        insert("emails", "email" to "vasiliy@domain.org", "userId" to 2)
 
         select("emails").exec {
             moveToNext()
@@ -143,9 +142,7 @@ import test.BuildConfig
             assertEquals("John", getString(1))
         }
 
-
         delete("users", "id = {userId}", "userId" to 1)
-
 
         select("emails").exec {
             moveToNext()
@@ -159,28 +156,25 @@ import test.BuildConfig
     }
 
     private fun databaseTest(f: SQLiteDatabase.() -> Unit) =
-            databaseHelper!!.writableDatabase.let(f)
+        databaseHelper!!.writableDatabase.let(f)
 }
 
 class DbHelper(
-        private val context: Context,
-        private val dbName: String = "test_db"
+    private val context: Context,
+    private val dbName: String = "test_db"
 ) : SQLiteOpenHelper(
-        context,
-        dbName,
-        null ,
-        1
+    context,
+    dbName,
+    null,
+    1
 ) {
     override fun onCreate(db: SQLiteDatabase?) {
-
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-
     }
 
     fun deleteDatabase() {
         context.deleteDatabase(dbName)
     }
 }
-
